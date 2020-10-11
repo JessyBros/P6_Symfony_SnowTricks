@@ -32,10 +32,12 @@ class Figure
      */
     private $figureGroupe;
 
+
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="no")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $user_id;
+    private $user;
 
     public function getId(): ?int
     {
@@ -78,14 +80,14 @@ class Figure
         return $this;
     }
 
-    public function getUserId(): ?int
+    public function getUser(): ?user
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(int $user_id): self
+    public function setUser(?user $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

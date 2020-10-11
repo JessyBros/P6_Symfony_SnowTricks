@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,11 @@ class User
      * @ORM\Column(type="string", length=150)
      */
     private $picture;
+
+    public function __construct()
+    {
+        $this->no = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -89,4 +96,5 @@ class User
 
         return $this;
     }
+
 }

@@ -27,15 +27,18 @@ class Comment
      */
     private $date;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $figure_id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=figure::class)
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $user_id;
+    private $figure;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=user::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
 
     public function getId(): ?int
     {
@@ -66,26 +69,26 @@ class Comment
         return $this;
     }
 
-    public function getFigureId(): ?int
+    public function getFigure(): ?figure
     {
-        return $this->figure_id;
+        return $this->figure;
     }
 
-    public function setFigureId(int $figure_id): self
+    public function setFigure(?figure $figure): self
     {
-        $this->figure_id = $figure_id;
+        $this->figure = $figure;
 
         return $this;
     }
 
-    public function getUserId(): ?int
+    public function getUser(): ?user
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId(int $user_id): self
+    public function setUser(?user $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

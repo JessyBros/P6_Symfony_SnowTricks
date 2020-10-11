@@ -23,9 +23,10 @@ class Illustration
     private $path;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity=figure::class)
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $figure_id;
+    private $figure;
 
     public function getId(): ?int
     {
@@ -44,14 +45,14 @@ class Illustration
         return $this;
     }
 
-    public function getFigureId(): ?int
+    public function getFigure(): ?figure
     {
-        return $this->figure_id;
+        return $this->figure;
     }
 
-    public function setFigureId(int $figure_id): self
+    public function setFigure(?figure $figure): self
     {
-        $this->figure_id = $figure_id;
+        $this->figure = $figure;
 
         return $this;
     }
