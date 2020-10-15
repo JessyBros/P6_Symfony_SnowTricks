@@ -23,7 +23,7 @@ class Figure
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=70)
+     * @ORM\Column(type="string", length=255)
      */
     private $description;
 
