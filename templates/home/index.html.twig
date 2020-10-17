@@ -21,6 +21,7 @@
         <h2>Les Stricks</h2>
         <div>
         {% for figure in figures %}
+            <a href="{{ path('figure',{'id':figure.id}) }}">
             <article>
                 <img src="" alt="{{ figure.name }}"/>
                 <div>
@@ -29,6 +30,7 @@
                     <i class="fas fa-trash-alt"></i>
                 </div>
             </article>
+            </a>
             {% endfor %}
         </div>
         <button>Voir plus de figures</button>

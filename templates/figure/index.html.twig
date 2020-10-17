@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Figure : {{figure.name}}{% endblock %}
+
+{% block body %}
+<div>
+    <img src="images/figure.png" alt='image' />
+    <div>
+        <i class="fas fa-pencil-alt"></i>
+        <i class="fas fa-trash-alt"></i>
+    </div>
+</div>
+
+<p>La figure <strong>{{figure.name}}</strong> appartient au groupe <em>{{figure.figureGroupe}}<em></p>
+<p>{{figure.description}}</p>
+<p>Utilisateur a crée le topic le <em>DATE</em></p>
+
+{% endblock %}
