@@ -23,7 +23,7 @@ class Video
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity=figure::class)
+     * @ORM\ManyToOne(targetEntity=Figure::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $figure;
@@ -45,12 +45,12 @@ class Video
         return $this;
     }
 
-    public function getFigure(): ?figure
+    public function getFigure(): ?Figure
     {
         return $this->figure;
     }
 
-    public function setFigure(?figure $figure): self
+    public function setFigure(?Figure $figure): self
     {
         $this->figure = $figure;
 

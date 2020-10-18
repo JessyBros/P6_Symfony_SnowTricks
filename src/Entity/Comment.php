@@ -29,13 +29,13 @@ class Comment
 
 
     /**
-     * @ORM\ManyToOne(targetEntity=figure::class)
+     * @ORM\ManyToOne(targetEntity=Figure::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $figure;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class)
+     * @ORM\ManyToOne(targetEntity=User::class)
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
@@ -69,24 +69,24 @@ class Comment
         return $this;
     }
 
-    public function getFigure(): ?figure
+    public function getFigure(): ?Figure
     {
         return $this->figure;
     }
 
-    public function setFigure(?figure $figure): self
+    public function setFigure(?Figure $figure): self
     {
         $this->figure = $figure;
 
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(?user $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
