@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+ <section id="conteneurPresentation">
+        <h1>SnowTricks !</h1>
+        <p>Découvrez le <strong>Snowboard</strong> et apprenez les différentes figures avec Jimmy Sweat et la communauté.</p>
+
+        <ul>
+            <li>Essayez les figures qui vous plaisent !</li>
+            <li>Apprenez à maîtriser chacune des figures.</li>
+            <li>Partager vos ressentis et vos sensations et sourtout vos vidéos et photos.</li>
+            <li>Faites découvrir de nouvelle figures à la communauté.</li>
+            <li>Amusez-vous, et faites nous rire ! :D</li>
+        </ul>
+        <a href="#conteneurTricks"><i class="fas fa-arrow-down"></i></a>
+    </section>
+
+    <section id="conteneurTricks">
+        <h2>Les Stricks</h2>
+        <div>
+            <article>
+                <img src="" alt="nom de la figure"/>
+                <div>
+                    <span>Nom de la figure</span>
+                    <i class="fas fa-pencil-alt"></i>
+                    <i class="fas fa-trash-alt"></i>
+                </div>
+            </article>
+        </div>
+        <button>Voir plus de figures</button>
+        <a href="#conteneurPresentation"><i class="fas fa-arrow-up"></i></a>
+    </section>
+{% endblock %}

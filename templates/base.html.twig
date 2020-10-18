@@ -3,10 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <script src="https://kit.fontawesome.com/43219f80e6.js" crossorigin="anonymous"></script>
+       {% block stylesheets %}{% endblock %}
     </head>
     <body>
+
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="{{path('home')}}">Snowtricks</a></li>
+                    <li><a>se connecter</a></li>
+                    <li><a>s'inscire</a></li>
+                    <li><a>se déconnecter</a></li>
+                </ul>
+            </nav>
+        </header>
+        
         {% block body %}{% endblock %}
+
+        <footer>
+            <p>©2020 - tous droits réservés<p>
+        </footer>
+
         {% block javascripts %}{% endblock %}
+
     </body>
 </html>
