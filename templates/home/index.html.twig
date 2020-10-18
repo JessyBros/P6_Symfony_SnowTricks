@@ -20,14 +20,16 @@
     <section id="conteneurTricks">
         <h2>Les Stricks</h2>
         <div>
+        {% for figure in figures %}
             <article>
-                <img src="" alt="nom de la figure"/>
+                <img src="" alt="{{ figure.name }}"/>
                 <div>
-                    <span>Nom de la figure</span>
+                    <span>{{ figure.name }}</span>
                     <i class="fas fa-pencil-alt"></i>
                     <i class="fas fa-trash-alt"></i>
                 </div>
             </article>
+            {% endfor %}
         </div>
         <button>Voir plus de figures</button>
         <a href="#conteneurPresentation"><i class="fas fa-arrow-up"></i></a>
