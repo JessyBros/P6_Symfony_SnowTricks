@@ -2,11 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Snowtricks{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+    <header>
+        <nav>
+            <ul>
+                <li><a>Snowtricks</a></li>
+                <li><a>se connecter</a></li>
+                <li><a>s'inscire</a></li>
+                <li><a>se déconnecter</a></li>
+            </ul>
+        </nav>
+    </header>
+    
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
-</html>
+</html>15
