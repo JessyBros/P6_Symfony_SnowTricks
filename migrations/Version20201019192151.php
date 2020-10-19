@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20201015134756 extends AbstractMigration
+final class Version20201019192151 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -28,7 +28,7 @@ final class Version20201015134756 extends AbstractMigration
         $this->addSql('CREATE TABLE comment (id INT NOT NULL, figure_id INT NOT NULL, user_id INT NOT NULL, message TEXT NOT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_9474526C5C011B5 ON comment (figure_id)');
         $this->addSql('CREATE INDEX IDX_9474526CA76ED395 ON comment (user_id)');
-        $this->addSql('CREATE TABLE figure (id INT NOT NULL, user_id INT NOT NULL, name VARCHAR(70) NOT NULL, description VARCHAR(255) NOT NULL, figure_groupe VARCHAR(70) NOT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE figure (id INT NOT NULL, user_id INT NOT NULL, name VARCHAR(70) NOT NULL, description VARCHAR(255) NOT NULL, figure_groupe VARCHAR(70) NOT NULL, date TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_2F57B37AA76ED395 ON figure (user_id)');
         $this->addSql('CREATE TABLE illustration (id INT NOT NULL, figure_id INT NOT NULL, path TEXT NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE INDEX IDX_D67B9A425C011B5 ON illustration (figure_id)');
