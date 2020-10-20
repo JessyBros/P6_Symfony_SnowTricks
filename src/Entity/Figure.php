@@ -32,6 +32,10 @@ class Figure
      */
     private $figureGroupe;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $date;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="no")
@@ -39,10 +43,6 @@ class Figure
      */
     private $user;
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private $date;
 
     public function getId(): ?int
     {
@@ -85,18 +85,6 @@ class Figure
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
@@ -105,6 +93,18 @@ class Figure
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
