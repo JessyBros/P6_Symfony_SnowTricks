@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Figure : {{figure.name}}{% endblock %}
+
+{% block body %}
+
+<section>
+    <div>
+        <img src="../images/figures/illustrations/{{figureIllustration.path}}" alt='image' />
+        <div>
+            <i class="fas fa-pencil-alt"></i>
+            <i class="fas fa-trash-alt"></i>
+        </div>
+    </div>
+</section>
+
+<section id="figures">
+    <div id="illustrations">
+        {% for illustration in illustrations %}
+            <img src="../images/figures/illustrations/{{ illustration.path }}"/>
+        {% endfor %}
+    </div>
+    <div id="videos">
+        {% for video in videos %}
+            <img src="../images/figures/videos{{ video.path }}"/>
+        {% endfor %}
+    </div>
+</section>
+
+<section>
+    <p>La figure <strong>{{figure.name}}</strong> appartient au groupe <em>{{figure.figureGroupe}}<em></p>
+    <p>{{figure.description}}</p>
+    <p>{{figure.user.name}} a crée le topic le <em>{{figure.date|date("d/m/Y à H:i")}}</em></p>
+</section>
+
+
+{% endblock %}
