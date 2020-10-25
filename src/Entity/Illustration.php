@@ -23,7 +23,8 @@ class Illustration
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="illustration")
+     * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="illustrations")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $figure;
 
@@ -56,5 +57,4 @@ class Illustration
         return $this;
     }
 
-    
 }

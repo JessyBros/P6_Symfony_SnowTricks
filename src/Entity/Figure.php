@@ -45,6 +45,22 @@ class Figure
      */
     private $user;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Illustration::class, mappedBy="figure", orphanRemoval=true)
+     */
+    private $illustrations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="figure", orphanRemoval=true)
+     */
+    private $videos;
+
+    public function __construct()
+    {
+        $this->illustrations = new ArrayCollection();
+        $this->videos = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -106,6 +122,68 @@ class Figure
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Illustration[]
+     */
+    public function getIllustrations(): Collection
+    {
+        return $this->illustrations;
+    }
+
+    public function addIllustration(Illustration $illustration): self
+    {
+        if (!$this->illustrations->contains($illustration)) {
+            $this->illustrations[] = $illustration;
+            $illustration->setFigure($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIllustration(Illustration $illustration): self
+    {
+        if ($this->illustrations->contains($illustration)) {
+            $this->illustrations->removeElement($illustration);
+            // set the owning side to null (unless already changed)
+            if ($illustration->getFigure() === $this) {
+                $illustration->setFigure(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Video[]
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->videos->contains($video)) {
+            $this->videos[] = $video;
+            $video->setFigure($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        if ($this->videos->contains($video)) {
+            $this->videos->removeElement($video);
+            // set the owning side to null (unless already changed)
+            if ($video->getFigure() === $this) {
+                $video->setFigure(null);
+            }
+        }
 
         return $this;
     }
