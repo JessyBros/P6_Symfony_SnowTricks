@@ -23,8 +23,7 @@ class Video
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Figure::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="video")
      */
     private $figure;
 
