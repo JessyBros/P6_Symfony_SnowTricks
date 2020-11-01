@@ -6,8 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\Entity\Figure;
-use App\Entity\Illustration;
-use App\Entity\Video;
 use App\Entity\Comment;
 use App\Form\CommentFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,7 +28,7 @@ class FigureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             $comment->setDate(new \DateTime())
                     ->setFigure($figure)
-                    ->setUser($this->getDoctrine()->getRepository(User::class)->find(43))
+                    ->setUser($this->getDoctrine()->getRepository(User::class)->find(46))
             ;
                         
             $entityManager->persist($comment);
