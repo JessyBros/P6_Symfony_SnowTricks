@@ -46,12 +46,12 @@ class Figure
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Illustration::class, mappedBy="figure", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Illustration::class, mappedBy="figure", orphanRemoval=true, cascade={"persist"})
      */
     private $illustrations;
 
     /**
-     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="figure", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Video::class, mappedBy="figure", orphanRemoval=true, cascade={"persist"})
      */
     private $videos;
 

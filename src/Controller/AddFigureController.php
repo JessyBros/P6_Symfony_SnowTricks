@@ -22,7 +22,6 @@ class AddFigureController extends AbstractController
         $figure = new Figure();
 
         $illustration = new Illustration();
-        $illustration->setPath('path/ok');
 
         $form =$this->createForm(FigureFormType::class, $figure);
         $form->handleRequest($request);
@@ -31,13 +30,7 @@ class AddFigureController extends AbstractController
 
             $figure->setDate(new \DateTime())
                     ->setUser($this->getDoctrine()->getRepository(User::class)->find(46))
-            
             ;
-            $illustration->setFigure($figure);
-
-            $figure->getIllustrations()->add($illustration);
-
-            $entityManager->persist($illustration);
             $entityManager->persist($figure);
             
             $entityManager->flush();
@@ -49,5 +42,7 @@ class AddFigureController extends AbstractController
             'figure_form' => $form->createView(),
             'figure' => $figure,
         ]);
+        
     }
+
 }

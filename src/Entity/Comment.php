@@ -32,13 +32,13 @@ class Comment
 
     /**
      * @ORM\ManyToOne(targetEntity=Figure::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="figure_id", referencedColumnName="id")
      */
     private $figure;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
 

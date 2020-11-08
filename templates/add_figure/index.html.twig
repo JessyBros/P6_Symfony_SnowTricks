@@ -18,7 +18,13 @@
             <li>{{ form_row(illustration.path) }}</li>
         {% endfor %}
     </ul>
+    <button type="button" class="add_item_link" data-collection-holder-class="illustrations">Add a tag</button>
+
 
     {{ form_end(figure_form) }}
     
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="../build/app.js/addIllustrations.js"></script>
 {% endblock %}
