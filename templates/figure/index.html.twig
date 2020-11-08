@@ -6,7 +6,11 @@
 
 <section>
     <div>
-        <img src="../images/figures/illustrations/{{figureIllustration.path}}" alt='image' />
+    {% if figure.illustrations is null %}
+        <!-- image par défaut--><p>test</p>
+    {% else %}
+     <img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt='{{figure.illustrations|first.path}}' />
+    {% endif %}
         <div>
             <i class="fas fa-pencil-alt"></i>
             <i class="fas fa-trash-alt"></i>
@@ -16,12 +20,12 @@
 
 <section id="figures">
     <div id="illustrations">
-        {% for illustration in illustrations %}
-            <img src="../images/figures/illustrations/{{ illustration.path }}"/>
-        {% endfor %}
+            {% for illustration in figure.illustrations %}
+                <img src="../images/figures/illustrations/{{ illustration.path }} alt='{{ illustration.path }}'"/>
+            {% endfor %}
     </div>
     <div id="videos">
-        {% for video in videos %}
+        {% for video in figure.videos %}
             <img src="../images/figures/videos{{ video.path }}"/>
         {% endfor %}
     </div>
@@ -31,6 +35,16 @@
     <p>La figure <strong>{{figure.name}}</strong> appartient au groupe <em>{{figure.figureGroupe}}<em></p>
     <p>{{figure.description}}</p>
     <p>{{figure.user.name}} a crée le topic le <em>{{figure.date|date("d/m/Y à H:i")}}</em></p>
+</section>
+
+<section id="PosterUnCommentaire">
+{{ form(comment_form)}}
+</section>
+
+<section>
+{% for comment in comments %}
+            <p><img style="height:50px; border-radius:50px;" src="../images/pictures/{{comment.user.picture}}"/>{{comment.user.name}} :{{ comment.message }}</p>
+        {% endfor %}
 </section>
 
 

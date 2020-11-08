@@ -4,32 +4,43 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
 use App\Entity\Figure;
-use App\Entity\Illustration;
-use App\Entity\Video;
+use App\Entity\Comment;
+use App\Form\CommentFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+ use Symfony\Component\HttpFoundation\Response;
 
 class FigureController extends AbstractController
 {
     /**
      * @Route("/figure/{id}", name="figure")
      */
-    public function figure($id)
+    public function figure(Figure $figure,EntityManagerInterface $entityManager,Request $request)
     {
-        $repo = $this->getDoctrine()->getRepository(Figure::class);
-        $figure = $repo->find($id);
+        $comments = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId());
 
-        $repoIllustrations = $this->getDoctrine()->getRepository(Illustration::class);
-        $figureIllustration = $repoIllustrations->findOneByFigure($id);
-        $illustrations = $repoIllustrations->findByFigure($id);
+        $comment = new Comment();
+        $form = $this->createForm(CommentFormType::class, $comment);
+        $form->handleRequest($request);
 
-        $repoVideos = $this->getDoctrine()->getRepository(Video::class);
-        $videos = $repoVideos->findByFigure($id);
+        if ($form->isSubmitted() && $form->isValid()){
+            $comment->setDate(new \DateTime())
+                    ->setFigure($figure)
+                    ->setUser($this->getDoctrine()->getRepository(User::class)->find(46))
+            ;
+                        
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
+        }
 
         return $this->render('figure/index.html.twig', [
-            'figureIllustration' => $figureIllustration,
             'figure' => $figure,
-            'illustrations' => $illustrations,
-            'videos' => $videos
-        ]);
+            'comment_form' => $form->createView(),
+            'comments' => $comments,
+        ]);       
     }
 }
