@@ -23,7 +23,6 @@ class Illustration
     private $path;
 
     /**
-     * @ORM\Column( type="string")
      * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="illustrations")
      * @ORM\JoinColumn(nullable=false)
      */

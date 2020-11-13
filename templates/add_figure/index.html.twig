@@ -13,12 +13,19 @@
 
      <h3>Illustrations</h3>
     <ul class="illustrations" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
-
         {% for illustration in figure_form.illustrations %}
             <li>{{ form_row(illustration.path) }}</li>
         {% endfor %}
     </ul>
-    <button type="button" class="add_item_link" data-collection-holder-class="illustrations">Add a tag</button>
+    <button type="button" class="add_item_link_illustration" data-collection-holder-class="illustrations">Ajouter une illustration</button>
+
+    <h3>Videos</h3>
+    <ul class="videos" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
+        {% for video in figure_form.videos %}
+            <li>{{ form_row(video.path) }}</li>
+        {% endfor %}
+    </ul>
+    <button type="button" class="add_item_link_video" data-collection-holder-class="videos">Ajouter une vidéo</button>
 
 
     {{ form_end(figure_form) }}
@@ -27,4 +34,6 @@
 
 {% block javascripts %}
     <script type="text/javascript" src="../build/app.js/addIllustrations.js"></script>
+    <script type="text/javascript" src="../build/app.js/addVideos.js"></script>
+    <script type="text/javascript" src="../build/app.js/ManagementCollectionForm.js"></script>
 {% endblock %}
