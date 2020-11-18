@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\IllustrationRepository;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
