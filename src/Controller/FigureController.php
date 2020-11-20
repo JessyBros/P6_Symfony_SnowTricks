@@ -10,14 +10,14 @@ use App\Entity\Comment;
 use App\Form\CommentFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
- use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 class FigureController extends AbstractController
 {
     /**
      * @Route("/figure/{id}", name="figure")
      */
-    public function figure(Figure $figure,EntityManagerInterface $entityManager,Request $request)
+    public function figure(Figure $figure, EntityManagerInterface $entityManager, Request $request)
     {
         $comments = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId());
 
@@ -25,12 +25,11 @@ class FigureController extends AbstractController
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $comment->setDate(new \DateTime())
-                    ->setFigure($figure)
-                    ->setUser($this->getDoctrine()->getRepository(User::class)->find(46))
-            ;
-                        
+                ->setFigure($figure)
+                ->setUser($this->getDoctrine()->getRepository(User::class)->find(49));
+
             $entityManager->persist($comment);
             $entityManager->flush();
 
@@ -41,6 +40,6 @@ class FigureController extends AbstractController
             'figure' => $figure,
             'comment_form' => $form->createView(),
             'comments' => $comments,
-        ]);       
+        ]);
     }
 }

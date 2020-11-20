@@ -1,39 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Snowtricks - ajouter une figure{% endblock %}
+{% block title %}
+	Snowtricks - ajouter une figure
+{% endblock %}
 
 {% block body %}
-    <h1>Ajouter une nouvelle figure✅</h1>
+	<h1>Ajouter une nouvelle figure✅</h1>
 
-    {{ form_start(figure_form) }}
+	{{ form_start(figure_form) }}
 
-    {{form_row(figure_form.name)}}
-    {{form_row(figure_form.description)}}
-    {{form_row(figure_form.figureGroupe)}}
+	{{ form_row(figure_form.name,{'attr':{'placeholder':"Nom de la figure"}}) }}
+	{{ form_row(figure_form.description,{'attr':{'placeholder': "Description de la figure"}}) }}
+	{{ form_row(figure_form.figureGroupe,{'attr':{'placeholder':"FigureGroupe de la figure"}}) }}
 
-     <h3>Illustrations</h3>
-    <ul class="illustrations" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
-        {% for illustration in figure_form.illustrations %}
-            <li>{{ form_row(illustration.path) }}</li>
-        {% endfor %}
-    </ul>
-    <button type="button" class="add_item_link_illustration" data-collection-holder-class="illustrations">Ajouter une illustration</button>
+	<div id="containerIllustrations">
+		<ul class="illustrations" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
+			{% for illustration in figure_form.illustrations %}
+				<li>{{ form_row(illustration.path) }}</li>
+			{% endfor %}
+		</ul>
+		<button type="button" class="add_item_link_illustration" data-collection-holder-class="illustrations">Ajouter une illustration</button>
+	</div>
 
-    <h3>Videos</h3>
-    <ul class="videos" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
-        {% for video in figure_form.videos %}
-            <li>{{ form_row(video.path) }}</li>
-        {% endfor %}
-    </ul>
-    <button type="button" class="add_item_link_video" data-collection-holder-class="videos">Ajouter une vidéo</button>
+	<div id="containerVideos">
+		<ul class="videos" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
+			{% for video in figure_form.videos %}
+				<li>{{ form_row(video.path) }}</li>
+			{% endfor %}
+		</ul>
+		<button type="button" class="add_item_link_video" data-collection-holder-class="videos">Ajouter une vidéo</button>
+	</div>
 
+	<button type="submit">Ajouter l'article</button>
 
-    {{ form_end(figure_form) }}
-    
+	{{ form_end(figure_form) }}
+
 {% endblock %}
 
 {% block javascripts %}
-    <script type="text/javascript" src="../build/app.js/addIllustrations.js"></script>
-    <script type="text/javascript" src="../build/app.js/addVideos.js"></script>
-    <script type="text/javascript" src="../build/app.js/ManagementCollectionForm.js"></script>
+	<script type="text/javascript" src="../build/app.js/addIllustrations.js"></script>
+	<script type="text/javascript" src="../build/app.js/addVideos.js"></script>
+	<script type="text/javascript" src="../build/app.js/ManagementCollectionForm.js"></script>
 {% endblock %}

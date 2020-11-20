@@ -18,28 +18,27 @@ class FigureFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('description', TextType::class)
-            ->add('figureGroupe', TextType::class)
-            ->add('illustrations', CollectionType::class,[
+            ->add('name')
+            ->add('description')
+            ->add('figureGroupe')
+            ->add('illustrations', CollectionType::class, [
                 'entry_type' => IllustrationFormType::class,
+                'label' => false,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
                 'required' => false,
-                
             ])
-            ->add('videos', CollectionType::class,[
+            ->add('videos', CollectionType::class, [
                 'entry_type' => VideoFormType::class,
+                'label' => false,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
                 'required' => false,
-            ])
-            ->add('enregistrer', SubmitType::class)
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

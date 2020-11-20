@@ -14,26 +14,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
-
-
-
-class AddFigureController extends AbstractController
+class UpdateFigureController extends AbstractController
 {
     /**
-     * @Route("/ajouter-une-figure", name="add_figure")
+     * @Route("/modifier_la_figure/{id}", name="update_figure")
      */
-    public function addFigure(EntityManagerInterface $entityManager, Request $request, string $photoDir)
+    public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir)
     {
-        $figure = new Figure();
-        $video = new Video();
 
         $form = $this->createForm(FigureFormType::class, $figure);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $figure->setDate(new \DateTime())
-                ->setUser($this->getDoctrine()->getRepository(User::class)->find(49));
+        /* if ($form->isSubmitted() && $form->isValid()) {
 
             if ($illustrationFiles = $form->get('illustrations')) {
 
@@ -58,10 +50,10 @@ class AddFigureController extends AbstractController
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
-        }
+            return $this->redirectToRoute('home');
+        }*/
 
-        return $this->render('add_figure/index.html.twig', [
+        return $this->render('update_figure/index.html.twig', [
             'figure_form' => $form->createView(),
             'figure' => $figure,
         ]);

@@ -9,7 +9,7 @@
     {% if figure.illustrations is null %}
         <!-- image par défaut--><p>test</p>
     {% else %}
-     <img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt='{{figure.illustrations|first.path}}' />
+     <img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" />
     {% endif %}
         <div>
             <i class="fas fa-pencil-alt"></i>
@@ -21,12 +21,12 @@
 <section id="figures">
     <div id="illustrations">
             {% for illustration in figure.illustrations %}
-                <img src="../images/figures/illustrations/{{ illustration.path }} alt='{{ illustration.path }}'"/>
+                <img src="../images/figures/illustrations/{{ illustration.path }}" alt="{{ illustration.path }}"/>
             {% endfor %}
     </div>
     <div id="videos">
         {% for video in figure.videos %}
-            <img src="../images/figures/videos{{ video.path }}"/>
+            {{ video.path }}
         {% endfor %}
     </div>
 </section>

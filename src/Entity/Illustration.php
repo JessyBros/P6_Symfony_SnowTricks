@@ -57,6 +57,4 @@ class Illustration
 
         return $this;
     }
-
-    
 }
