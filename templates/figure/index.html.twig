@@ -6,7 +6,7 @@
 
 <section>
     <div>
-    {% if figure.illustrations is null %}
+    {% if figure.illustrations is empty %}
         <!-- image par défaut--><p>test</p>
     {% else %}
      <img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" />

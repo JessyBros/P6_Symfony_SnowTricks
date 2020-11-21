@@ -9,7 +9,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Validator\Constraints\Image;
 
 
 
@@ -26,9 +25,11 @@ class FigureFormType extends AbstractType
                 'label' => false,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-                'required' => false,
+                'allow_delete' => true, 
+                'by_reference' => false,// permet de dire que je n'aurai pas forcément d'illustration, donc facultatif
+                'required' => false, 
+                //'mapped' => false,// pour que les champs ne soient pas obligatoirement stockés
+                
             ])
             ->add('videos', CollectionType::class, [
                 'entry_type' => VideoFormType::class,
@@ -38,6 +39,7 @@ class FigureFormType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'required' => false,
+                //'mapped' => false,
             ]);
     }
 

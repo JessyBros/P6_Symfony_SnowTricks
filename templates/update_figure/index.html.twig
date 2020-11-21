@@ -19,8 +19,11 @@
 		<div id="containerIllustrations">
 			<ul class="illustrations" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
 				{% for illustration in figure_form.illustrations %}
+			
 					<li>
-						{{ form_row(illustration.path) }}
+						<img src="../images/figures/illustrations/{{ illustration.vars.data.path }}" />
+						{{ form_row(illustration.file) }}
+			
 					</li>
 				</ul>
 			{% endfor %}
