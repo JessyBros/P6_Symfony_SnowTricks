@@ -39,8 +39,7 @@ class AddFigureController extends AbstractController
 
                 foreach ($illustrationFiles as $illustrationFile) {
 
-                    $fileData = $illustrationFile->get('path')->getData();
-                    dump($fileData);
+                    $fileData = $illustrationFile->get('file')->getData();
                     $filename = bin2hex(random_bytes(6)) . '.' . $fileData->guessExtension();
 
                     try {
@@ -48,9 +47,8 @@ class AddFigureController extends AbstractController
                     } catch (FileException $e) {
                     }
 
-                    $illustration = new Illustration();
-                    $illustration->setPath($filename);
-                    $figure->addIllustration($illustration);
+                    $illustrationFile->getData()->setPath($filename);
+                    
 
                 }
             }
@@ -59,9 +57,9 @@ class AddFigureController extends AbstractController
 
             $entityManager->flush();
 
-           // return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
+            return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
         }
-        
+
         return $this->render('add_figure/index.html.twig', [
             'figure_form' => $form->createView(),
             'figure' => $figure,

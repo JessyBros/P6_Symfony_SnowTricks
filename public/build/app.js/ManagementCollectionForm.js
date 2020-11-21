@@ -33,10 +33,10 @@ function addFormToCollection($collectionHolderClass) {
 
 
 function addTagFormDeleteLink($tagFormLi) {
-    var $removeFormButton = $('<button class="display:inline;" type="button"><i class="fas fa-times"></i></button>');
-    $FormLi.append($removeFormButton);
+    var $removeFormButton = $('<button  type="button"><i class="fas fa-times"></i></button>');
+    $tagFormLi.append($removeFormButton);
 
-    $removeFormButton.on('click', function (e) {
+    $removeFormButton.on('click', function(e) {
         // remove the li for the tag form
         $tagFormLi.remove();
     });

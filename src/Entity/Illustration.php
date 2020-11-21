@@ -32,7 +32,7 @@ class Illustration
     /**
      * @var UploadedFile
      */
-    private $file;
+    protected $file;
 
     public function getId(): ?int
     {
