@@ -35,6 +35,7 @@ class AddFigureController extends AbstractController
             $figure->setDate(new \DateTime())
                 ->setUser($this->getDoctrine()->getRepository(User::class)->find(49));
 
+            // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
             if ($illustrationFiles = $form->get('illustrations')) {
 
                 foreach ($illustrationFiles as $illustrationFile) {
@@ -48,8 +49,6 @@ class AddFigureController extends AbstractController
                     }
 
                     $illustrationFile->getData()->setPath($filename);
-                    
-
                 }
             }
 

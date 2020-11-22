@@ -21,42 +21,31 @@ class UpdateFigureController extends AbstractController
      */
     public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir)
     {
-
-/*
-- je souhaite modifier mon i mage existant ( supprimer l'image puis ajouter la nouvelle)
--je souhaite ajouer une image
--je souhaite supprimer une image
-*/
         $form = $this->createForm(FigureFormType::class, $figure);
         $form->handleRequest($request);
 
-         if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             if ($illustrationFiles = $form->get('illustrations')) {
 
                 foreach ($illustrationFiles as $illustrationFile) {
-                    if ($illustrationFile->get('file')->getData() != null){
-                    $fileData = $illustrationFile->get('file')->getData();
-                    $filename = bin2hex(random_bytes(6)) . '.' . $fileData->guessExtension();
-                   
-
-                    try {
-                        $fileData->move($photoDir, $filename);
-                    } catch (FileException $e) {
+                    if ($illustrationFile->get('file')->getData() != null) {
+                        $fileData = $illustrationFile->get('file')->getData();
+                        $filename = bin2hex(random_bytes(6)) . '.' . $fileData->guessExtension();
+                        try {
+                            $fileData->move($photoDir, $filename);
+                        } catch (FileException $e) {
+                            // nothing do
+                        }
+                        $illustrationFile->getData()->setPath($filename);
                     }
-                    $illustrationFile->getData()->setPath($filename);
-                }
                 }
             }
 
             $entityManager->persist($figure);
-
             $entityManager->flush();
-
-            //return $this->redirectToRoute('home');
         }
-        
-      
+
         return $this->render('update_figure/index.html.twig', [
             'figure_form' => $form->createView(),
             'figure' => $figure,

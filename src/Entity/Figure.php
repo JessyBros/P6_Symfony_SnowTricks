@@ -22,9 +22,10 @@ class Figure
 
     /**
      * @ORM\Column(type="string", length=70)
+     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 2,
-     *      max = 50,
+     *      max = 20,
      *      minMessage = "Le nom de la figure doit avoir au moins {{ limit }} caractères",
      *      maxMessage = "Le nom de la figure ne doit pas dépasser {{ limit }} caractères"
      * )
@@ -33,15 +34,30 @@ class Figure
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 15,
+     *      max = 110,
+     *      minMessage = "La description doit avoir au moins {{ limit }} caractères",
+     *      maxMessage = "La description ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=70)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "Le nom de la figure doit avoir au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom de la figure ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
     private $figureGroupe;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="datetime")
      */
     private $date;

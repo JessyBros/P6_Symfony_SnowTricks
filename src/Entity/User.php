@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -22,21 +23,35 @@ class User
 
     /**
      * @ORM\Column(type="string", length=70)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 20,
+     *      minMessage = "Votre nom doit avoir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=70)
+     * @Assert\NotBlank
+     * @Assert\Email(
+     *     message = "L'email '{{ value }}' n'est pas une adresse email valide."
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=150)
+     * @Assert\NotBlank
      */
     private $password;
 
+
     /**
      * @ORM\Column(type="string", length=150)
+     * @Assert\NotBlank
      */
     private $picture;
 
@@ -97,5 +112,4 @@ class User
 
         return $this;
     }
-
 }

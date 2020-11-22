@@ -19,11 +19,11 @@
 		<div id="containerIllustrations">
 			<ul class="illustrations" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
 				{% for illustration in figure_form.illustrations %}
-			
+
 					<li>
-						<img src="../images/figures/illustrations/{{ illustration.vars.data.path }}" />
+						<img src="../images/figures/illustrations/{{ illustration.vars.data.path }}"/>
 						{{ form_row(illustration.file) }}
-			
+
 					</li>
 				</ul>
 			{% endfor %}
@@ -50,4 +50,5 @@
 	<script type="text/javascript" src="../build/app.js/addIllustrations.js"></script>
 	<script type="text/javascript" src="../build/app.js/addVideos.js"></script>
 	<script type="text/javascript" src="../build/app.js/ManagementCollectionForm.js"></script>
+
 {% endblock %}
