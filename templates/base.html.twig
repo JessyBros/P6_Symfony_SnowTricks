@@ -22,10 +22,13 @@
 			<nav>
 				<ul>
 					<li><a href="{{path('home')}}">Snowtricks</a></li>
-					<li><a href="{{path('add_figure')}}">Créer une figure</a></li>
-					<li><a href="{{path('sign_in')}}">se connecter</a></li>
-					<li><a href="{{path('sign_up')}}">s'inscrire</a></li>
-					<li><a>se déconnecter</a></li>
+					<li><a href="{{path('add_figure')}}">Créer une figure</a></li
+					{% if not app.user %}
+						<li><a href="{{path('sign_in')}}">se connecter</a></li>
+						<li><a href="{{path('sign_up')}}">s'inscrire</a></li>
+					{% else %}
+						<li><a href="{{path('log_out')}}">se déconnecter</a></li>
+					{% endif %}
 				</ul>
 			</nav>
 		</header>

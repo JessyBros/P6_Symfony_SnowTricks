@@ -28,7 +28,7 @@ class FigureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setDate(new \DateTime())
                 ->setFigure($figure)
-                ->setUser($this->getDoctrine()->getRepository(User::class)->find(49));
+                ->setUser($this->getDoctrine()->getRepository(User::class)->find(60));
 
             $entityManager->persist($comment);
             $entityManager->flush();
@@ -36,7 +36,7 @@ class FigureController extends AbstractController
             return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
         }
 
-        return $this->render('figure/index.html.twig', [
+        return $this->render('figure/figure.html.twig', [
             'figure' => $figure,
             'comment_form' => $form->createView(),
             'comments' => $comments,
