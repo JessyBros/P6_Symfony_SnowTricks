@@ -11,21 +11,21 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $userJimmy = new User();
-        $userJimmy->setName("Jimmy Sweat")
+        $userJimmy->setUsername("Jimmy Sweat")
              ->setEmail("js_swowtricks@hotmail.com")
              ->setPassword("js")
              ->setPicture("jimmy_sweat.png");
         $manager->persist($userJimmy);
 
         $userJessy = new User();
-        $userJessy->setName("Jessy")
+        $userJessy->setUsername("Jessy")
              ->setEmail("j.bros@hotmail.fr")
              ->setPassword("jb")
              ->setPicture("jessy.png");
         $manager->persist($userJessy);
 
         $userCrystel = new User();
-        $userCrystel->setName("Crystel")
+        $userCrystel->setUsername("Crystel")
              ->setEmail("Crystel@hotmail.com")
              ->setPassword("Crystel")
              ->setPicture("Crystel.jpg");

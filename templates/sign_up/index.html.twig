@@ -8,9 +8,10 @@
 	<h1>Inscription</h1>
 
     {{ form_start(formSignUp) }}
-        {{ form_row(formSignUp.name) }}
-        {{ form_row(formSignUp.email) }}
-        {{ form_row(formSignUp.password) }}
+        {{ form_row(formSignUp.username,{'label': 'Nom d\'utilisateur ','attr':{'placeholder': 'Nom d\'utilisateur...'}}) }}
+        {{ form_row(formSignUp.email,{'label': 'Adresse email ','attr':{'placeholder': 'Adresse email'}}) }}
+        {{ form_row(formSignUp.password,{'label':'Mot de passe ', 'attr': {'placeholder':'Mot de passe !'}}) }}
+        {{ form_row(formSignUp.confirm_password,{'label':'Confirmation du mot de passe ', 'attr': {'placeholder':'Répétez votre mot de passe'}}) }}
         {{ form_row(formSignUp.picture) }}
         <button type="submit">Je m'inscris</button>
     {{ form_end(formSignUp) }}

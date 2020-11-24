@@ -10,13 +10,14 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SignUpController extends AbstractController
 {
     /**
      * @Route("/inscription", name="sign_up")
      */
-    public function index(EntityManagerInterface $entityManager, Request $request, string $pictureDir)
+    public function index(EntityManagerInterface $entityManager, Request $request, string $pictureDir, UserPasswordEncoderInterface $encoder)
     {
 
         $user = new User();
@@ -25,6 +26,9 @@ class SignUpController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $hash = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($hash);
           
             $picture = $form->get('picture')->getData();
             $pictureName = bin2hex(random_bytes(6)) . '.' . $picture->guessExtension();
@@ -37,7 +41,7 @@ class SignUpController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            //return $this->redirectToRoute('connexion');
+            return $this->redirectToRoute('sign_in');
         }
 
         return $this->render('sign_up/index.html.twig',[
