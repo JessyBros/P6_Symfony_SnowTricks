@@ -5,14 +5,19 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Inscription</h1>
 
-    {{ form_start(formSignUp) }}
-        {{ form_row(formSignUp.username,{'label': 'Nom d\'utilisateur ','attr':{'placeholder': 'Nom d\'utilisateur...'}}) }}
-        {{ form_row(formSignUp.email,{'label': 'Adresse email ','attr':{'placeholder': 'Adresse email'}}) }}
-        {{ form_row(formSignUp.password,{'label':'Mot de passe ', 'attr': {'placeholder':'Mot de passe !'}}) }}
-        {{ form_row(formSignUp.confirm_password,{'label':'Confirmation du mot de passe ', 'attr': {'placeholder':'Répétez votre mot de passe'}}) }}
-        {{ form_row(formSignUp.picture) }}
-        <button type="submit">Je m'inscris</button>
-    {{ form_end(formSignUp) }}
+    <div class="container h-75">
+        <div class="row h-100 justify-content-center align-items-center">
+            {{ form_start(formSignUp,{'attr':{'class':'class="col-sm-8 col-md-6  control-label center-block mx-auto'}}) }}
+                <legend>Inscription</legend>
+                {{ form_row(formSignUp.username,{'label': 'Nom d\'utilisateur ','attr':{'placeholder': 'Nom d\'utilisateur...'}}) }}
+                {{ form_row(formSignUp.email,{'label': 'Adresse email ','attr':{'placeholder': 'Adresse email'}}) }}
+                {{ form_row(formSignUp.password,{'label':'Mot de passe ', 'attr': {'placeholder':'Mot de passe !'}}) }}
+                {{ form_row(formSignUp.confirm_password,{'label':'Confirmation du mot de passe ', 'attr': {'placeholder':'Répétez votre mot de passe'}}) }}
+                {{ form_row(formSignUp.picture) }}
+                <button type="submit" class="btn btn-secondary">Je m'inscris</button>
+            {{ form_end(formSignUp) }}
+        </div>
+    </div>
+
 {% endblock %}

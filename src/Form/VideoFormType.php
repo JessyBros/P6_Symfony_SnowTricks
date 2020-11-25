@@ -14,7 +14,7 @@ class VideoFormType extends AbstractType
     {
         $builder
             ->add('path', TextType::class, [
-                'label' => "vidéo : "
+                'label' => false,
             ]);
     }
 

@@ -14,7 +14,7 @@ class IllustrationFormType extends AbstractType
     {
         $builder
             ->add('file', FileType::class, [
-                'label' => "illustration : ",
+                'label' => false,
                 'data_class' => null,
             ]);
     }

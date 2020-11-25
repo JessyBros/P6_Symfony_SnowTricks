@@ -5,33 +5,36 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Ajouter une nouvelle figure✅</h1>
 
-	{{ form_start(figure_form) }}
+	{{ form_start(figure_form,{'attr':{'class':'class="col-sm-8 col-md-6  control-label center-block mx-auto'}}) }}
 
-	{{ form_row(figure_form.name,{'attr':{'placeholder':"Nom de la figure"}}) }}
-	{{ form_row(figure_form.description,{'attr':{'placeholder': "Description de la figure"}}) }}
-	{{ form_row(figure_form.figureGroupe,{'attr':{'placeholder':"FigureGroupe de la figure"}}) }}
+		<legend>Ajouter une nouvelle figure</legend>
 
-	<div id="containerIllustrations">
-		<ul class="illustrations" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
-			{% for illustration in figure_form.illustrations %}
-				<li>{{ form_row(illustration.file) }}</li>
-			{% endfor %}
-		</ul>
-		<button type="button" class="add_item_link_illustration" data-collection-holder-class="illustrations">Ajouter une illustration</button>
-	</div>
+		{{ form_row(figure_form.name,{'attr':{'placeholder':"Nom de la figure"}}) }}
+		{{ form_row(figure_form.description,{'attr':{'placeholder': "Description de la figure"}}) }}
+		{{ form_row(figure_form.figureGroupe,{'attr':{'placeholder':"FigureGroupe de la figure"}}) }}
 
-	<div id="containerVideos">
-		<ul class="videos" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
-			{% for video in figure_form.videos %}
-				<li>{{ form_row(video.path) }}</li>
-			{% endfor %}
-		</ul>
-		<button type="button" class="add_item_link_video" data-collection-holder-class="videos">Ajouter une vidéo</button>
-	</div>
+		<fieldset id="containerIllustrations">
+			<legend class="h5">Illustrations</legend>
+			<ul class="illustrations" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
+				{% for illustration in figure_form.illustrations %}
+					<li>{{ form_row(illustration.file) }}</li>
+				{% endfor %}
+			</ul>
+			<button type="button" class="add_item_link_illustration btn btn-dark " data-collection-holder-class="illustrations">Ajouter une illustration</button>
+		</fieldset>
 
-	<button type="submit">Ajouter l'article</button>
+		<fieldset id="containerVideos">
+			<legend class="h5">Vidéos</legend>
+			<ul class="videos" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
+				{% for video in figure_form.videos %}
+					<li>{{ form_row(video.path) }}</li>
+				{% endfor %}
+			</ul>
+			<button type="button" class="add_item_link_video btn btn-dark" data-collection-holder-class="videos">Ajouter une vidéo</button>
+		</fieldset>
+
+		<button type="submit" class="btn btn-secondary">Ajouter l'article</button>
 
 	{{ form_end(figure_form) }}
 
@@ -41,5 +44,4 @@
 	<script type="text/javascript" src="../build/app.js/addIllustrations.js"></script>
 	<script type="text/javascript" src="../build/app.js/addVideos.js"></script>
 	<script type="text/javascript" src="../build/app.js/ManagementCollectionForm.js"></script>
-	
 {% endblock %}

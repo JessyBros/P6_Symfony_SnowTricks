@@ -9,8 +9,7 @@
 	<section>
 		<div>
 			{% if figure.illustrations is empty %}
-				<!-- image par défaut-->
-				<p>test</p>
+				<img src="../images/figures/illustrations/figure_exemple.jpg" alt="exemple de figure"/>
 			{% else %}
 				<img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}"/>
 			{% endif %}

@@ -3,8 +3,21 @@
 {% block title %}Hello HomeController!
 {% endblock %}
 
+{% block stylesheets %}
+<style>
+#conteneurSnowTricks .SnowTricks{
+	display:flex;
+	justify-content:space-around;
+	flex-wrap:wrap;
+}
+.SnowTricks article{
+	border:1px solid black;
+}
+</style>
+{% endblock %}
+
 {% block body %}
-	<section id="conteneurPresentation">
+	<section id="conteneurPresentation" class="jumbotron">
 		<h1>SnowTricks !</h1>
 		<p>Découvrez le
 			<strong>Snowboard</strong>
@@ -22,13 +35,18 @@
 		</a>
 	</section>
 
-	<section id="conteneurTricks">
+	<section id="conteneurSnowTricks">
 		<h2>Les Stricks</h2>
-		<div>
+		<div class="SnowTricks">
 			{% for figure in figures %}
 				<a href="{{ path('figure',{'id':figure.id}) }}">
 					<article>
-						<img src="" alt="{{ figure.name }}"/>
+						{% if figure.illustrations is empty %}
+							<!-- image par défaut-->
+							<img src="../images/figures/illustrations/figure_exemple.jpg" alt="exemple de figure"/>
+						{% else %}
+							<img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}"/>
+						{% endif %}
 						<div>
 							<span>{{ figure.name }}</span>
 							<a href="{{ path('update_figure',{'id':figure.id}) }}">
@@ -40,7 +58,7 @@
 				</a>
 			{% endfor %}
 		</div>
-		<button>Voir plus de figures</button>
+		<button class="btn btn-secondary">Voir plus de figures</button>
 		<a href="#conteneurPresentation">
 			<i class="fas fa-arrow-up"></i>
 		</a>
