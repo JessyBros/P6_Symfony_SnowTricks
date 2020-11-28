@@ -19,7 +19,7 @@
 			<legend class="h5">Illustrations</legend>
 			<ul class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
 				{% for illustration in figure_form.illustrations %}
-					<li class="col-md-6 ">{{ form_row(illustration.file) }}</li>
+					<li class="col-md-6 ">{{ form_row(illustration.file)}}</li>
 				{% endfor %}
 			</ul>
 			<button type="button" class="add_item_link_illustration btn btn-secondary my-2" data-collection-holder-class="illustrations">Ajouter une illustration</button>
