@@ -16,6 +16,7 @@ class IllustrationFormType extends AbstractType
             ->add('file', FileType::class, [
                 'label' => false,
                 'data_class' => null,
+                'required' => false,
             ]);
     }
 

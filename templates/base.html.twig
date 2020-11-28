@@ -11,19 +11,30 @@
 		<script src="https://kit.fontawesome.com/43219f80e6.js" crossorigin="anonymous"></script>
 		{% block stylesheets %}{% endblock %}
 		<style>
-			img {
-				height: 100px;
-				width: 100px;
-			}
 			body{
 				margin: 0;
 				min-height: 100vh;
 				display: grid;
 				grid-template-rows: auto 1fr auto;
+				font-family: Segoe UI, Helvetica, Arial, sans-serif;
+			}
+			img{
+				width:100%;
 			}
 			
-			fieldset{
-				padding:10px;
+			ul{
+				list-style:none;
+			}
+			a{
+				text-decoration:none!important;
+				color:grey;
+			} 
+			i{
+				font-size:15px;
+			}
+			a:hover, i:hover{
+				color:#555;
+				text-shadow: grey 1px 1px 2px;
 			}
 		</style>
 	</head>
@@ -31,7 +42,7 @@
 
 		<header>
 			<nav class="navbar navbar-expand navbar-dark bg-dark">
-				<a class="navbar-brand" href="{{ path('home') }}">Snowtricks</a>
+				<a class="navbar-brand" href="{{ path('home') }}"><img style="height:30px; width:30px;"src='/images/figures/logo.png'/> Snowtricks</a>
 				<div class="collapse navbar-collapse" id="navbarColor02">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active">
@@ -41,11 +52,11 @@
 					</ul>
 					<div class="my-2 my-lg-0">
 						{% if not app.user %}
-								<a href="{{ path('sign_in') }}"><button type="button" class="btn btn-outline-secondary">se connecter</button></a>
-								<a href="{{ path('sign_up') }}"><button type="button" class="btn btn-secondary">s'inscrire</button></a>
+								<a href="{{ path('sign_in') }}"><button type="button" class="btn btn-outline-secondary m-1">se connecter</button></a>
+								<a href="{{ path('sign_up') }}"><button type="button" class="btn btn-secondary m-1">s'inscrire</button></a>
 						
 						{% else %}
-								<button type="button" class="btn btn-secondary" href="{{path('log_out')}}">se déconnecter</button>
+								<a href="{{ path('log_out') }}"><button type="button" class="btn btn-secondary" href="{{path('log_out')}}"><i class="fas fa-sign-out-alt"> deconnexion</i></button></a>
 						{% endif %}
 					</div>
 				</div>

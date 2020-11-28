@@ -6,9 +6,10 @@
 
 {% block body %}
 
-	{{ form_start(figure_form,{'attr':{'class':'class="col-sm-8 col-md-6  control-label center-block mx-auto'}}) }}
-
-		<legend>Ajouter une nouvelle figure</legend>
+	<section class="container-fluid ">
+	<div class="row">
+	{{ form_start(figure_form,{'attr':{'class':'col-offset-md-3 col-md-6  col-offset-md-3  control-label m-auto'}}) }}
+		<legend class="h1 my-5">Ajouter une nouvelle figure</legend>
 
 		{{ form_row(figure_form.name,{'attr':{'placeholder':"Nom de la figure"}}) }}
 		{{ form_row(figure_form.description,{'attr':{'placeholder': "Description de la figure"}}) }}
@@ -16,27 +17,29 @@
 
 		<fieldset id="containerIllustrations">
 			<legend class="h5">Illustrations</legend>
-			<ul class="illustrations" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
+			<ul class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
 				{% for illustration in figure_form.illustrations %}
-					<li>{{ form_row(illustration.file) }}</li>
+					<li class="col-md-6 ">{{ form_row(illustration.file) }}</li>
 				{% endfor %}
 			</ul>
-			<button type="button" class="add_item_link_illustration btn btn-dark " data-collection-holder-class="illustrations">Ajouter une illustration</button>
+			<button type="button" class="add_item_link_illustration btn btn-secondary my-2" data-collection-holder-class="illustrations">Ajouter une illustration</button>
 		</fieldset>
 
 		<fieldset id="containerVideos">
 			<legend class="h5">Vidéos</legend>
-			<ul class="videos" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
+			<ul class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
 				{% for video in figure_form.videos %}
-					<li>{{ form_row(video.path) }}</li>
+					<li class="col-md-6">{{ form_row(video.path) }}</li>
 				{% endfor %}
 			</ul>
-			<button type="button" class="add_item_link_video btn btn-dark" data-collection-holder-class="videos">Ajouter une vidéo</button>
+			<button type="button" class="add_item_link_video btn btn-secondary my-2" data-collection-holder-class="videos">Ajouter une vidéo</button>
 		</fieldset>
 
-		<button type="submit" class="btn btn-secondary">Ajouter l'article</button>
+		<button type="submit" class="btn btn-dark my-3">Ajouter l'article</button>
 
 	{{ form_end(figure_form) }}
+	</div>
+	</section>
 
 {% endblock %}
 

@@ -23,7 +23,7 @@ function addFormToCollection($collectionHolderClass) {
     $collectionHolder.data('index', index + 1);
 
     // Fait apparaître le formulaire dans la page dans une balise <li>, avant le boutton qui permet d'ajouter ce formulaire
-    var $newFormLi = $('<li></li>').append(newForm);
+    var $newFormLi = $('<li class="col-md-6 my-2"></li>').append(newForm);
     // Ajoute le formulaire en fin de liste<.
     $collectionHolder.append($newFormLi);
 

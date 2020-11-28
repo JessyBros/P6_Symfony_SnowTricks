@@ -5,58 +5,98 @@
 {% endblock %}
 
 {% block body %}
+	<section class="container  mt-5">
+		<article class="row border" style="border-radius:5px;">
 
-	<section>
-		<div>
-			{% if figure.illustrations is empty %}
-				<img src="../images/figures/illustrations/figure_exemple.jpg" alt="exemple de figure"/>
-			{% else %}
-				<img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}"/>
-			{% endif %}
-			<div>
-				<a href="{{ path('update_figure',{'id':figure.id}) }}">
-					<i class="fas fa-pencil-alt"></i>
-				</a>
-				<i class="fas fa-trash-alt"></i>
+			<!-- Image de présentation de l'article -->
+			<div class="col-sm-12 p-0">
+				{% if figure.illustrations is empty %}
+					<img src="../images/figures/illustrations/figure_exemple.jpg" alt="exemple de figure"  style="height:500px;"/>
+				{% else %}
+					<img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" class="rounded-top" style="height:500px;"/>
+				{% endif %}
+				<div class="position-absolute z-index-2" style="top:0;right:10px;">
+					<a href="{{ path('update_figure',{'id':figure.id}) }}">
+						<i class="fas fa-pencil-alt m-2"></i>
+					</a>
+					<a href="{{ path('update_figure',{'id':figure.id}) }}">
+						<i class="fas fa-trash-alt m-2"></i>
+					</a>
+					
+				</div>
+			</div>
+
+			<!-- Informations de l'article -->
+			<div class="col-sm-12 card-body text-center">
+				<h5 class="card-title">{{figure.name|upper}}</h5>
+				<p class="card-text">{{figure.description}}</p>
+				
+			</div>
+
+			<hr class="col-sm-10">
+
+			<!-- Informations secondaire de l'article -->
+			<div class="col-sm-12 card-body text-center" style="">
+				<p class="card-text blockquote-footer">Par : {{figure.user.username|capitalize}} | Ajouté le <em>{{figure.date|date("d/m/Y à H:i")}}</em> | Groupe : {{figure.figureGroupe}} | commentaire{% if comments|length > 1 %}s{% endif %} : <a href="#commentaires">({{comments|length}})</a></p>
+			</div>
+
+			<hr class="col-sm-10">
+
+			<!-- Illustrations et videos -->
+			<div id="figures" class="row col-sm-12 my-2 d-flex justify-content-around flex-wrap">
+				{% if figure.illustrations|length == 0 and figure.videos|length == 0 %}
+				<div class="text-center card-text">
+					<p>Aucune illustration ou vidéo de la figure n'a été ajouté pour le moment.</p>
+				<div>
+				{% else %}
+					{% for illustration in figure.illustrations %}
+						<img src="../images/figures/illustrations/{{ illustration.path }}" alt="{{ illustration.path }}"style="height:50px; width:50px;"/>
+					{% endfor %}
+					{% for video in figure.videos %}
+						<span>{{ video.path }}</span>
+					{% endfor %}			
+				{% endif %}
+			</div>
+
+		</article>
+						
+		<!-- Poster un commentaire -->
+		{% if app.user %}
+		<div class="row justify-content-center border my-4 bg-dark" style="border-radius:5px;">
+			<div id="PosterUnCommentaire" class="col-md-10 col-md-offset-1 mt-5 mb-4">
+				{{ form_start(comment_form)}}
+					{{form_row(comment_form.message)}}
+					<button type="submit" class="btn btn-outline-dark"> Poster un commentaire !</button>
+				{{ form_end(comment_form)}}
 			</div>
 		</div>
-	</section>
-
-	<section id="figures">
-		<div id="illustrations">
-			{% for illustration in figure.illustrations %}
-				<img src="../images/figures/illustrations/{{ illustration.path }}" alt="{{ illustration.path }}"/>
-			{% endfor %}
+		{% else %}
+		<div class="row justify-content-center border my-4 " style="border-radius:5px;">
+			<span class="h5 py-2"><a href="{{ path('sign_up') }}">Inscrivez-vous</a> ou <a href="{{ path('sign_in') }}">connectez</a> vous pour commenter cet article<span/>
 		</div>
-		<div id="videos">
-			{% for video in figure.videos %}
-				{{ video.path }}
-			{% endfor %}
-		</div>
+		{% endif %}
+
+		<!-- Affichage des commentaires -->
+		<div  id="commentaires" class="row justify-content-center border my-4 " style="border-radius:5px;">
+			<div class="col-sm-12 m-4">
+			{% if comments %}
+			 	<p class="mb-5" style="text-decoration:#555 underline;">{{comments|length}} COMMENTAIRE{% if comments|length > 1 %}S{% endif %}</p>
+				{% for comment in comments %}
+				<div class="d-flex m-2">
+					<img src="../images/pictures/{{comment.user.picture}}" class="mx-4 mt-2 circle" style="height:50px; width:50px; border-radius:50px;"/>
+					<div class="m-1">
+						<p><strong class="card-text text-uppercase" style="font-weight:500;">{{comment.user.username}}</strong><em class="text-secondary" style="font-size:80%;"> le {{comment.date|date("d/m/Y à H:i")}}</em></p>
+						<p class="text-secondary m-2">{{ comment.message }}</p>
+					</div>
+				</div>
+				<hr>
+				{% endfor %}
+				{% else %}
+				<div class="text-center card-text">
+					<p><strong>0 commentaire... </strong><a href="{{ path('sign_in') }}" style="text-decoration:underline!important;">Connectez-vous</a>, et soyez le premier à mettre un commentaire à cette figure !</p>
+				<div>
+				{% endif %}
+			</div>
+		</div>		
 	</section>
-
-	<section>
-		<p>La figure
-			<strong>{{figure.user.username}}</strong>
-			appartient au groupe
-			<em>{{figure.figureGroupe}}<em></p>
-				<p>{{figure.description}}</p>
-				<p>{{figure.user.username}}
-					a crée le topic le
-					<em>{{figure.date|date("d/m/Y à H:i")}}</em>
-				</p>
-			</section>
-
-			<section id="PosterUnCommentaire">
-				{{ form(comment_form)}}
-				</section>
-
-				<section>
-					{% for comment in comments %}
-						<p><img style="height:50px; border-radius:50px;" src="../images/pictures/{{comment.user.picture}}"/>{{comment.user.username}}
-							:{{ comment.message }}</p>
-					{% endfor %}
-				</section>
-
-
-			{% endblock %}
+{% endblock %}
