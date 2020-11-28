@@ -16,7 +16,6 @@ security:
         main:
             anonymous: ~
 
-
             provider: in_database
 
             form_login:

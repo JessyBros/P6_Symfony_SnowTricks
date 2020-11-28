@@ -6,8 +6,10 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\EqualTo;
 
 class UserType extends AbstractType
 {
@@ -16,8 +18,13 @@ class UserType extends AbstractType
         $builder
             ->add('username')
             ->add('email')
-            ->add('password', PasswordType::class)
-            ->add('confirm_password', PasswordType::class)
+            ->add('password', RepeatedType::class,[
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passe doivent être identique',
+                'required' => true,
+                'first_options' =>['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Répétez votre mot de passe']
+            ])
             ->add('picture', FileType::class,[
                 'label' => 'Votre avatar de profil',
             ])
