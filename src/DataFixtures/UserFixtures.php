@@ -13,21 +13,21 @@ class UserFixtures extends Fixture
         $userJimmy = new User();
         $userJimmy->setUsername("Jimmy Sweat")
              ->setEmail("js_swowtricks@hotmail.com")
-             ->setPassword("js")
+             ->setPassword('$2y$13$C3kDgXCkq5TFBiFcXzrbRO4KK35oFiOvWGrx0D5TDlFnqNberOL/u')
              ->setPicture("jimmy_sweat.png");
         $manager->persist($userJimmy);
 
         $userJessy = new User();
         $userJessy->setUsername("Jessy")
              ->setEmail("j.bros@hotmail.fr")
-             ->setPassword("jb")
+             ->setPassword('$2y$13$C3kDgXCkq5TFBiFcXzrbRO4KK35oFiOvWGrx0D5TDlFnqNberOL/u')
              ->setPicture("jessy.png");
         $manager->persist($userJessy);
 
         $userCrystel = new User();
         $userCrystel->setUsername("Crystel")
              ->setEmail("Crystel@hotmail.com")
-             ->setPassword("Crystel")
+             ->setPassword('$2y$13$C3kDgXCkq5TFBiFcXzrbRO4KK35oFiOvWGrx0D5TDlFnqNberOL/u')
              ->setPicture("Crystel.jpg");
         $manager->persist($userCrystel);
 

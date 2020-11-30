@@ -28,7 +28,11 @@ class FigureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setDate(new \DateTime())
                 ->setFigure($figure)
-                ->setUser($this->getDoctrine()->getRepository(User::class)->find(60));
+                ->setUser($this->getUser());
+ 
+ 
+                dump($this->getDoctrine()->getRepository(User::class)->find(70));
+
 
             $entityManager->persist($comment);
             $entityManager->flush();

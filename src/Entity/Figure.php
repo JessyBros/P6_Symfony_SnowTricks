@@ -68,7 +68,7 @@ class Figure
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Illustration::class, mappedBy="figure", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Illustration::class, mappedBy="figure", orphanRemoval=true, cascade={"persist"})
      */
     private $illustrations;
 

@@ -17,7 +17,7 @@
 
 		<fieldset id="containerIllustrations">
 			<legend class="h5">Illustrations</legend>
-			<ul class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
+			<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
 				{% for illustration in figure_form.illustrations %}
 					<li class="col-md-6 ">{{ form_row(illustration.file)}}</li>
 				{% endfor %}
@@ -27,7 +27,7 @@
 
 		<fieldset id="containerVideos">
 			<legend class="h5">Vidéos</legend>
-			<ul class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
+			<ul id="ulVideos" class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
 				{% for video in figure_form.videos %}
 					<li class="col-md-6">{{ form_row(video.path) }}</li>
 				{% endfor %}
