@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\IllustrationRepository;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,7 +24,8 @@ class Illustration
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="illustration")
+     * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="illustrations")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $figure;
 
