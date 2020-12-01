@@ -9,7 +9,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Validator\Constraints\Image;
 
 
 
@@ -18,28 +17,27 @@ class FigureFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('description', TextType::class)
-            ->add('figureGroupe', TextType::class)
-            ->add('illustrations', CollectionType::class,[
+            ->add('name')
+            ->add('description')
+            ->add('figureGroupe')
+            ->add('illustrations', CollectionType::class, [
                 'entry_type' => IllustrationFormType::class,
+                'label' => false,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => false,
+                'by_reference' => false, // permet de dire que je n'aurai pas forcément d'illustration, donc facultatif
                 'required' => false,
-                
             ])
-            ->add('videos', CollectionType::class,[
+            ->add('videos', CollectionType::class, [
                 'entry_type' => VideoFormType::class,
+                'label' => false,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
                 'required' => false,
-            ])
-            ->add('enregistrer', SubmitType::class)
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

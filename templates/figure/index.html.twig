@@ -1,51 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Figure : {{figure.name}}{% endblock %}
+{% block title %}Figure :
+	{{figure.name}}
+{% endblock %}
 
 {% block body %}
 
-<section>
-    <div>
-    {% if figure.illustrations is null %}
-        <!-- image par défaut--><p>test</p>
-    {% else %}
-     <img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt='{{figure.illustrations|first.path}}' />
-    {% endif %}
-        <div>
-            <i class="fas fa-pencil-alt"></i>
-            <i class="fas fa-trash-alt"></i>
-        </div>
-    </div>
-</section>
+	<section>
+		<div>
+			{% if figure.illustrations is empty %}
+				<!-- image par défaut-->
+				<p>test</p>
+			{% else %}
+				<img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}"/>
+			{% endif %}
+			<div>
+				<a href="{{ path('update_figure',{'id':figure.id}) }}">
+					<i class="fas fa-pencil-alt"></i>
+				</a>
+				<i class="fas fa-trash-alt"></i>
+			</div>
+		</div>
+	</section>
 
-<section id="figures">
-    <div id="illustrations">
-            {% for illustration in figure.illustrations %}
-                <img src="../images/figures/illustrations/{{ illustration.path }} alt='{{ illustration.path }}'"/>
-            {% endfor %}
-    </div>
-    <div id="videos">
-        {% for video in figure.videos %}
-            <img src="../images/figures/videos{{ video.path }}"/>
-        {% endfor %}
-    </div>
-</section>
+	<section id="figures">
+		<div id="illustrations">
+			{% for illustration in figure.illustrations %}
+				<img src="../images/figures/illustrations/{{ illustration.path }}" alt="{{ illustration.path }}"/>
+			{% endfor %}
+		</div>
+		<div id="videos">
+			{% for video in figure.videos %}
+				{{ video.path }}
+			{% endfor %}
+		</div>
+	</section>
 
-<section>
-    <p>La figure <strong>{{figure.name}}</strong> appartient au groupe <em>{{figure.figureGroupe}}<em></p>
-    <p>{{figure.description}}</p>
-    <p>{{figure.user.name}} a crée le topic le <em>{{figure.date|date("d/m/Y à H:i")}}</em></p>
-</section>
+	<section>
+		<p>La figure
+			<strong>{{figure.name}}</strong>
+			appartient au groupe
+			<em>{{figure.figureGroupe}}<em></p>
+				<p>{{figure.description}}</p>
+				<p>{{figure.user.name}}
+					a crée le topic le
+					<em>{{figure.date|date("d/m/Y à H:i")}}</em>
+				</p>
+			</section>
 
-<section id="PosterUnCommentaire">
-{{ form(comment_form)}}
-</section>
+			<section id="PosterUnCommentaire">
+				{{ form(comment_form)}}
+				</section>
 
-<section>
-{% for comment in comments %}
-            <p><img style="height:50px; border-radius:50px;" src="../images/pictures/{{comment.user.picture}}"/>{{comment.user.name}} :{{ comment.message }}</p>
-        {% endfor %}
-</section>
+				<section>
+					{% for comment in comments %}
+						<p><img style="height:50px; border-radius:50px;" src="../images/pictures/{{comment.user.picture}}"/>{{comment.user.name}}
+							:{{ comment.message }}</p>
+					{% endfor %}
+				</section>
 
 
-{% endblock %}
+			{% endblock %}

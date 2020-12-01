@@ -29,6 +29,11 @@ class Illustration
      */
     private $figure;
 
+    /**
+     * @var UploadedFile
+     */
+    protected $file;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -39,9 +44,21 @@ class Illustration
         return $this->path;
     }
 
-    public function setPath(string $path): self
+    public function setPath(?string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getFile(): ?UploadedFile
+    {
+        return $this->file;
+    }
+
+    public function setFile(?UploadedFile $file): self
+    {
+        $this->file = $file;
 
         return $this;
     }
@@ -57,6 +74,4 @@ class Illustration
 
         return $this;
     }
-
-    
 }

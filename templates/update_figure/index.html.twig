@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de la figure
+	{{figure.name}}
+{% endblock %}
+
+{% block body %}
+
+	<section>
+		<h1>Modification de la figure
+			{{figure.name}}</h1>
+
+		{{ form_start(figure_form) }}
+
+		{{form_row(figure_form.name)}}
+		{{form_row(figure_form.description)}}
+		{{form_row(figure_form.figureGroupe)}}
+
+		<div id="containerIllustrations">
+			<ul class="illustrations" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
+				{% for illustration in figure_form.illustrations %}
+
+					<li>
+						<img src="../images/figures/illustrations/{{ illustration.vars.data.path }}"/>
+						{{ form_row(illustration.file) }}
+
+					</li>
+				</ul>
+			{% endfor %}
+			<button type="button" class="add_item_link_illustration" data-collection-holder-class="illustrations">Ajouter une illustration</button>
+		</div>
+
+		<div id="containerVideos">
+			<ul class="videos" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
+				{% for video in figure_form.videos %}
+					<li>{{ form_row(video.path,{'attr':{'placeholder':"https://www.youtube.com/watch?v="}}) }}</li>
+				{% endfor %}
+			</ul>
+			<button type="button" class="add_item_link_video" data-collection-holder-class="videos">Ajouter une vidéo</button>
+		</div>
+
+		<button type="submit">Enregistrer les modifications</button>
+
+		{{ form_end(figure_form) }}
+	</section>
+
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="../build/app.js/addIllustrations.js"></script>
+	<script type="text/javascript" src="../build/app.js/addVideos.js"></script>
+	<script type="text/javascript" src="../build/app.js/ManagementCollectionForm.js"></script>
+
+{% endblock %}

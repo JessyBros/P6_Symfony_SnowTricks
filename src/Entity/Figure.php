@@ -6,6 +6,7 @@ use App\Repository\FigureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=FigureRepository::class)
@@ -21,20 +22,42 @@ class Figure
 
     /**
      * @ORM\Column(type="string", length=70)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "Le nom de la figure doit avoir au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom de la figure ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 15,
+     *      max = 110,
+     *      minMessage = "La description doit avoir au moins {{ limit }} caractères",
+     *      maxMessage = "La description ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=70)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "Le nom de la figure doit avoir au moins {{ limit }} caractères",
+     *      maxMessage = "Le nom de la figure ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
     private $figureGroupe;
 
     /**
+     * @Assert\NotBlank
      * @ORM\Column(type="datetime")
      */
     private $date;
@@ -46,7 +69,7 @@ class Figure
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity=Illustration::class, mappedBy="figure", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OneToMany(targetEntity=Illustration::class, mappedBy="figure", cascade={"persist"})
      */
     private $illustrations;
 

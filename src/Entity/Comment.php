@@ -21,6 +21,12 @@ class Comment
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "Votre commentaire doit avoir au moins {{ limit }} caractères",
+     *      maxMessage = "Votre commentaire ne doit pas dépasser {{ limit }} caractères"
+     * )
      */
     private $message;
 

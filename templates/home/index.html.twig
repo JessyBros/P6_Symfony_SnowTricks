@@ -1,39 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Hello HomeController!
+{% endblock %}
 
 {% block body %}
- <section id="conteneurPresentation">
-        <h1>SnowTricks !</h1>
-        <p>Découvrez le <strong>Snowboard</strong> et apprenez les différentes figures avec Jimmy Sweat et la communauté.</p>
+	<section id="conteneurPresentation">
+		<h1>SnowTricks !</h1>
+		<p>Découvrez le
+			<strong>Snowboard</strong>
+			et apprenez les différentes figures avec Jimmy Sweat et la communauté.</p>
 
-        <ul>
-            <li>Essayez les figures qui vous plaisent !</li>
-            <li>Apprenez à maîtriser chacune des figures.</li>
-            <li>Partager vos ressentis et vos sensations et sourtout vos vidéos et photos.</li>
-            <li>Faites découvrir de nouvelle figures à la communauté.</li>
-            <li>Amusez-vous, et faites nous rire ! :D</li>
-        </ul>
-        <a href="#conteneurTricks"><i class="fas fa-arrow-down"></i></a>
-    </section>
+		<ul>
+			<li>Essayez les figures qui vous plaisent !</li>
+			<li>Apprenez à maîtriser chacune des figures.</li>
+			<li>Partager vos ressentis et vos sensations et sourtout vos vidéos et photos.</li>
+			<li>Faites découvrir de nouvelle figures à la communauté.</li>
+			<li>Amusez-vous, et faites nous rire ! :D</li>
+		</ul>
+		<a href="#conteneurTricks">
+			<i class="fas fa-arrow-down"></i>
+		</a>
+	</section>
 
-    <section id="conteneurTricks">
-        <h2>Les Stricks</h2>
-        <div>
-        {% for figure in figures %}
-            <a href="{{ path('figure',{'id':figure.id}) }}">
-            <article>
-                <img src="" alt="{{ figure.name }}"/>
-                <div>
-                    <span>{{ figure.name }}</span>
-                    <i class="fas fa-pencil-alt"></i>
-                    <i class="fas fa-trash-alt"></i>
-                </div>
-            </article>
-            </a>
-            {% endfor %}
-        </div>
-        <button>Voir plus de figures</button>
-        <a href="#conteneurPresentation"><i class="fas fa-arrow-up"></i></a>
-    </section>
+	<section id="conteneurTricks">
+		<h2>Les Stricks</h2>
+		<div>
+			{% for figure in figures %}
+				<a href="{{ path('figure',{'id':figure.id}) }}">
+					<article>
+						<img src="" alt="{{ figure.name }}"/>
+						<div>
+							<span>{{ figure.name }}</span>
+							<a href="{{ path('update_figure',{'id':figure.id}) }}">
+								<i class="fas fa-pencil-alt"></i>
+							</a>
+							<i class="fas fa-trash-alt"></i>
+						</div>
+					</article>
+				</a>
+			{% endfor %}
+		</div>
+		<button>Voir plus de figures</button>
+		<a href="#conteneurPresentation">
+			<i class="fas fa-arrow-up"></i>
+		</a>
+	</section>
 {% endblock %}

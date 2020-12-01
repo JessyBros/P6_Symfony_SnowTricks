@@ -13,8 +13,10 @@ class IllustrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('path',FileType::class)
-        ;
+            ->add('file', FileType::class, [
+                'label' => "illustration : ",
+                'data_class' => null,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

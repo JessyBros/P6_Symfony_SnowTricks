@@ -1,34 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Snowtricks{% endblock %}</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://kit.fontawesome.com/43219f80e6.js" crossorigin="anonymous"></script>
-       {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Snowtricks
+			{% endblock %}
+		</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://kit.fontawesome.com/43219f80e6.js" crossorigin="anonymous"></script>
+		{% block stylesheets %}{% endblock %}
+		<style>
+			img {
+				height: 250px;
+				width: 250px;
+			}
+		</style>
+	</head>
+	<body>
 
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="{{path('home')}}">Snowtricks</a></li>
-                    <li><a href="{{path('add_figure')}}">Créer une figure</a></li>
-                    <li><a>se connecter</a></li>
-                    <li><a>s'inscrire</a></li>
-                    <li><a>se déconnecter</a></li>
-                </ul>
-            </nav>
-        </header>
-        
-        {% block body %}{% endblock %}
+		<header>
+			<nav>
+				<ul>
+					<li><a href="{{path('home')}}">Snowtricks</a></li>
+					<li><a href="{{path('add_figure')}}">Créer une figure</a></li>
+					<li><a>se connecter</a></li>
+					<li><a>s'inscrire</a></li>
+					<li><a>se déconnecter</a></li>
+				</ul>
+			</nav>
+		</header>
 
-        <footer>
-            <p>©2020 - tous droits réservés<p>
-        </footer>
-        
-        {% block javascripts %}{% endblock %}
+		{% block body %}{% endblock %}
 
-    </body>
+		<footer>
+			<p>©2020 - tous droits réservés</p>
+			<p></p>
+		</footer>
+
+		{% block javascripts %}{% endblock %}
+
+	</body>
 </html>
 
