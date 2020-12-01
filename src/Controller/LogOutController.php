@@ -6,13 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class SignInController extends AbstractController
+class LogOutController extends AbstractController
 {
     /**
-     * @Route("/connexion", name="sign_in")
+     * @Route("/deconnexion", name="log_out")
      */
-    public function signIn()
-    {
-        return $this->render('security/sign_in.html.twig');
-    }
+    public function logOut(){}
 }

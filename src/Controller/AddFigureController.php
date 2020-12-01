@@ -33,7 +33,7 @@ class AddFigureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $figure->setDate(new \DateTime())
-                ->setUser($this->getDoctrine()->getRepository(User::class)->find(49));
+                ->setUser($this->getDoctrine()->getRepository(User::class)->find(60));
 
             // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
             if ($illustrationFiles = $form->get('illustrations')) {
@@ -59,7 +59,7 @@ class AddFigureController extends AbstractController
             return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
         }
 
-        return $this->render('add_figure/index.html.twig', [
+        return $this->render('figure/add_figure.html.twig', [
             'figure_form' => $form->createView(),
             'figure' => $figure,
         ]);

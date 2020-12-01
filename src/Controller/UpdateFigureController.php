@@ -46,7 +46,7 @@ class UpdateFigureController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->render('update_figure/index.html.twig', [
+        return $this->render('figure/update_figure.html.twig', [
             'figure_form' => $form->createView(),
             'figure' => $figure,
         ]);

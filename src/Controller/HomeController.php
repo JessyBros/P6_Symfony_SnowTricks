@@ -11,11 +11,11 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index()
+    public function home()
     {
         $repo = $this->getDoctrine()->getRepository(Figure::class);
         $figure = $repo->findAll();
-        return $this->render('home/index.html.twig', [
+        return $this->render('home.html.twig', [
             'figures' => $figure
         ]);
     }

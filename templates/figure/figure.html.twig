@@ -38,11 +38,11 @@
 
 	<section>
 		<p>La figure
-			<strong>{{figure.name}}</strong>
+			<strong>{{figure.user.username}}</strong>
 			appartient au groupe
 			<em>{{figure.figureGroupe}}<em></p>
 				<p>{{figure.description}}</p>
-				<p>{{figure.user.name}}
+				<p>{{figure.user.username}}
 					a crée le topic le
 					<em>{{figure.date|date("d/m/Y à H:i")}}</em>
 				</p>
@@ -54,7 +54,7 @@
 
 				<section>
 					{% for comment in comments %}
-						<p><img style="height:50px; border-radius:50px;" src="../images/pictures/{{comment.user.picture}}"/>{{comment.user.name}}
+						<p><img style="height:50px; border-radius:50px;" src="../images/pictures/{{comment.user.picture}}"/>{{comment.user.username}}
 							:{{ comment.message }}</p>
 					{% endfor %}
 				</section>
