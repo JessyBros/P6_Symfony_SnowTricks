@@ -3,12 +3,21 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-<h1>Connexion</h1>
 
+<div class="container h-50">
+    <div class="row h-100 justify-content-center align-items-center">
+        <form action="{{ path('sign_in')}}" method="post" class="col-sm-8 col-md-6  control-label center-block mx-auto  justify-content-center align-items-center  text-center" >
 
-<form action="{{ path('sign_in')}}" method="post">
-    <input placeholder="Adresse email ..." required name="_username" type="text">
-    <input placeholder="Mot de passe ..." required name="_password" type="password">
-    <button>Connexion !</button>
-</form>
+            <legend class="h1 my-5">Connectez-vous</legend>
+
+            <div class="form-group">
+                <input placeholder="Adresse email ..." required name="_username" type="text" class="form-control">
+            </div>
+            <div class="form-group">
+                <input placeholder="Mot de passe ..." required name="_password" type="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-dark btn-lg">Connexion  <i class="fas fa-sign-in-alt"></i></button>
+        </form>
+    </div>
+</div>
 {% endblock %}
