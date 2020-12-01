@@ -34,9 +34,8 @@ class FigureController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
-           
         }
-        
+
         return $this->render('figure/index.html.twig', [
             'figure' => $figure,
             'comment_form' => $form->createView(),

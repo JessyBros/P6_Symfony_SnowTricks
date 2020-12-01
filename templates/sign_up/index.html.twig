@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Inscription utilisateur!
+{% endblock %}
+
+{% block body %}
+	<h1>Inscription</h1>
+
+    {{ form_start(formSignUp) }}
+        {{ form_row(formSignUp.name) }}
+        {{ form_row(formSignUp.email) }}
+        {{ form_row(formSignUp.password) }}
+        {{ form_row(formSignUp.picture) }}
+        <button type="submit">Je m'inscris</button>
+    {{ form_end(formSignUp) }}
+{% endblock %}

@@ -57,7 +57,6 @@ class Figure
     private $figureGroupe;
 
     /**
-     * @Assert\NotBlank
      * @ORM\Column(type="datetime")
      */
     private $date;
