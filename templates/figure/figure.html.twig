@@ -11,7 +11,7 @@
 			<!-- Image de présentation de l'article -->
 			<div class="col-sm-12 p-0">
 				{% if figure.illustrations is empty %}
-					<img src="../images/figures/illustrations/figure_exemple.jpg" alt="exemple de figure"  style="height:500px;"/>
+					<img src="../images/figures/default_figure.png" alt="default figure" class="rounded-top" style="height:500px;"/>
 				{% else %}
 					<img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" class="rounded-top" style="height:500px;"/>
 				{% endif %}
@@ -53,24 +53,16 @@
 						<img src="../images/figures/illustrations/{{ illustration.path }}" alt="{{ illustration.path }}"style="height:50px; width:50px;"/>
 					{% endfor %}
 					{% for video in figure.videos %}
-						<span>{{ video.path }}</span>
+					<iframe allowfullscreen="" frameborder="0"  src="https://www.youtube.com/embed/{{ video.path }}"></iframe>
 					{% endfor %}			
 				{% endif %}
 			</div>
 
 		</article>
-
-		<video controls>
-			<source src="" >
-			<p>Votre navigateur ne prend pas en charge les vidéos HTML5.
-				Voici <a href="myVideo.mp4">un lien pour télécharger la vidéo</a>.</p>
-		</video>
-
-<video src="https://www.youtube.com/watch?v=YakDrsnqpBs" width="375" height="280" controls></video>
 						
 		<!-- Poster un commentaire -->
 		{% if app.user %}
-		<div class="row justify-content-center border my-4 bg-dark" style="border-radius:5px;">
+		<div class="row justify-content-center border my-4" style="border-radius:5px;">
 			<div id="PosterUnCommentaire" class="col-md-10 col-md-offset-1 mt-5 mb-4">
 				{{ form_start(comment_form)}}
 					{{form_row(comment_form.message)}}
@@ -101,7 +93,7 @@
 				{% endfor %}
 				{% else %}
 				<div class="text-center card-text">
-					<p><strong>0 commentaire... </strong><a href="{{ path('sign_in') }}" style="text-decoration:underline!important;">Connectez-vous</a>, et soyez le premier à mettre un commentaire à cette figure !</p>
+					<p><strong>Aucun utilisateur n'a posté de commentaire sur cette figure pour le moment.</strong></p>
 				<div>
 				{% endif %}
 			</div>

@@ -7,7 +7,7 @@
 
 {% block body %}
 	<section id="conteneurPresentation" class="" style="height:95vh;">
-		<img src="/images/figures/welcome.jpg" class="position-absolute w-100" style="z-index:-1;top:0;height:100vh;" />
+		<img src="/images/welcome.jpg" class="position-absolute w-100" style="z-index:-1;top:0;height:100vh;" />
 		<div class="position-relative text-center h-100" >
 			<div class=" d-flex flex-column justify-content-center h-50" style="text-shadow: black 1px 0 1px;">
 				<h1>SnowTricks !</h1>
@@ -29,12 +29,13 @@
 					<article class="card text-dark bg-secondary my-3 mx-auto" style="max-width: 350px;">
 						{% if figure.illustrations is empty %}
 							<!-- image par défaut-->
-							<img src="../images/figures/illustrations/figure_exemple.jpg" alt="exemple de figure" style="height:135px"/>
+							<img src="../images/figures/default_figure.png" alt="default figure" style="height:135px"/>
 						{% else %}
 							<img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" style="height:135px"/>
 						{% endif %}
 						<div class="card-footer d-flex justify-content-between">
 							<span class="h6">{{ figure.name }}</span>
+							{% if app.user %}
 							<div class="d-flex justify-content-around">
 								<a href="{{ path('update_figure',{'id':figure.id}) }}">
 									<i class="fas fa-pencil-alt mx-2"></i>
@@ -43,6 +44,7 @@
 									<i class="fas fa-trash-alt mx-1"></i>
 								</a>
 							</div>
+							{% endif %}
 						</div>
 					</article>
 				</a>

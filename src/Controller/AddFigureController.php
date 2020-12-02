@@ -36,15 +36,17 @@ class AddFigureController extends AbstractController
                 ->setUser($this->getUser());
 
             // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
-            if ($illustrationFiles = $form->get('illustrations')) { // ne peut etre null
+            if ($illustrationFiles = $form->get('illustrations')) {
                 foreach ($illustrationFiles as $illustrationFile) {
-                    $fileData = $illustrationFile->get('file')->getData();
-                    $filename = bin2hex(random_bytes(6)) . '.' . $fileData->guessExtension();
-                    try {
-                        $fileData->move($photoDir, $filename);
-                    } catch (FileException $e) {
+                    if ($illustrationFile->get('file')->getData() != null){
+                        $fileData = $illustrationFile->get('file')->getData();
+                        $filename = bin2hex(random_bytes(6)) . '.' . $fileData->guessExtension();
+                        try {
+                               $fileData->move($photoDir, $filename);
+                            } catch (FileException $e) {
+                            }
+                            $illustrationFile->getData()->setPath($filename);
                     }
-                    $illustrationFile->getData()->setPath($filename);
                 }
             }
 
@@ -52,16 +54,18 @@ class AddFigureController extends AbstractController
             if ($videos = $form->get('videos')) {
                 foreach ($videos as $video) {
                     $url = $video->get('path')->getData();
-                    $urlCut = explode("https://www.youtube.com/watch?v=", $url); // Supprime -> https://www.youtube.com/watch?v=
-                    dump($urlCut);
-                    $video->getData()->setPath($urlCut);
+                    if ($url != null) {
+                        preg_match('#^https:\/\/www.youtube.com\/watch\?v=|^https:\/\/www.youtu.be/#', $url, $urlCut);
+                        $urlValid = str_replace($urlCut,"",$url);
+                        $video->getData()->setPath($urlValid);
+                    }
                 }
             }
 
             $entityManager->persist($figure);
             $entityManager->flush();
 
-           // return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
+           return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
         }
 
         return $this->render('figure/add_figure.html.twig', [

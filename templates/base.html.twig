@@ -42,13 +42,15 @@
 
 		<header>
 			<nav class="navbar navbar-expand navbar-dark bg-dark">
-				<a class="navbar-brand" href="{{ path('home') }}"><img style="height:30px; width:30px;"src='/images/figures/logo.png'/> Snowtricks</a>
+				<a class="navbar-brand" href="{{ path('home') }}"><img style="height:30px; width:30px;"src='/images/logo.png'/> Snowtricks</a>
 				<div class="collapse navbar-collapse" id="navbarColor02">
 					<ul class="navbar-nav mr-auto">
+						{% if app.user %}
 						<li class="nav-item active">
 							<a class="nav-link" href="{{ path('add_figure') }}">Créer une figure</a>
 							<span class="sr-only">(current)</span>
 						</li>
+						{% endif %}
 					</ul>
 					<div class="my-2 my-lg-0">
 						{% if not app.user %}

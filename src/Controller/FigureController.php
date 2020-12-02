@@ -29,11 +29,7 @@ class FigureController extends AbstractController
             $comment->setDate(new \DateTime())
                 ->setFigure($figure)
                 ->setUser($this->getUser());
- 
- 
-                dump($this->getDoctrine()->getRepository(User::class)->find(70));
-
-
+                
             $entityManager->persist($comment);
             $entityManager->flush();
 

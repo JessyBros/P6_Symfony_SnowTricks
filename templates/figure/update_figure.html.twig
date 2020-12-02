@@ -19,7 +19,7 @@
 			<div id="containerIllustrations">
 				<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
 					{% for illustration in figure_form.illustrations %}
-					<li class="col-md-6">
+					<li class="col-md-6 ">
 						<img src="../images/figures/illustrations/{{ illustration.vars.data.path }}" class="m-1 rounded border"style="height:100px; width:150px;"/>
 						{{ form_row(illustration.file) }}
 
@@ -33,7 +33,13 @@
 			<div id="containerVideos">
 				<ul id="ulVideos" class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
 					{% for video in figure_form.videos %}
-					<li class="col-md-6">{{ form_row(video.path,{'attr':{'placeholder':"https://www.youtube.com/watch?v="}}) }}</li>
+					<li class="col-md-6">
+						{% if video.vars.data is empty %}
+							{{ form_row(video.path,{'attr':{'placeholder':"https://www.youtube.com/watch?v="}}) }}
+						{% else %}
+							{{ form_row(video.path,{'attr':{'value' : ('https://www.youtube.com/watch?v=' ~ video.vars.data.path) }}) }}
+						{% endif %}
+					</li>
 					{% endfor %}
 				</ul>
 				<button type="button" class="add_item_link_video btn btn-secondary my-2" data-collection-holder-class="videos">Ajouter une vidéo</button>
@@ -48,7 +54,7 @@
 {% endblock %}
 
 {% block javascripts %}
-	<script type="text/javascript" src="../build/app.js/addIllustrations.js"></script>
-	<script type="text/javascript" src="../build/app.js/addVideos.js"></script>
 	<script type="text/javascript" src="../build/app.js/ManagementCollectionForm.js"></script>
+	<script type="text/javascript" src="../build/app.js/addIllustrations.js"></script>
+	<script type="text/javascript" src="../build/app.js/addVideos.js"></script>	
 {% endblock %}
