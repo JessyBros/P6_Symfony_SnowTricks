@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Response;
 class FigureController extends AbstractController
 {
     /**
-     * @Route("/figure/{id}", name="figure")
+     * @Route("/figure/{slug}", name="figure")
      */
     public function figure(Figure $figure, EntityManagerInterface $entityManager, Request $request)
     {

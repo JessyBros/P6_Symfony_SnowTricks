@@ -14,9 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
-
-
-
 class AddFigureController extends AbstractController
 {
     /**
@@ -65,7 +62,7 @@ class AddFigureController extends AbstractController
             $entityManager->persist($figure);
             $entityManager->flush();
 
-           return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
+           return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/add_figure.html.twig', [
