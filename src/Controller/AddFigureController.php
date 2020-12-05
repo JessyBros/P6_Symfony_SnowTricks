@@ -26,11 +26,12 @@ class AddFigureController extends AbstractController
 
         $form = $this->createForm(FigureFormType::class, $figure);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $figure->setDate(new \DateTime())
-                ->setUser($this->getUser());
+            
+            $figure->setName($form->get('name')->getData())
+                    ->setDate(new \DateTime())
+                    ->setUser($this->getUser());
 
             // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
             if ($illustrationFiles = $form->get('illustrations')) {

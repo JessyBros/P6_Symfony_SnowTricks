@@ -19,10 +19,6 @@ class FigureEntityListener
         $figure->computeSlug($this->slugger);
     }
 
-    /** 
-     * @ORM \ PostUpdate 
-     * @ORM \ PostPersist 
-     */
     public function preUpdate(Figure $figure, LifecycleEventArgs $event)
     {
         $figure->computeSlug($this->slugger);

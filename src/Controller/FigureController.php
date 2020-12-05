@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -33,7 +32,7 @@ class FigureController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
+            return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/figure.html.twig', [

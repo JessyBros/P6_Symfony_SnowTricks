@@ -28,8 +28,7 @@ class Figure
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=70, unique=true)
-     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=25)
      * @Assert\Length(
      *      min = 2,
      *      max = 20,
@@ -104,7 +103,7 @@ class Figure
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -227,7 +226,7 @@ class Figure
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
+    public function setSlug($slug): self
     {
         $this->slug = $slug;
 
