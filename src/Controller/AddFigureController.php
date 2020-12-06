@@ -63,7 +63,8 @@ class AddFigureController extends AbstractController
             $entityManager->persist($figure);
             $entityManager->flush();
 
-           return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
+            $this->addFlash('success', 'Votre article a bien été crée !');
+            return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/add_figure.html.twig', [

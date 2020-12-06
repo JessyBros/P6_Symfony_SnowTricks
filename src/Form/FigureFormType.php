@@ -16,8 +16,7 @@ class FigureFormType extends AbstractType
     {
         $builder
             ->add('name',TextType::class,[
-                'mapped' => false, // permet de dire que je n'aurai pas forcément d'illustration, donc facultatif
-                'required' => false,
+                'mapped' => false,
             ])
             ->add('description')
             ->add('figureGroupe')

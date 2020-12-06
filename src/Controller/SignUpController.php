@@ -41,6 +41,7 @@ class SignUpController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Votre inscription a été effectué avec succès !');
             return $this->redirectToRoute('sign_in');
         }
 

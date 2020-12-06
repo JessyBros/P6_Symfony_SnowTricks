@@ -32,6 +32,7 @@ class FigureController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Votre commentaire a bien été enregistré !');
             return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 

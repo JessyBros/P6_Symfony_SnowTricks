@@ -56,6 +56,7 @@ class UpdateFigureController extends AbstractController
             $entityManager->persist($figure);
             $entityManager->flush();
 
+            $this->addFlash('success', 'L\'article a bien été modifié !');
             return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
