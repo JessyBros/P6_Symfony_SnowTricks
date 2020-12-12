@@ -41,10 +41,3 @@ function addTagFormDeleteLink($tagFormLi) {
         $tagFormLi.remove();
     });
 }
-
-/*
-var ul = document.getElementById('ulIllustrations') ---> $this
-        for (i = 0; i < ul.children.length; i++) { 
-            addTagFormDeleteLink(ul.children[i]);
-        }
-*/

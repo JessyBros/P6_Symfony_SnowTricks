@@ -1,6 +1,11 @@
 jQuery(document).ready(function() {
     // Récupère la balise <ul> de ma liste d'illustration
     var $illustrationsCollectionHolder = $('ul.illustrations');
+
+     // add a delete link to all of the existing tag form li elements
+     $illustrationsCollectionHolder.find('li').each(function() {
+        addTagFormDeleteLink($(this));
+    });
     
     // Compte le nombre de formulaire actuel pour insérer une nouvelle.
     $illustrationsCollectionHolder.data('index', $illustrationsCollectionHolder.find('input').length);
