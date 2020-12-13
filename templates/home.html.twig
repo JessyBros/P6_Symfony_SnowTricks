@@ -40,9 +40,10 @@
 								<a href="{{ path('update_figure',{'slug':figure.slug}) }}">
 									<i class="fas fa-pencil-alt mx-2"></i>
 								</a>
-								<a>
-									<i class="fas fa-trash-alt mx-1"></i>
-								</a>
+								<a href="" data-toggle="modal" data-target="#deleteFigure">
+                                    <i class="fas fa-trash-alt mx-2"></i>
+                                </a>
+								{% include 'modal/delete_figure.html.twig' %}
 							</div>
 							{% endif %}
 						</div>

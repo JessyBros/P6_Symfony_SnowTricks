@@ -17,12 +17,12 @@
 				{% endif %}
 				<div class="position-absolute z-index-2" style="top:0;right:10px;">
 					<a href="{{ path('update_figure',{'slug':figure.slug}) }}">
-						<i class="fas fa-pencil-alt m-2"></i>
+						<i class="fas fa-pencil-alt mx-2"></i>
 					</a>
-					<a href="{{ path('update_figure',{'slug':figure.slug}) }}">
-						<i class="fas fa-trash-alt m-2"></i>
-					</a>
-					
+					<a href="" data-toggle="modal" data-target="#deleteFigure">
+                        <i class="fas fa-trash-alt mx-2"></i>
+                    </a>
+					{% include 'modal/delete_figure.html.twig' %}
 				</div>
 			</div>
 
