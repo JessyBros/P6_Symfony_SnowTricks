@@ -19,7 +19,8 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setDescription("saisie de la carre frontside de la planche entre les deux pieds avec la main avant")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-09-12 9:30:55"))
-                -> setUser($this->getReference('userJimmy'));
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("mute");
         $manager->persist($figureMute);
 
         $figureSad = new Figure();
@@ -27,7 +28,8 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setDescription("saisie de la carre backside de la planche, entre les deux pieds, avec la main avant")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-09-27 15:32:21"))
-                -> setUser($this->getReference('userJimmy'));
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("sad");
         $manager->persist($figureSad);
 
         $figureIndy = new Figure();
@@ -35,7 +37,8 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setDescription("saisie de la carre frontside de la planche, entre les deux pieds, avec la main arrière")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-10-01 18:24:21"))
-                -> setUser($this->getReference('userJimmy'));
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("indy");
         $manager->persist($figureIndy);
 
         $figureStalefish = new Figure();
@@ -43,7 +46,8 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setDescription("saisie de la carre backside de la planche entre les deux pieds avec la main arrière")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-10-04 7:12:29"))
-                -> setUser($this->getReference('userJimmy'));
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("stalefish");
         $manager->persist($figureStalefish);
 
         $figureTailGrab = new Figure();
@@ -51,7 +55,8 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setDescription("saisie de la partie arrière de la planche, avec la main arrière")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-10-05 9:42:58"))
-                -> setUser($this->getReference('userJimmy'));
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("tail-grab");
         $manager->persist($figureTailGrab);
 
         $figureNoseGrab = new Figure();
@@ -59,7 +64,8 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setDescription("saisie de la partie avant de la planche, avec la main avant")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-10-05 9:57:08"))
-                -> setUser($this->getReference('userJimmy'));
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("nose-grab");
         $manager->persist($figureNoseGrab);
 
         $figureJapanAir = new Figure();
@@ -67,7 +73,8 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setDescription("saisie de l'avant de la planche, avec la main avant, du côté de la carre frontside")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-10-12 19:12:38"))
-                -> setUser($this->getReference('userJimmy'));
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("japan-air");
         $manager->persist($figureJapanAir);
 
         $figureSlide = new Figure();
@@ -75,7 +82,8 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setDescription("Un slide consiste à glisser sur une barre de slide. Le slide se fait soit avec la planche dans l'axe de la barre, soit perpendiculaire, soit plus ou moins désaxé")
                 -> setFigureGroupe("slides")
                 -> setDate(new \DateTime("2020-10-10 17:41:18"))
-                -> setUser($this->getReference('userJimmy'));
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("slide");
         $manager->persist($figureSlide);
 
 
@@ -84,7 +92,8 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setDescription("rotation en arrière")
                 -> setFigureGroupe("flips")
                 -> setDate(new \DateTime("2020-10-17 12:21:47"))
-                -> setUser($this->getReference('userJimmy'));
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("black-flips");
         $manager->persist($figureBackFlips);
 
         $figure360 = new Figure();
@@ -92,7 +101,8 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setDescription("trois six pour un tour complet ")
                 -> setFigureGroupe("rotation")
                 -> setDate(new \DateTime("2020-10-21 20:31:07"))
-                -> setUser($this->getReference('userJimmy'));
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("360");
         $manager->persist($figure360);
 
         
