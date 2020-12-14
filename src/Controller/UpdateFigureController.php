@@ -21,7 +21,7 @@ class UpdateFigureController extends AbstractController
      */
     public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir)
     {
-        $form = $this->createForm(FigureFormType::class, $figure);
+        $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +53,6 @@ class UpdateFigureController extends AbstractController
                 }
             }
         }
-            $entityManager->persist($figure);
             $entityManager->flush();
 
             return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);

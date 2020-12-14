@@ -11,8 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
- * @ORM\Entity(repositoryClass=FigureRepository::class)
- * @UniqueEntity("slug")
+ * @ORM\Entity(repositoryClass=FigureRepository::class) 
  * @UniqueEntity(
  *  fields={"name"},
  *  message = "Ce nom de figure est déjà utilisé."
@@ -39,7 +38,7 @@ class Figure
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true))
      * @Assert\Length(
      *      min = 15,
      *      max = 110,
