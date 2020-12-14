@@ -1,4 +1,4 @@
-<div class="modal fade" id="deleteFigure" role="dialog" aria-hidden="true">
+<div class="modal fade" id="deleteFigure-{{figure.id}}" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,8 +11,11 @@
         <p>Êtes-vous sûr de vouloir supprimer la figure <strong>{{ figure.name }}</strong></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Oui</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+        <form action="" method="post"> 
+          <input type="hidden" value="{{figure.id}}" required name="figure_id"/>
+          <button type="submit" class="btn btn-danger" name="submit_delete_figure">Oui</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+        </form>
       </div>
     </div>
   </div>
