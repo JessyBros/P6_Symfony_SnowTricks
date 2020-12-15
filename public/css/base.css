@@ -1,0 +1,25 @@
+body{
+    margin: 0;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    font-family: Segoe UI, Helvetica, Arial, sans-serif;
+}
+img{
+    width:100%;
+}
+
+ul{
+    list-style:none;
+}
+a{
+    text-decoration:none!important;
+    color:grey;
+} 
+i{
+    font-size:15px;
+}
+a:hover, i:hover{
+    color:#555;
+    text-shadow: grey 1px 1px 2px;
+}

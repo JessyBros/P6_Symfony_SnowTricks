@@ -1,0 +1,5 @@
+{% extends "bundles/TwigBundle/Exception/baseError.html.twig" %}
+{% block codeErreur %}404{% endblock %}
+{% block problemErreur %}Page non trouvée !{% endblock %}
+{% block detailErreur %}La page que vous recherchez a peut-être été supprimée, modifiée ou est temporairement indisponible.{% endblock %}
+{% block redirectionPage %}<a href="{{path('home')}}">Retour à la page d'accueil</a> {% endblock %}
