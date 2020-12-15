@@ -21,6 +21,8 @@ class AddFigureController extends AbstractController
      */
     public function addFigure(EntityManagerInterface $entityManager, Request $request, string $photoDir)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
         $figure = new Figure();
         $video = new Video();
 

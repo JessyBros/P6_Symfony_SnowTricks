@@ -21,6 +21,8 @@ class UpdateFigureController extends AbstractController
      */
     public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
         $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
         $form->handleRequest($request);
 
