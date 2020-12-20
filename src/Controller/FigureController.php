@@ -30,7 +30,7 @@ class FigureController extends AbstractController
         $comments = $paginator->paginate(
             $commentsData,
             $request->query->getInt('page',1),
-            5
+            10
         );    
 
         if ($form->isSubmitted() && $form->isValid()) {
