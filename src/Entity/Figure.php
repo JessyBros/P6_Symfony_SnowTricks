@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\FigureRepository;
+use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,12 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
- * @ORM\Entity(repositoryClass=FigureRepository::class)
- * @UniqueEntity("slug")
- * @UniqueEntity(
- *  fields={"name"},
- *  message = "Ce nom de figure est déjà utilisé."
- * )
+ * @ORM\Entity(repositoryClass=FigureRepository::class) 
  */
 class Figure
 {
@@ -35,11 +31,12 @@ class Figure
      *      minMessage = "Le nom de la figure doit avoir au moins {{ limit }} caractères",
      *      maxMessage = "Le nom de la figure ne doit pas dépasser {{ limit }} caractères"
      * )
+     * @AppAssert\UniqueSlug
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255))
      * @Assert\Length(
      *      min = 15,
      *      max = 110,
@@ -235,9 +232,7 @@ class Figure
     
     public function computeSlug(SluggerInterface $slugger)
     {
-        if (!$this->slug || '-' === $this->slug) {
-            $this->slug = (string) $slugger->slug((string) $this)->lower();
-        }
+        $this->slug = (string) $slugger->slug((string) $this)->lower();
     }
 
     public function __toString()
