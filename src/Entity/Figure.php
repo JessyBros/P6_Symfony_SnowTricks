@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\FigureRepository;
-use App\Validator as AppAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
- * @ORM\Entity(repositoryClass=FigureRepository::class) 
+ * @ORM\Entity(repositoryClass=FigureRepository::class)
  */
 class Figure
 {
@@ -31,7 +30,6 @@ class Figure
      *      minMessage = "Le nom de la figure doit avoir au moins {{ limit }} caractères",
      *      maxMessage = "Le nom de la figure ne doit pas dépasser {{ limit }} caractères"
      * )
-     * @AppAssert\UniqueSlug
      */
     private $name;
 
@@ -88,6 +86,7 @@ class Figure
     {
         $this->illustrations = new ArrayCollection();
         $this->videos = new ArrayCollection();
+        $this->date = new \DateTime();
     }
 
     public function getId(): ?int
@@ -102,6 +101,7 @@ class Figure
 
     public function setName(?string $name): self
     {
+        
         $this->name = $name;
 
         return $this;
@@ -136,7 +136,6 @@ class Figure
         return $this->date;
     }
 
-    
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;

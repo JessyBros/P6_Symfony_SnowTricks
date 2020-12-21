@@ -25,7 +25,7 @@ class UniqueSlugValidator extends ConstraintValidator
         if (!$constraint instanceof UniqueSlug) {
             throw new UnexpectedTypeException($constraint, UniqueSlug::class);
         }
-
+        
         // Ne peut être null
         if (null === $value || '' === $value) {
             return;

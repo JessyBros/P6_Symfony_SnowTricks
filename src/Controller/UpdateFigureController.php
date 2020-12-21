@@ -23,7 +23,7 @@ class UpdateFigureController extends AbstractController
     {
         $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
 
              // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
