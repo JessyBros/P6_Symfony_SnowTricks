@@ -32,6 +32,7 @@ class FigureController extends AbstractController
             $commentsData,
             $request->query->getInt('page',1),
             self::MAX_ITEMS_PER_PAGE
+
         );    
 
         if ($form->isSubmitted() && $form->isValid()) {
