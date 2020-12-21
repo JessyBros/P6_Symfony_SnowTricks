@@ -82,6 +82,11 @@ class Figure
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updateDate;
+
     public function __construct()
     {
         $this->illustrations = new ArrayCollection();
@@ -237,5 +242,17 @@ class Figure
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getUpdateDate(): ?\DateTimeInterface
+    {
+        return $this->updateDate;
+    }
+
+    public function setUpdateDate(?\DateTimeInterface $updateDate): self
+    {
+        $this->updateDate = $updateDate;
+
+        return $this;
     }
 }

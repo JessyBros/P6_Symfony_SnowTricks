@@ -37,7 +37,13 @@
 
 			<!-- Informations secondaire de l'article -->
 			<div class="col-sm-12 card-body text-center" style="">
-				<p class="card-text blockquote-footer">Par : {{figure.user.username|capitalize}} | Ajouté le <em>{{figure.date|date("d/m/Y à H:i")}}</em> | Groupe : {{figure.figureGroupe}} | commentaire{% if comments|length > 1 %}s{% endif %} : <a href="#commentaires">({{comments|length}})</a></p>
+				<p class="card-text blockquote-footer">Par : {{figure.user.username|capitalize}} | Crée le <em>{{figure.date|date("d/m/Y à H:i")}}</em> 
+				{% if figure.updateDate is not null %}
+				| Modifié le <em>{{figure.updateDate|date("d/m/Y à H:i")}}</em> 
+				{% endif %}
+				
+				
+				| Groupe : {{figure.figureGroupe}} | commentaire{% if comments|length > 1 %}s{% endif %} : <a href="#commentaires">({{comments|length}})</a></p>
 			</div>
 
 			<hr class="col-sm-10">
