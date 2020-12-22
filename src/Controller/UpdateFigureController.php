@@ -26,6 +26,8 @@ class UpdateFigureController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $figure->setUpdateDate(new \DateTime());
+
              // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
             if ($illustrationFiles = $form->get('illustrations')) {
                 foreach ($illustrationFiles as $illustrationFile) {
