@@ -8,6 +8,7 @@ use App\Entity\Figure;
 use App\Entity\Comment;
 use App\Form\CommentFormType;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -16,13 +17,21 @@ class FigureController extends AbstractController
     /**
      * @Route("/figure/{slug}", name="figure")
      */
-    public function figure(Figure $figure, EntityManagerInterface $entityManager, Request $request)
+    public function figure(Figure $figure, EntityManagerInterface $entityManager, Request $request, PaginatorInterface $paginator)
     {
-        $comments = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId());
 
+        //Formulaire des commentaires
         $comment = new Comment();
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
+
+        //Affichage des commentaire et pagination
+        $commentsData = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId(),['date' => 'desc']);
+        $comments = $paginator->paginate(
+            $commentsData,
+            $request->query->getInt('page',1),
+            5
+        );    
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setDate(new \DateTime())
@@ -41,6 +50,7 @@ class FigureController extends AbstractController
             'figure' => $figure,
             'comment_form' => $form->createView(),
             'comments' => $comments,
+            'commentsData' => $commentsData,
         ]);
     }
 }
