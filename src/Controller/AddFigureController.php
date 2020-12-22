@@ -14,9 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
-
-
-
 class AddFigureController extends AbstractController
 {
     /**
@@ -29,11 +26,11 @@ class AddFigureController extends AbstractController
 
         $form = $this->createForm(FigureFormType::class, $figure);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $figure->setDate(new \DateTime())
-                ->setUser($this->getUser());
+            
+            $figure->setName($form->get('name')->getData())
+                    ->setUser($this->getUser());
 
             // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
             if ($illustrationFiles = $form->get('illustrations')) {
@@ -65,7 +62,7 @@ class AddFigureController extends AbstractController
             $entityManager->persist($figure);
             $entityManager->flush();
 
-           return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
+           return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/add_figure.html.twig', [

@@ -17,13 +17,13 @@ use Doctrine\ORM\EntityManagerInterface;
 class UpdateFigureController extends AbstractController
 {
     /**
-     * @Route("/modifier_la_figure/{id}", name="update_figure")
+     * @Route("/modifier_la_figure/{slug}", name="update_figure")
      */
     public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir)
     {
-        $form = $this->createForm(FigureFormType::class, $figure);
+        $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
 
              // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
@@ -53,11 +53,9 @@ class UpdateFigureController extends AbstractController
                 }
             }
         }
-
-            $entityManager->persist($figure);
             $entityManager->flush();
 
-            return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
+            return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/update_figure.html.twig', [
