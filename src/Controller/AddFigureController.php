@@ -30,7 +30,6 @@ class AddFigureController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             
             $figure->setName($form->get('name')->getData())
-                    ->setDate(new \DateTime())
                     ->setUser($this->getUser());
 
             // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
@@ -63,7 +62,8 @@ class AddFigureController extends AbstractController
             $entityManager->persist($figure);
             $entityManager->flush();
 
-           return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
+            $this->addFlash('success', 'Votre article a bien été crée !');
+            return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/add_figure.html.twig', [

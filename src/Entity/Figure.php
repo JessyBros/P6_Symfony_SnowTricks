@@ -11,11 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
- * @ORM\Entity(repositoryClass=FigureRepository::class) 
- * @UniqueEntity(
- *  fields={"name"},
- *  message = "Ce nom de figure est déjà utilisé."
- * )
+ * @ORM\Entity(repositoryClass=FigureRepository::class)
  */
 class Figure
 {
@@ -38,7 +34,7 @@ class Figure
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true))
+     * @ORM\Column(type="string", length=255))
      * @Assert\Length(
      *      min = 15,
      *      max = 110,
@@ -86,10 +82,16 @@ class Figure
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updateDate;
+
     public function __construct()
     {
         $this->illustrations = new ArrayCollection();
         $this->videos = new ArrayCollection();
+        $this->date = new \DateTime();
     }
 
     public function getId(): ?int
@@ -104,6 +106,7 @@ class Figure
 
     public function setName(?string $name): self
     {
+        
         $this->name = $name;
 
         return $this;
@@ -138,7 +141,6 @@ class Figure
         return $this->date;
     }
 
-    
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
@@ -234,13 +236,23 @@ class Figure
     
     public function computeSlug(SluggerInterface $slugger)
     {
-        if (!$this->slug || '-' === $this->slug) {
-            $this->slug = (string) $slugger->slug((string) $this)->lower();
-        }
+        $this->slug = (string) $slugger->slug((string) $this)->lower();
     }
 
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getUpdateDate(): ?\DateTimeInterface
+    {
+        return $this->updateDate;
+    }
+
+    public function setUpdateDate(?\DateTimeInterface $updateDate): self
+    {
+        $this->updateDate = $updateDate;
+
+        return $this;
     }
 }
