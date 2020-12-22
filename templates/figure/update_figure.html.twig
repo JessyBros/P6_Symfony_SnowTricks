@@ -11,8 +11,7 @@
 		{{ form_start(figure_form,{'attr':{'class':'col-offset-md-3 col-md-6  col-offset-md-3  control-label m-auto'}}) }}
 
 			<legend class="h1 my-5">{{figure.name}}</legend>
-
-			{{form_row(figure_form.name)}}
+			
 			{{form_row(figure_form.description)}}
 			{{form_row(figure_form.figureGroupe)}}
 
@@ -47,7 +46,8 @@
 
 			<button type="submit" class="btn btn-dark my-3">Enregistrer les modifications</button>
 
-		{{ form_end(figure_form) }}
+		{{ form_widget(figure_form._token) }}
+		{{ form_end(figure_form, {'render_rest': false}) }}
 		</div>
 	</section>
 

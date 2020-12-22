@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 class FigureController extends AbstractController
 {
     /**
-     * @Route("/figure/{id}", name="figure")
+     * @Route("/figure/{slug}", name="figure")
      */
     public function figure(Figure $figure, EntityManagerInterface $entityManager, Request $request)
     {
@@ -33,7 +32,8 @@ class FigureController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('figure', ['id' => $figure->getId()]);
+            $this->addFlash('success', 'Votre commentaire a bien été enregistré !');
+            return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/figure.html.twig', [
