@@ -14,12 +14,13 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FigureController extends AbstractController
 {
+    const MAX_ITEMS_PER_PAGE = 10;
+
     /**
      * @Route("/figure/{slug}", name="figure")
      */
     public function figure(Figure $figure, EntityManagerInterface $entityManager, Request $request, PaginatorInterface $paginator)
     {
-
         //Formulaire des commentaires
         $comment = new Comment();
         $form = $this->createForm(CommentFormType::class, $comment);
@@ -30,7 +31,8 @@ class FigureController extends AbstractController
         $comments = $paginator->paginate(
             $commentsData,
             $request->query->getInt('page',1),
-            5
+            self::MAX_ITEMS_PER_PAGE
+
         );    
 
         if ($form->isSubmitted() && $form->isValid()) {
