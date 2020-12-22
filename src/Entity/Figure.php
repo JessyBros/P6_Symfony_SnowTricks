@@ -6,10 +6,17 @@ use App\Repository\FigureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @ORM\Entity(repositoryClass=FigureRepository::class)
+ * @UniqueEntity("slug")
+ * @UniqueEntity(
+ *  fields={"name"},
+ *  message = "Ce nom de figure est déjà utilisé."
+ * )
  */
 class Figure
 {
@@ -21,8 +28,7 @@ class Figure
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=70)
-     * @Assert\NotBlank
+     * @ORM\Column(type="string", length=25)
      * @Assert\Length(
      *      min = 2,
      *      max = 20,
@@ -34,7 +40,6 @@ class Figure
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      * @Assert\Length(
      *      min = 15,
      *      max = 110,
@@ -77,6 +82,11 @@ class Figure
      */
     private $videos;
 
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->illustrations = new ArrayCollection();
@@ -93,7 +103,7 @@ class Figure
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -129,6 +139,7 @@ class Figure
         return $this->date;
     }
 
+    
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
@@ -208,5 +219,29 @@ class Figure
         }
 
         return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug($slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+    
+    public function computeSlug(SluggerInterface $slugger)
+    {
+        if (!$this->slug || '-' === $this->slug) {
+            $this->slug = (string) $slugger->slug((string) $this)->lower();
+        }
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }

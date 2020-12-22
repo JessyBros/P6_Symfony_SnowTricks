@@ -25,7 +25,7 @@
 	<section id="conteneurTricks">
 		<div class="m-auto d-flex flex-wrap justify-content-around" style="max-width:95%;">
 			{% for figure in figures %}
-				<a href="{{ path('figure',{'id':figure.id}) }}">
+				<a href="{{ path('figure',{'slug':figure.slug}) }}">
 					<article class="card text-dark bg-secondary my-3 mx-auto" style="max-width: 350px;">
 						{% if figure.illustrations is empty %}
 							<!-- image par défaut-->
@@ -37,7 +37,7 @@
 							<span class="h6">{{ figure.name }}</span>
 							{% if app.user %}
 							<div class="d-flex justify-content-around">
-								<a href="{{ path('update_figure',{'id':figure.id}) }}">
+								<a href="{{ path('update_figure',{'slug':figure.slug}) }}">
 									<i class="fas fa-pencil-alt mx-2"></i>
 								</a>
 								<a>
