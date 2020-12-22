@@ -21,9 +21,9 @@ class UpdateFigureController extends AbstractController
      */
     public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir)
     {
-        $form = $this->createForm(FigureFormType::class, $figure);
+        $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
 
              // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
@@ -53,7 +53,6 @@ class UpdateFigureController extends AbstractController
                 }
             }
         }
-            $entityManager->persist($figure);
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'article a bien été modifié !');

@@ -12,11 +12,6 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * @ORM\Entity(repositoryClass=FigureRepository::class)
- * @UniqueEntity("slug")
- * @UniqueEntity(
- *  fields={"name"},
- *  message = "Ce nom de figure est déjà utilisé."
- * )
  */
 class Figure
 {
@@ -39,7 +34,7 @@ class Figure
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255))
      * @Assert\Length(
      *      min = 15,
      *      max = 110,
@@ -91,6 +86,7 @@ class Figure
     {
         $this->illustrations = new ArrayCollection();
         $this->videos = new ArrayCollection();
+        $this->date = new \DateTime();
     }
 
     public function getId(): ?int
@@ -105,6 +101,7 @@ class Figure
 
     public function setName(?string $name): self
     {
+        
         $this->name = $name;
 
         return $this;
@@ -139,7 +136,6 @@ class Figure
         return $this->date;
     }
 
-    
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
@@ -235,9 +231,7 @@ class Figure
     
     public function computeSlug(SluggerInterface $slugger)
     {
-        if (!$this->slug || '-' === $this->slug) {
-            $this->slug = (string) $slugger->slug((string) $this)->lower();
-        }
+        $this->slug = (string) $slugger->slug((string) $this)->lower();
     }
 
     public function __toString()

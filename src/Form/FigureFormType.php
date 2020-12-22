@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Figure;
+use App\Validator as AppAssert;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,8 +16,10 @@ class FigureFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',TextType::class,[
-                'mapped' => false,
+            ->add('name', TextType::class,[
+                'constraints' => [
+                    new AppAssert\UniqueSlug
+                ]
             ])
             ->add('description')
             ->add('figureGroupe')
