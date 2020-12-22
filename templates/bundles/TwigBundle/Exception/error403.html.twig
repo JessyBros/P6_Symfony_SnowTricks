@@ -1,0 +1,5 @@
+{% extends "bundles/TwigBundle/Exception/baseError.html.twig" %}
+{% block codeErreur %}403{% endblock %}
+{% block problemErreur %}Autorisation interdite !{% endblock %}
+{% block detailErreur %}Vous n'avez pas les droits pour accéder à cette page.{% endblock %}
+{% block redirectionPage %}<a href="{{path('sign_in')}}">Connectez-vous !</a> {% endblock %}

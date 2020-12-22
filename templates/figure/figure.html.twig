@@ -21,6 +21,8 @@
 				{% else %}
 					<img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" class="rounded-top" style="height:500px;"/>
 				{% endif %}
+
+				{% if app.user %}
 				<div class="position-absolute z-index-2" style="top:0;right:10px;">
 					<a href="{{ path('update_figure',{'slug':figure.slug}) }}">
 						<i class="fas fa-pencil-alt m-2"></i>
@@ -28,10 +30,11 @@
 					<a href="{{ path('update_figure',{'slug':figure.slug}) }}">
 						<i class="fas fa-trash-alt m-2"></i>
 					</a>
-					
 				</div>
-			</div>
+				{% endif %}
 
+			</div>
+			
 			<!-- Informations de l'article -->
 			<div class="col-sm-12 card-body text-center">
 				<h5 class="card-title">{{figure.name|upper}}</h5>
@@ -43,7 +46,13 @@
 
 			<!-- Informations secondaire de l'article -->
 			<div class="col-sm-12 card-body text-center" style="">
-				<p class="card-text blockquote-footer">Par : {{figure.user.username|capitalize}} | Ajouté le <em>{{figure.date|date("d/m/Y à H:i")}}</em> | Groupe : {{figure.figureGroupe}} | commentaire{% if commentsData|length > 1 %}s{% endif %} : <a href="#commentaires">({{commentsData|length}})</a></p>
+
+				<p class="card-text blockquote-footer">Par : {{figure.user.username|capitalize}} | Crée le <em>{{figure.date|date("d/m/Y à H:i")}}</em> 
+				{% if figure.updateDate is not null %}
+				| Modifié le <em>{{figure.updateDate|date("d/m/Y à H:i")}}</em> 
+				{% endif %}
+				
+				| Groupe : {{figure.figureGroupe}} | commentaire{% if comments|length > 1 %}s{% endif %} : <a href="#commentaires">({{comments|length}})</a></p>
 			</div>
 
 			<hr class="col-sm-10">

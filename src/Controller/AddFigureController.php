@@ -21,6 +21,8 @@ class AddFigureController extends AbstractController
      */
     public function addFigure(EntityManagerInterface $entityManager, Request $request, string $photoDir)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
         $figure = new Figure();
         $video = new Video();
 
@@ -62,7 +64,8 @@ class AddFigureController extends AbstractController
             $entityManager->persist($figure);
             $entityManager->flush();
 
-           return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
+            $this->addFlash('success', 'Votre article a bien été crée !');
+            return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/add_figure.html.twig', [

@@ -6,40 +6,16 @@
 			{% block title %}Snowtricks
 			{% endblock %}
 		</title>
+		<link rel="stylesheet" href="../css/base.css">
 		<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://kit.fontawesome.com/43219f80e6.js" crossorigin="anonymous"></script>
+		
 		{% block stylesheets %}{% endblock %}
-		<style>
-			body{
-				margin: 0;
-				min-height: 100vh;
-				display: grid;
-				grid-template-rows: auto 1fr auto;
-				font-family: Segoe UI, Helvetica, Arial, sans-serif;
-			}
-			img{
-				width:100%;
-			}
-			
-			ul{
-				list-style:none;
-			}
-			a{
-				text-decoration:none!important;
-				color:grey;
-			} 
-			i{
-				font-size:15px;
-			}
-			a:hover, i:hover{
-				color:#555;
-				text-shadow: grey 1px 1px 2px;
-			}
-		</style>
 	</head>
-	<body>
 
+	<body>
+ 		
 		<header>
 			<nav class="navbar navbar-expand navbar-dark bg-dark">
 				<a class="navbar-brand" href="{{ path('home') }}"><img style="height:30px; width:30px;"src='/images/logo.png'/> Snowtricks</a>
@@ -65,6 +41,12 @@
 			</nav>
 			
 		</header>
+		
+		{% for message in app.flashes('success') %}
+		<div class="alert alert-success my-2 mx-auto w-100 text-center" style="max-width:500px;" >
+			{{ message }}
+		</div
+        {% endfor %}
 
 		<section>
 			{% block body %}{% endblock %}
