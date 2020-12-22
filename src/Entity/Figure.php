@@ -18,6 +18,7 @@ class Figure
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="figure_id", orphanRemoval=true, cascade={"remove"})
      * @ORM\Column(type="integer")
      */
     private $id;

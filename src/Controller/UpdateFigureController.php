@@ -6,6 +6,7 @@ use App\Entity\Figure;
 use App\Entity\Illustration;
 use App\Entity\Video;
 use App\Entity\User;
+use App\Entity\Comment;
 use App\Form\FigureFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -68,5 +69,22 @@ class UpdateFigureController extends AbstractController
             'figure_form' => $form->createView(),
             'figure' => $figure,
         ]);
+    }
+
+      /**
+     * @Route("/delete-figure/{slug}", name="delete_figure")
+     */
+    public function deleteFigure(Figure $figure, EntityManagerInterface $entityManager){
+        $commentsFromFigure = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId());
+            
+        $entityManager->remove($figure);
+        foreach ($commentsFromFigure as $comment){
+            $entityManager->remove($comment);
+        }
+    
+        $entityManager->flush();
+
+        $this->addFlash('success', "La figure à bien été supprimé.");
+        return $this->redirectToRoute('home');
     }
 }

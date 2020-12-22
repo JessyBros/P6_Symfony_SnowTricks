@@ -35,21 +35,6 @@ class FigureController extends AbstractController
 
         );    
 
-        if(isset($_POST['submit_delete_figure'])){
-            $figureByPostId = $this->getDoctrine()->getRepository(Figure::class)->findOneById($_POST['figure_id']);
-            $commentsFromFigure = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($_POST['figure_id']);
-            
-            $entityManager->remove($figureByPostId);
-            foreach ($commentsFromFigure as $comment){
-                $entityManager->remove($comment);
-            }
-            
-            $entityManager->flush();
-
-            $this->addFlash('warning', "La figure à bien été supprimé.");
-            return $this->redirectToRoute('home');
-        }
-
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setDate(new \DateTime())
                 ->setFigure($figure)
@@ -70,4 +55,5 @@ class FigureController extends AbstractController
             'commentsData' => $commentsData,
         ]);
     }
+    
 }
