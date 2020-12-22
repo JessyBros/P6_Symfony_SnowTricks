@@ -15,6 +15,8 @@
 				{% else %}
 					<img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" class="rounded-top" style="height:500px;"/>
 				{% endif %}
+
+				{% if app.user %}
 				<div class="position-absolute z-index-2" style="top:0;right:10px;">
 					<a href="{{ path('update_figure',{'slug':figure.slug}) }}">
 						<i class="fas fa-pencil-alt m-2"></i>
@@ -22,10 +24,11 @@
 					<a href="{{ path('update_figure',{'slug':figure.slug}) }}">
 						<i class="fas fa-trash-alt m-2"></i>
 					</a>
-					
 				</div>
-			</div>
+				{% endif %}
 
+			</div>
+			
 			<!-- Informations de l'article -->
 			<div class="col-sm-12 card-body text-center">
 				<h5 class="card-title">{{figure.name|upper}}</h5>
