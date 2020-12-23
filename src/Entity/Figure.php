@@ -18,10 +18,14 @@ class Figure
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="figure_id", orphanRemoval=true, cascade={"remove"})
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="figure", cascade={"remove"}, orphanRemoval=true)
+     */
+    private $comments;
 
     /**
      * @ORM\Column(type="string", length=25)

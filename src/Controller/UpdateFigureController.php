@@ -75,13 +75,9 @@ class UpdateFigureController extends AbstractController
      * @Route("/delete-figure/{slug}", name="delete_figure")
      */
     public function deleteFigure(Figure $figure, EntityManagerInterface $entityManager){
-        $commentsFromFigure = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId());
+        
             
         $entityManager->remove($figure);
-        foreach ($commentsFromFigure as $comment){
-            $entityManager->remove($comment);
-        }
-    
         $entityManager->flush();
 
         $this->addFlash('success', "La figure à bien été supprimé.");
