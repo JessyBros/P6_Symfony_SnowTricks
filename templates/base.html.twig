@@ -41,13 +41,6 @@
 			</nav>
 			
 		</header>
-		
-		{% for message in app.flashes('success') %}
-		<div class="alert alert-success my-2 mx-auto w-100 text-center" style="max-width:500px;" >
-			{{ message }}
-		</div
-        {% endfor %}
-
 		{% for message in app.flashes('success') %}
 		<div class="alert alert-success my-5 mx-auto w-100 text-center fixed-top" style="max-width:350px;">
 			{{ message }}
