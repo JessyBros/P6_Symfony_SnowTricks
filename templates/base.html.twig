@@ -3,28 +3,27 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Snowtricks
-			{% endblock %}
+			{% block title %}Snowtricks{% endblock %}
 		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="../css/base.css">
 		<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://kit.fontawesome.com/43219f80e6.js" crossorigin="anonymous"></script>
-		
 		{% block stylesheets %}{% endblock %}
 	</head>
 
 	<body>
  		
-		<header>
-			<nav class="navbar navbar-expand navbar-dark bg-dark">
-				<a class="navbar-brand" href="{{ path('home') }}"><img style="height:30px; width:30px;"src='/images/logo.png'/> Snowtricks</a>
+		<header class="container-fluid" style="height:60px;">
+			<!-- computer menu -->
+			<nav class="navbar navbar-expand navbar-dark bg-dark row d-none d-sm-flex position-fixed w-100" style="z-index:1030; height:60px;">
+				<a class="navbar-brand" href="{{ path('home') }}"><img style="height:30px; width:30px;" src='/images/logo.png'/> Snowtricks</a>
 				<div class="collapse navbar-collapse" id="navbarColor02">
 					<ul class="navbar-nav mr-auto">
 						{% if app.user %}
 						<li class="nav-item active">
 							<a class="nav-link" href="{{ path('add_figure') }}">Créer une figure</a>
-							<span class="sr-only">(current)</span>
 						</li>
 						{% endif %}
 					</ul>
@@ -39,32 +38,42 @@
 					</div>
 				</div>
 			</nav>
-			
+
+			<!-- mobil menu -->
+			<nav class="navbar navbar-expand navbar-dark bg-dark d-flex justify-content-around row row d-block d-sm-none" style="z-index:1030; height:60px;">
+				<a class="navbar-brand" href="{{ path('home') }}"><i class="fas fa-home"></i></a>
+				{% if app.user %}
+					<a class="nav-link" href="{{ path('add_figure') }}"><img style="height:30px; width:30px;"src='/images/logo.png'/></a>
+				{% endif %}
+				{% if not app.user %}
+					<a href="{{ path('sign_in') }}"><i class="fas fa-sign-in-alt btn btn-outline-secondary m-1"></i></a>
+					<a href="{{ path('sign_up') }}"><i class="fas fa-user-plus btn btn-secondary m-1"></i></a>
+					{% else %}
+					<a href="{{ path('log_out') }}"><i class="fas fa-sign-out-alt btn btn-secondary"></i></a>
+				{% endif %}
+					</div>
+				</div>
+			</nav>
 		</header>
-		
-		{% for message in app.flashes('success') %}
-		<div class="alert alert-success my-2 mx-auto w-100 text-center" style="max-width:500px;" >
-			{{ message }}
-		</div
-        {% endfor %}
 
-		{% for message in app.flashes('success') %}
-		<div class="alert alert-success my-5 mx-auto w-100 text-center fixed-top" style="max-width:350px;">
-			{{ message }}
-		</div
-		{% endfor %}
-
-		{% for message in app.flashes('warning') %}
-		<div class="alert alert-warning my-5 mx-auto w-100 text-center fixed-top" style="max-width:500px;">
-			{{ message }}
-		</div
-		{% endfor %}
-			
-		{% for message in app.flashes('danger') %}
-		<div class="alert alert-danger my-5 mx-auto w-100 text-center fixed-top" style="max-width:500px;">
-			{{ message }}
-		</div
-		{% endfor %}
+		<div class="my-5 mx-auto w-100 text-center fixed-top" style="z-index:1040; max-width:350px;">
+			{% for message in app.flashes('success') %}
+			<div class="alert alert-success">
+				{{ message }}
+			</div
+			{% endfor %}
+			{% for message in app.flashes('warning') %}
+			<div class="alert alert-warning">
+				{{ message }}
+			</div
+			{% endfor %}
+				
+			{% for message in app.flashes('danger') %}
+			<div class="alert alert-danger">
+				{{ message }}
+			</div
+			{% endfor %}
+		</div>
 
 		<section>
 			{% block body %}{% endblock %}
