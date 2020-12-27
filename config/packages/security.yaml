@@ -25,7 +25,3 @@ security:
             logout:
                 path: log_out
                 target: home
-
-    access_control:
-        - { path: ^/ajouter-une-figure, roles: ROLE_USER }
-        - { path: ^/modifier_la_figure/, roles: ROLE_USER }
