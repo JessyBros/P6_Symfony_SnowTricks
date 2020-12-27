@@ -4,25 +4,26 @@ namespace App\Controller;
 
 use App\Entity\Figure;
 use App\Entity\Illustration;
-use App\Entity\Video;
 use App\Entity\User;
+use App\Entity\Video;
 use App\Form\FigureFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
+
 
 class AddFigureController extends AbstractController
 {
     /**
      * @Route("/ajouter-une-figure", name="add_figure")
+     * @IsGranted("ROLE_USER", statusCode=403)
      */
     public function addFigure(EntityManagerInterface $entityManager, Request $request, string $photoDir)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
-        
         $figure = new Figure();
         $video = new Video();
 
@@ -63,9 +64,8 @@ class AddFigureController extends AbstractController
 
             $entityManager->persist($figure);
             $entityManager->flush();
-
             $this->addFlash('success', 'Votre article a bien été crée !');
-            return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
+           return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/add_figure.html.twig', [

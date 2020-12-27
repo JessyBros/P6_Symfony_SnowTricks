@@ -55,4 +55,5 @@ class FigureController extends AbstractController
             'commentsData' => $commentsData,
         ]);
     }
+    
 }

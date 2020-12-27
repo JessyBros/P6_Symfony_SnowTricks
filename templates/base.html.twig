@@ -16,6 +16,7 @@
 	<body>
  		
 		<header class="container-fluid" style="height:60px;">
+    
 			<!-- computer menu -->
 			<nav class="navbar navbar-expand navbar-dark bg-dark row d-none d-sm-flex position-fixed w-100" style="z-index:1030; height:60px;">
 				<a class="navbar-brand" href="{{ path('home') }}"><img style="height:30px; width:30px;" src='/images/logo.png'/> Snowtricks</a>
@@ -39,7 +40,7 @@
 				</div>
 			</nav>
 
-			<!-- mobil menu -->
+<!-- mobil menu -->
 			<nav class="navbar navbar-expand navbar-dark bg-dark d-flex justify-content-around row row d-block d-sm-none" style="z-index:1030; height:60px;">
 				<a class="navbar-brand" href="{{ path('home') }}"><i class="fas fa-home"></i></a>
 				{% if app.user %}
@@ -54,6 +55,7 @@
 					</div>
 				</div>
 			</nav>
+      
 		</header>
 
 		<div class="my-5 mx-auto w-100 text-center fixed-top" style="z-index:1040; max-width:350px;">
@@ -85,7 +87,11 @@
 			</div>
 		</footer>
 
-		{% block javascripts %}{% endblock %}
+		{% block javascripts %}
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>			
+		{% endblock %}
 
 	</body>
 </html>
