@@ -23,8 +23,8 @@
 	<section id="conteneurTricks">
 		<div class="m-auto d-flex flex-wrap justify-content-around" style="max-width:95%;">
 			{% for figure in figures %}
-				<a href="{{ path('figure',{'slug':figure.slug}) }}">
-					<article class="card text-dark bg-secondary my-3 mx-auto" style="max-width: 350px;">
+				<article class="figure card text-dark bg-secondary my-3 mx-auto" style="max-width: 350px; display:none;">
+					<a href="{{ path('figure',{'slug':figure.slug}) }}">
 						{% if figure.illustrations is empty %}
 							<!-- image par défaut-->
 							<img src="../images/figures/default_figure.png" alt="default figure" style="height:135px"/>
@@ -44,16 +44,24 @@
 							</div>
 							{% endif %}
 						</div>
-					</article>
-				</a>
+					</a>
+				</article>
 			{% endfor %}
 		</div>
+
 		<div class="text-center m3">
-			<button class="btn btn-dark btn-lg m-3">Voir plus de figures</button>
+			<i id="loadMoreFigure" class="fas fa-plus-circle m-3"></i>
+			<i id="loadLessFigure" class="fas fa-minus-circle m-3" style="display:none;"></i>
 		</div>
 		
-		<a href="#conteneurPresentation">
+		<a id="arrowUp" href="#conteneurPresentation" style="display:none;">
 			<i class="fas fa-angle-up"></i>
 		</a>
 	</section>
+
+
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="/js/loadFigures.js"></script>
 {% endblock %}
