@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<section id="conteneurPresentation" class="" style="height:95vh;">
+	<section id="conteneurPresentation" class="position-relative" style="height:100vh; bottom:60px;">
 		<img src="/images/welcome.jpg" class="position-absolute w-100" style="z-index:-1;top:0;height:100vh;" />
 		<div class="position-relative text-center h-100" >
 			<div class=" d-flex flex-column justify-content-center h-50" style="text-shadow: black 1px 0 1px;">
@@ -23,8 +23,8 @@
 	<section id="conteneurTricks">
 		<div class="m-auto d-flex flex-wrap justify-content-around" style="max-width:95%;">
 			{% for figure in figures %}
-				<a href="{{ path('figure',{'slug':figure.slug}) }}">
-					<article class="card text-dark bg-secondary my-3 mx-auto" style="max-width: 350px;">
+				<article class="figure card text-dark bg-secondary my-3 mx-auto" style="max-width: 350px; display:none;">
+					<a href="{{ path('figure',{'slug':figure.slug}) }}">
 						{% if figure.illustrations is empty %}
 							<!-- image par défaut-->
 							<img src="../images/figures/default_figure.png" alt="default figure" style="height:135px"/>
@@ -38,22 +38,31 @@
 								<a href="{{ path('update_figure',{'slug':figure.slug}) }}">
 									<i class="fas fa-pencil-alt mx-2"></i>
 								</a>
-								<a>
-									<i class="fas fa-trash-alt mx-1"></i>
-								</a>
+								<a href="" data-toggle="modal" data-target="#deleteFigure-{{figure.id}}">
+                                    <i class="fas fa-trash-alt mx-2"></i>
+                                </a>
+								{% include 'modal/delete_figure.html.twig' %}
 							</div>
 							{% endif %}
 						</div>
-					</article>
-				</a>
+					</a>
+				</article>
 			{% endfor %}
 		</div>
+
 		<div class="text-center m3">
-			<button class="btn btn-dark btn-lg m-3">Voir plus de figures</button>
+			<i id="loadMoreFigure" class="fas fa-plus-circle m-3"></i>
+			<i id="loadLessFigure" class="fas fa-minus-circle m-3" style="display:none;"></i>
 		</div>
 		
-		<a href="#conteneurPresentation">
+		<a id="arrowUp" href="#conteneurPresentation" style="display:none;">
 			<i class="fas fa-angle-up"></i>
 		</a>
 	</section>
+
+
+{% endblock %}
+
+{% block javascripts %}
+	<script type="text/javascript" src="/js/loadFigures.js"></script>
 {% endblock %}

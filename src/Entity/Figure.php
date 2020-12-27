@@ -23,6 +23,11 @@ class Figure
     private $id;
 
     /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="figure", cascade={"remove"}, orphanRemoval=true)
+     */
+    private $comments;
+
+    /**
      * @ORM\Column(type="string", length=25)
      * @Assert\Length(
      *      min = 2,

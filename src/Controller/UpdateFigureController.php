@@ -6,22 +6,24 @@ use App\Entity\Figure;
 use App\Entity\Illustration;
 use App\Entity\Video;
 use App\Entity\User;
+use App\Entity\Comment;
 use App\Form\FigureFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
 
 class UpdateFigureController extends AbstractController
 {
     /**
-     * @Route("/modifier_la_figure/{slug}", name="update_figure")
+     * @Route("/modifier-la-figure/{slug}", name="update_figure")
+     * @IsGranted("ROLE_USER", statusCode=403)
      */
     public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir)
     {
-        $this->denyAccessUnlessGranted('ROLE_USER');
         
         $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
         $form->handleRequest($request);
@@ -68,5 +70,19 @@ class UpdateFigureController extends AbstractController
             'figure_form' => $form->createView(),
             'figure' => $figure,
         ]);
+    }
+
+    /**
+     * @Route("/delete-figure/{slug}", name="delete_figure")
+     * @IsGranted("ROLE_USER", statusCode=403)
+     */
+    public function deleteFigure(Figure $figure, EntityManagerInterface $entityManager){
+        
+            
+        $entityManager->remove($figure);
+        $entityManager->flush();
+
+        $this->addFlash('success', "La figure à bien été supprimé.");
+        return $this->redirectToRoute('home');
     }
 }
