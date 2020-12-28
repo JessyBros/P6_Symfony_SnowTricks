@@ -27,7 +27,7 @@ class FigureController extends AbstractController
         $form->handleRequest($request);
 
         //Affichage des commentaire et pagination
-        $commentsData = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId(),['date' => 'desc']);
+        $commentsData = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId(),['date' => 'ASC']);
         $comments = $paginator->paginate(
             $commentsData,
             $request->query->getInt('page',1),

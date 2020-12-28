@@ -15,7 +15,7 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
     {
                    
         $figureMute = new Figure();
-        $figureMute-> setName("mute")
+        $figureMute-> setName("Mute")
                 -> setDescription("saisie de la carre frontside de la planche entre les deux pieds avec la main avant")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-09-12 9:30:55"))
@@ -33,7 +33,7 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($figureSad);
 
         $figureIndy = new Figure();
-        $figureIndy-> setName("indy")
+        $figureIndy-> setName("Indy")
                 -> setDescription("saisie de la carre frontside de la planche, entre les deux pieds, avec la main arrière")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-10-01 18:24:21"))
@@ -42,7 +42,7 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($figureIndy);
 
         $figureStalefish = new Figure();
-        $figureStalefish-> setName("stalefish")
+        $figureStalefish-> setName("Stalefish")
                 -> setDescription("saisie de la carre backside de la planche entre les deux pieds avec la main arrière")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-10-04 7:12:29"))
@@ -51,7 +51,7 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($figureStalefish);
 
         $figureTailGrab = new Figure();
-        $figureTailGrab-> setName("tail grab")
+        $figureTailGrab-> setName("Tail Grab")
                 -> setDescription("saisie de la partie arrière de la planche, avec la main arrière")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-10-05 9:42:58"))
@@ -60,7 +60,7 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($figureTailGrab);
 
         $figureNoseGrab = new Figure();
-        $figureNoseGrab-> setName("nose grab")
+        $figureNoseGrab-> setName("Nose Grab")
                 -> setDescription("saisie de la partie avant de la planche, avec la main avant")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-10-05 9:57:08"))
@@ -69,7 +69,7 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($figureNoseGrab);
 
         $figureJapanAir = new Figure();
-        $figureJapanAir-> setName("japan air")
+        $figureJapanAir-> setName("Japan Air")
                 -> setDescription("saisie de l'avant de la planche, avec la main avant, du côté de la carre frontside")
                 -> setFigureGroupe("grabs")
                 -> setDate(new \DateTime("2020-10-12 19:12:38"))
@@ -78,7 +78,7 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($figureJapanAir);
 
         $figureSlide = new Figure();
-        $figureSlide-> setName("slide")
+        $figureSlide-> setName("Slide")
                 -> setDescription("Un slide consiste à glisser sur une barre de slide. Le slide se fait soit avec la planche dans l'axe de la barre, soit perpendiculaire, soit plus ou moins désaxé")
                 -> setFigureGroupe("slides")
                 -> setDate(new \DateTime("2020-10-10 17:41:18"))
@@ -88,7 +88,7 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
 
 
         $figureBackFlips = new Figure();
-        $figureBackFlips-> setName("back flips")
+        $figureBackFlips-> setName("Back Flips")
                 -> setDescription("rotation en arrière")
                 -> setFigureGroupe("flips")
                 -> setDate(new \DateTime("2020-10-17 12:21:47"))
@@ -105,6 +105,51 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setSlug("360");
         $manager->persist($figure360);
 
+        $figureGutterBall = new Figure();
+        $figureGutterBall-> setName("Gutter Ball")
+                -> setDescription("Le Gutterball est un slide avant à un pied (le pied avant est attaché et le pied arrière est dégagé).")
+                -> setFigureGroupe("Slide")
+                -> setDate(new \DateTime("2020-10-29 08:27:13"))
+                -> setUser($this->getReference('userJessy'))
+                -> setSlug("gutter-ball");
+        $manager->persist($figureGutterBall);
+
+        $figureFlip900 = new Figure();
+        $figureFlip900-> setName("Flip 900")
+                -> setDescription("Le snowboarder effectue une rotation de 900 degrès pendant le saut.")
+                -> setFigureGroupe("Flip")
+                -> setDate(new \DateTime("2020-11-07 18:57:21"))
+                -> setUser($this->getReference('userJessy'))
+                -> setSlug("flip-900");
+        $manager->persist($figureFlip900);
+
+        $figureTruckDriver = new Figure();
+        $figureTruckDriver-> setName("Truck Driver")
+                -> setDescription("Saisie du carre avant et carre arrière avec chaque main (comme tenir un volant de voiture).")
+                -> setFigureGroupe("Grap")
+                -> setDate(new \DateTime("2020-11-11 09:32:21"))
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("truck-driver");
+        $manager->persist($figureTruckDriver);
+
+        $figureSeatBelt = new Figure();
+        $figureSeatBelt-> setName("Seat Belt")
+                -> setDescription("saisie du carre frontside à l'arrière avec la main avant.")
+                -> setFigureGroupe("Grap")
+                -> setDate(new \DateTime("2020-11-17 19:11:47"))
+                -> setUser($this->getReference('userJimmy'))
+                -> setSlug("seat-belt");
+        $manager->persist($figureSeatBelt);
+
+        $figureDoubleMcTwist1260 = new Figure();
+        $figureDoubleMcTwist1260-> setName("Double Mc Twist 1260")
+                -> setDescription("Le Mc Twist est un flip (rotation verticale) agrémenté d'une vrille.")
+                -> setFigureGroupe("Flip")
+                -> setDate(new \DateTime("2020-11-28 07:27:00"))
+                -> setUser($this->getReference('userJessy'))
+                -> setSlug("double-mc-twist-1260");
+        $manager->persist($figureDoubleMcTwist1260);
+
         
         $manager->flush();
 
@@ -118,6 +163,12 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference('figureSlide', $figureSlide);
         $this->addReference('figureBackFlips', $figureBackFlips);
         $this->addReference('figure360', $figure360);
+        $this->addReference('figureGutterBall', $figureGutterBall);
+        $this->addReference('figureFlip900', $figureFlip900);
+        $this->addReference('figureTruckDriver', $figureTruckDriver);
+        $this->addReference('figureSeatBelt', $figureSeatBelt);
+        $this->addReference('figureDoubleMcTwist1260', $figureDoubleMcTwist1260);
+
     }
 
     public function getDependencies()

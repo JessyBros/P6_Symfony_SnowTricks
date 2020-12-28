@@ -62,8 +62,32 @@ class IllustrationFixtures extends Fixture implements DependentFixtureInterface
                            ->setFigure($this->getReference('figure360'));
          $manager->persist($illustration360);
 
+         $illustrationGutterBall = new Illustration();
+         $illustrationGutterBall->setPath('gutterball.png')
+                           ->setFigure($this->getReference('figureGutterBall'));
+         $manager->persist($illustrationGutterBall);
+
+         $illustrationFlip900 = new Illustration();
+         $illustrationFlip900->setPath('flip900.jpg')
+                           ->setFigure($this->getReference('figureFlip900'));
+         $manager->persist($illustrationFlip900);
+
+         $illustrationTruckDriver = new Illustration();
+         $illustrationTruckDriver->setPath('truckDriver.jpg')
+                           ->setFigure($this->getReference('figureTruckDriver'));
+         $manager->persist($illustrationTruckDriver);
+
+         $illustrationSeatBelt = new Illustration();
+         $illustrationSeatBelt->setPath('SeatBelt.png')
+                           ->setFigure($this->getReference('figureSeatBelt'));
+         $manager->persist($illustrationSeatBelt);
+
+         $illustrationDoubleMcTwist1260 = new Illustration();
+         $illustrationDoubleMcTwist1260->setPath('doubleMcTwist1260.jpeg')
+                           ->setFigure($this->getReference('figureDoubleMcTwist1260'));
+         $manager->persist($illustrationDoubleMcTwist1260);
+
         $manager->flush();
-        
     }
 
     public function getDependencies()
