@@ -13,26 +13,26 @@ class GroupFixtures extends Fixture
         $groupGrap = new Group();
         $groupGrap->setName("Grap");
         $manager->persist($groupGrap);
-       
-        $groupRotation = new Group();
-        $groupRotation->setName('Rotation');
-        $manager->persist($groupRotation);
 
         $groupFlip = new Group();
         $groupFlip->setName('Flip');
         $manager->persist($groupFlip);
 
-        $groupSlide = new Group();
-        $groupSlide->setName('Slide');
-        $manager->persist($groupSlide);
+        $groupOldSchool = new Group();
+        $groupOldSchool->setName('Old school');
+        $manager->persist($groupOldSchool);
+       
+        $groupRotation = new Group();
+        $groupRotation->setName('Rotation');
+        $manager->persist($groupRotation);
 
         $groupRotationDesaxer = new Group();
         $groupRotationDesaxer->setName('Rotation desaxer');
         $manager->persist($groupRotationDesaxer);
 
-        $groupOldSchool = new Group();
-        $groupOldSchool->setName('Old school');
-        $manager->persist($groupOldSchool);
+        $groupSlide = new Group();
+        $groupSlide->setName('Slide');
+        $manager->persist($groupSlide);
 
         $groupAutre = new Group();
         $groupAutre->setName('Autre');

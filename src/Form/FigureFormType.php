@@ -2,8 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Group;
 use App\Entity\Figure;
+use App\Repository\GroupRepository;
 use App\Validator as AppAssert;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +25,16 @@ class FigureFormType extends AbstractType
                 ]
             ])
             ->add('description')
-            ->add('figureGroupe')
+            ->add('groupType', EntityType::class, [
+                'label' => 'Groupe de la figure',
+                'class' => Group::class,
+                'query_builder' => function (GroupRepository $er) {
+                    return $er->createQueryBuilder('g')
+                        ->orderBy('g.id', 'ASC');
+                },
+                'choice_label' => 'name',
+                'placeholder' => '--- Choisissez un groupe',
+            ])
             ->add('illustrations', CollectionType::class, [
                 'entry_type' => IllustrationFormType::class,
                 'label' => false,
