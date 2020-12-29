@@ -48,19 +48,6 @@ class Figure
      * )
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="string", length=70)
-     * @Assert\NotBlank
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 20,
-     *      minMessage = "Le nom de la figure doit avoir au moins {{ limit }} caractères",
-     *      maxMessage = "Le nom de la figure ne doit pas dépasser {{ limit }} caractères"
-     * )
-     */
-    private $figureGroupe;
-
     /**
      * @ORM\Column(type="datetime")
      */
@@ -125,18 +112,6 @@ class Figure
     public function setDescription(string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getFigureGroupe(): ?string
-    {
-        return $this->figureGroupe;
-    }
-
-    public function setFigureGroupe(string $figureGroupe): self
-    {
-        $this->figureGroupe = $figureGroupe;
 
         return $this;
     }
