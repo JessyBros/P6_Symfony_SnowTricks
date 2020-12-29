@@ -54,6 +54,11 @@ class Figure
     private $date;
 
     /**
+     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="figures")
+     */
+    private $groupType;
+
+    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="no")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -124,6 +129,18 @@ class Figure
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getGroupType(): ?Group
+    {
+        return $this->groupType;
+    }
+
+    public function setGroupType(?Group $groupType): self
+    {
+        $this->groupType = $groupType;
 
         return $this;
     }
