@@ -44,15 +44,14 @@
 
 			<button type="submit" class="btn btn-dark my-3">Enregistrer les modifications</button>
 
-		{{ form_widget(figure_form._token) }}
-		{{ form_end(figure_form, {'render_rest': false}) }}
+		{{ form_end(figure_form) }}
 		</div>
 	</section>
 
 {% endblock %}
 
 {% block javascripts %}
-	<script type="text/javascript" src="../build/app.js/ManagementCollectionForm.js"></script>
-	<script type="text/javascript" src="../build/app.js/addIllustrations.js"></script>
-	<script type="text/javascript" src="../build/app.js/addVideos.js"></script>	
+	<script type="text/javascript" src="/js/ManagementCollectionForm.js"></script>
+	<script type="text/javascript" src="/js/addIllustrations.js"></script>
+	<script type="text/javascript" src="/js/addVideos.js"></script>	
 {% endblock %}

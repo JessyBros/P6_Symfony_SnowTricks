@@ -68,7 +68,7 @@
 						<img src="../images/figures/illustrations/{{ illustration.path }}" alt="{{ illustration.path }}"style="height:50px; width:50px;"/>
 					{% endfor %}
 					{% for video in figure.videos %}
-					<iframe allowfullscreen="" frameborder="0"  src="https://www.youtube.com/embed/{{ video.path }}"></iframe>
+					<iframe allowfullscreen="" frameborder="0"  src="{{ video.path }}"></iframe>
 					{% endfor %}			
 				{% endif %}
 			</div>

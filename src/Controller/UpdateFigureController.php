@@ -8,6 +8,7 @@ use App\Entity\Video;
 use App\Entity\User;
 use App\Entity\Comment;
 use App\Form\FigureFormType;
+use App\Service\SaveRegexVideo;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +23,7 @@ class UpdateFigureController extends AbstractController
      * @Route("/modifier-la-figure/{slug}", name="update_figure")
      * @IsGranted("ROLE_USER", statusCode=403)
      */
-    public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir)
+    public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir, SaveRegexVideo $saveRegexVideo)
     {
         
         $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
@@ -51,12 +52,7 @@ class UpdateFigureController extends AbstractController
            // Enregistre les vidéos antant que l'utilisateur en crée et stocks les images associés
            if ($videos = $form->get('videos')) {
             foreach ($videos as $video) {
-                $url = $video->get('path')->getData();
-                if ($url != null) {
-                    preg_match('#^https:\/\/www.youtube.com\/watch\?v=|^https:\/\/www.youtu.be/#', $url, $urlCut);
-                    $urlValid = str_replace($urlCut,"",$url);
-                    $video->getData()->setPath($urlValid);
-                }
+                $saveRegexVideo->save($video);
             }
         }
             $entityManager->flush();
