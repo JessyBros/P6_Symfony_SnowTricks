@@ -28,10 +28,6 @@ class FigureFormType extends AbstractType
             ->add('groupType', EntityType::class, [
                 'label' => 'Groupe de la figure',
                 'class' => Group::class,
-                'query_builder' => function (GroupRepository $er) {
-                    return $er->createQueryBuilder('g')
-                        ->orderBy('g.id', 'ASC');
-                },
                 'choice_label' => 'name',
                 'placeholder' => '--- Choisissez un groupe',
             ])
