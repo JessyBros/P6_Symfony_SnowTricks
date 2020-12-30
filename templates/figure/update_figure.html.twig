@@ -13,7 +13,7 @@
 			<legend class="h1 my-5">{{figure.name}}</legend>
 
 			{{form_row(figure_form.description)}}
-			{{form_row(figure_form.figureGroupe)}}
+			{{form_row(figure_form.groupType)}}
 
 			<div id="containerIllustrations">
 				<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">

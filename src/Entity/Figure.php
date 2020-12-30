@@ -48,23 +48,15 @@ class Figure
      * )
      */
     private $description;
-
-    /**
-     * @ORM\Column(type="string", length=70)
-     * @Assert\NotBlank
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 20,
-     *      minMessage = "Le nom de la figure doit avoir au moins {{ limit }} caractères",
-     *      maxMessage = "Le nom de la figure ne doit pas dépasser {{ limit }} caractères"
-     * )
-     */
-    private $figureGroupe;
-
     /**
      * @ORM\Column(type="datetime")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="figures")
+     */
+    private $groupType;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="no")
@@ -129,18 +121,6 @@ class Figure
         return $this;
     }
 
-    public function getFigureGroupe(): ?string
-    {
-        return $this->figureGroupe;
-    }
-
-    public function setFigureGroupe(string $figureGroupe): self
-    {
-        $this->figureGroupe = $figureGroupe;
-
-        return $this;
-    }
-
     public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
@@ -149,6 +129,18 @@ class Figure
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getGroupType(): ?Group
+    {
+        return $this->groupType;
+    }
+
+    public function setGroupType(?Group $groupType): self
+    {
+        $this->groupType = $groupType;
 
         return $this;
     }
