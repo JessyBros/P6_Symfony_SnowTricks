@@ -24,6 +24,11 @@ class RegexVideoValidator extends ConstraintValidator
         if (!$constraint instanceof RegexVideo) {
             throw new UnexpectedTypeException($constraint, RegexVideo::class);
         }
+
+        // Ne peut être null
+        if (null === $value || '' === $value) {
+            return;
+        }
         
         if (!preg_match(self::URL_YOUTUBE, $value, $matches) && !preg_match(self::URL_DAILYMOTION, $value, $matches)) {
             // the argument must be a string or an object implementing __toString()

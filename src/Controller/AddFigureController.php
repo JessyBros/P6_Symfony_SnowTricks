@@ -7,6 +7,7 @@ use App\Entity\Illustration;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Form\FigureFormType;
+use App\Service\SaveRegexVideo;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +23,7 @@ class AddFigureController extends AbstractController
      * @Route("/ajouter-une-figure", name="add_figure")
      * @IsGranted("ROLE_USER", statusCode=403)
      */
-    public function addFigure(EntityManagerInterface $entityManager, Request $request, string $photoDir)
+    public function addFigure(EntityManagerInterface $entityManager, Request $request, string $photoDir, SaveRegexVideo $saveRegexVideo)
     {
         $figure = new Figure();
         $video = new Video();
@@ -31,7 +32,6 @@ class AddFigureController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $figure->setName($form->get('name')->getData())
                     ->setUser($this->getUser());
 
@@ -53,19 +53,14 @@ class AddFigureController extends AbstractController
             // Enregistre les vidéos antant que l'utilisateur en crée et stocks les images associés
             if ($videos = $form->get('videos')) {
                 foreach ($videos as $video) {
-                    $url = $video->get('path')->getData();
-                    if ($url != null) {
-                        preg_match('#^https:\/\/www.youtube.com\/watch\?v=|^https:\/\/www.youtu.be/#', $url, $urlCut);
-                        $urlValid = str_replace($urlCut,"",$url);
-                        $video->getData()->setPath($urlValid);
-                    }
+                    $saveRegexVideo->save($video);
                 }
             }
 
             $entityManager->persist($figure);
             $entityManager->flush();
             $this->addFlash('success', 'Votre article a bien été crée !');
-           return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
+            return $this->redirectToRoute('figure', ['slug' => $figure->getSlug()]);
         }
 
         return $this->render('figure/add_figure.html.twig', [
