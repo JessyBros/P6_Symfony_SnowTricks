@@ -8,6 +8,7 @@ use App\Entity\Video;
 use App\Entity\User;
 use App\Entity\Comment;
 use App\Form\FigureFormType;
+use App\Service\SaveIllustration;
 use App\Service\SaveRegexVideo;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -23,7 +24,7 @@ class UpdateFigureController extends AbstractController
      * @Route("/modifier-la-figure/{slug}", name="update_figure")
      * @IsGranted("ROLE_USER", statusCode=403)
      */
-    public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir, SaveRegexVideo $saveRegexVideo)
+    public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir, SaveRegexVideo $saveRegexVideo, SaveIllustration $saveIllustration)
     {
         
         $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
@@ -34,18 +35,9 @@ class UpdateFigureController extends AbstractController
             $figure->setUpdateDate(new \DateTime());
 
              // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
-            if ($illustrationFiles = $form->get('illustrations')) {
-                foreach ($illustrationFiles as $illustrationFile) {
-                    if ($illustrationFile->get('file')->getData() != null) {
-                        $fileData = $illustrationFile->get('file')->getData();
-                        $filename = bin2hex(random_bytes(6)) . '.' . $fileData->guessExtension();
-                        try {
-                            $fileData->move($photoDir, $filename);
-                        } catch (FileException $e) {
-                            // nothing do
-                        }
-                        $illustrationFile->getData()->setPath($filename);
-                    }
+            if ($illustrations = $form->get('illustrations')) {
+                foreach ($illustrations as $illustration) {
+                    $saveIllustration->save($illustration, $photoDir);
                 }
             }
 

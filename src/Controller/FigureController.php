@@ -30,7 +30,6 @@ class FigureController extends AbstractController
         $comments = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId(),['date' => 'desc']);
         $commentsPaginator = $paginator->paginate(
             $comments,
-
             $request->query->getInt('page',1),
             self::MAX_ITEMS_PER_PAGE
 
