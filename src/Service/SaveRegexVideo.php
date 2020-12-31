@@ -16,7 +16,7 @@ class SaveRegexVideo{
                             ."/";
 
 
-    public function save($video){
+    public function save($video) {
 
         $url = $video->get('path')->getData();
         if ($url != null) {
