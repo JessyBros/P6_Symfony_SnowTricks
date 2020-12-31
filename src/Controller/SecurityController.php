@@ -6,20 +6,29 @@ use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class SignUpController extends AbstractController
+class SecurityController extends AbstractController
 {
+
     /**
-     * @Route("/inscription", name="sign_up")
+     * @Route("/connexion", name="sign_in")
+     */
+    public function signIn()
+    {
+        return $this->render('security/sign_in.html.twig');
+    }
+
+    /**
+     * @Route("/inscription", name="register")
      */
     public function signUp(EntityManagerInterface $entityManager, Request $request, string $pictureDir, UserPasswordEncoderInterface $encoder)
     {
-
         $user = new User();
 
         $form = $this->createForm(UserType::class, $user);
@@ -49,4 +58,10 @@ class SignUpController extends AbstractController
             'formSignUp' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/deconnexion", name="log_out")
+     */
+    public function logOut(){}
+
 }

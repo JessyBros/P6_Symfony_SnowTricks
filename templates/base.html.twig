@@ -31,7 +31,7 @@
 					<div class="my-2 my-lg-0">
 						{% if not app.user %}
 								<a href="{{ path('sign_in') }}"><button type="button" class="btn btn-outline-secondary m-1">se connecter</button></a>
-								<a href="{{ path('sign_up') }}"><button type="button" class="btn btn-secondary m-1">s'inscrire</button></a>
+								<a href="{{ path('register') }}"><button type="button" class="btn btn-secondary m-1">s'inscrire</button></a>
 						
 						{% else %}
 								<a href="{{ path('log_out') }}"><button type="button" class="btn btn-secondary" href="{{path('log_out')}}"><i class="fas fa-sign-out-alt"> deconnexion</i></button></a>
@@ -48,7 +48,7 @@
 				{% endif %}
 				{% if not app.user %}
 					<a href="{{ path('sign_in') }}"><i class="fas fa-sign-in-alt btn btn-outline-secondary m-1"></i></a>
-					<a href="{{ path('sign_up') }}"><i class="fas fa-user-plus btn btn-secondary m-1"></i></a>
+					<a href="{{ path('register') }}"><i class="fas fa-user-plus btn btn-secondary m-1"></i></a>
 					{% else %}
 					<a href="{{ path('log_out') }}"><i class="fas fa-sign-out-alt btn btn-secondary"></i></a>
 				{% endif %}

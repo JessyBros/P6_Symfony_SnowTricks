@@ -61,7 +61,7 @@ class ForgottenPasswordController extends AbstractController
      */
     public function resetPassword($token, Request $request, UserPasswordEncoderInterface $passwordEncoder){
         // On cherche l'utilisateur avec le token fourni
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['reset_token' => $token]);
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['resetToken' => $token]);
 
         if(!$user){
             $this->addFlash('danger', 'Token inconnu');
