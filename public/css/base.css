@@ -23,3 +23,23 @@ a:hover, i:hover{
     color:#555;
     text-shadow: grey 1px 1px 2px;
 }
+
+/* Custom Css FILE input to form */
+.custom-file-label{
+    display:none;
+}
+.custom-file-input{
+    opacity:1!important;
+}
+
+.form-control-file{
+	overflow:hidden;
+	cursor: pointer;
+    width: 100%;
+    line-height: 2;
+    color: #4f4f4f;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #bdbdbd;
+	border-radius: .25rem;
+	}

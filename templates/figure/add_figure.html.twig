@@ -14,12 +14,16 @@
 		{{ form_row(figure_form.name,{'attr':{'placeholder':"Nom de la figure"}}) }}
 		{{ form_row(figure_form.description,{'attr':{'placeholder': "Description de la figure"}}) }}
 		{{ form_row(figure_form.groupType) }}
-
+     
 		<fieldset id="containerIllustrations">
 			<legend class="h5">Illustrations</legend>
-			<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
+			<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype.file,{'attr':{'class':"form-control-file"}})|e('html_attr') }}">
 				{% for illustration in figure_form.illustrations %}
-					<li class="col-md-6">{{ form_row(illustration.file)}}</li>
+					<li class="col-md-12">
+						<div class="form-group">
+						{{ form_widget(illustration.file)}}
+						</div>
+					</li>
 				{% endfor %}
 			</ul>
 			<button type="button" class="add_item_link_illustration btn btn-secondary my-2" data-collection-holder-class="illustrations">Ajouter une illustration</button>

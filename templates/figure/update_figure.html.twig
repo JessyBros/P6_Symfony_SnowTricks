@@ -16,7 +16,7 @@
 			{{form_row(figure_form.groupType)}}
 
 			<div id="containerIllustrations">
-				<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype)|e('html_attr') }}">
+				<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype.file,{'attr':{'class':"form-control-file"}})|e('html_attr') }}">
 					{% for illustration in figure_form.illustrations %}
 					<li class="col-md-6 ">
 						<img src="../images/figures/illustrations/{{ illustration.vars.data.path }}" class="m-1 rounded border"style="height:100px; width:150px;"/>
