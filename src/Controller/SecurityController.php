@@ -27,7 +27,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/inscription", name="register")
      */
-    public function signUp(EntityManagerInterface $entityManager, Request $request, string $pictureDir, UserPasswordEncoderInterface $encoder)
+    public function register(EntityManagerInterface $entityManager, Request $request, string $pictureDir, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
 
@@ -54,7 +54,7 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('sign_in');
         }
 
-        return $this->render('security/sign_up.html.twig',[
+        return $this->render('security/register.html.twig',[
             'formSignUp' => $form->createView(),
         ]);
     }
