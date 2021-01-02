@@ -13,7 +13,7 @@
 			</ul>
 			<div class="my-2 my-lg-0">
 				{% if not app.user %}
-					<a href="{{ path('sign_in') }}"><button type="button" class="btn btn-secondary btn-sm m-1">se connecter</button></a>
+					<a href="{{ path('sign_in') }}"><button type="button" class="btn btn-secondary m-1">se connecter</button></a>
 					<a href="{{ path('register') }}"><button type="button" class="btn btn-secondary m-1">s'inscrire</button></a>	
 				{% else %}
 					<a href="{{ path('log_out') }}"><button type="button" class="btn btn-secondary" href="{{path('log_out')}}"><i class="fas fa-sign-out-alt"> deconnexion</i></button></a>
