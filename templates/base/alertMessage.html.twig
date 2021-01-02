@@ -1,0 +1,15 @@
+<div class="my-5 mx-auto w-100 text-center fixed-top" style="z-index:1040; max-width:350px;">
+
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-success">{{ message }}</div>
+	{% endfor %}
+
+	{% for message in app.flashes('warning') %}
+		<div class="alert alert-warning">{{ message }}</div>
+	{% endfor %}
+				
+	{% for message in app.flashes('danger') %}
+		<div class="alert alert-danger">{{ message }}</div>
+	{% endfor %}
+	
+</div>

@@ -7,85 +7,23 @@
 		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="/css/base.css">
-		<link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+		<link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://kit.fontawesome.com/43219f80e6.js" crossorigin="anonymous"></script>
 		{% block stylesheets %}{% endblock %}
 	</head>
 
-	<body>
+	<body class="text-secondary bg-light">
  		
-		<header class="container-fluid" style="height:60px;">
-    
-			<!-- computer menu -->
-			<nav class="navbar navbar-expand navbar-dark bg-dark row d-none d-sm-flex position-fixed w-100" style="z-index:1030; height:60px;">
-				<a class="navbar-brand" href="{{ path('home') }}"><img style="height:30px; width:30px;" src='/images/logo.png'/> Snowtricks</a>
-				<div class="collapse navbar-collapse" id="navbarColor02">
-					<ul class="navbar-nav mr-auto">
-						{% if app.user %}
-						<li class="nav-item active">
-							<a class="nav-link" href="{{ path('add_figure') }}">Créer une figure</a>
-						</li>
-						{% endif %}
-					</ul>
-					<div class="my-2 my-lg-0">
-						{% if not app.user %}
-								<a href="{{ path('sign_in') }}"><button type="button" class="btn btn-outline-secondary m-1">se connecter</button></a>
-								<a href="{{ path('register') }}"><button type="button" class="btn btn-secondary m-1">s'inscrire</button></a>
-						
-						{% else %}
-								<a href="{{ path('log_out') }}"><button type="button" class="btn btn-secondary" href="{{path('log_out')}}"><i class="fas fa-sign-out-alt"> deconnexion</i></button></a>
-						{% endif %}
-					</div>
-				</div>
-			</nav>
-
-<!-- mobil menu -->
-			<nav class="navbar navbar-expand navbar-dark bg-dark d-flex justify-content-around row row d-block d-sm-none" style="z-index:1030; height:60px;">
-				<a class="navbar-brand" href="{{ path('home') }}"><i class="fas fa-home"></i></a>
-				{% if app.user %}
-					<a class="nav-link" href="{{ path('add_figure') }}"><img style="height:30px; width:30px;"src='/images/logo.png'/></a>
-				{% endif %}
-				{% if not app.user %}
-					<a href="{{ path('sign_in') }}"><i class="fas fa-sign-in-alt btn btn-outline-secondary m-1"></i></a>
-					<a href="{{ path('register') }}"><i class="fas fa-user-plus btn btn-secondary m-1"></i></a>
-					{% else %}
-					<a href="{{ path('log_out') }}"><i class="fas fa-sign-out-alt btn btn-secondary"></i></a>
-				{% endif %}
-					</div>
-				</div>
-			</nav>
-      
-		</header>
-    
-		<div class="my-5 mx-auto w-100 text-center fixed-top" style="z-index:1040; max-width:350px;">
-			{% for message in app.flashes('success') %}
-			<div class="alert alert-success">
-				{{ message }}
-			</div>
-			{% endfor %}
-			{% for message in app.flashes('warning') %}
-			<div class="alert alert-warning">
-				{{ message }}
-			</div>
-			{% endfor %}
-				
-			{% for message in app.flashes('danger') %}
-			<div class="alert alert-danger">
-				{{ message }}
-			</div>
-			{% endfor %}
-		</div>
-
+		{% include 'base/header.html.twig' %}
+		
+    	{% include 'base/alertMessage.html.twig' %}
+		
 		<section>
 			{% block body %}{% endblock %}
 		</section>
 
-		<footer class="text-white bg-dark page-footer">
-			<div class="footer-copyright text-center py-3">© 2020 Copyright:
-				<a href="{{ path('home') }}"> Snowtricks</a>
-			</div>
-		</footer>
+		{% include 'base/footer.html.twig' %}
 
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"

@@ -4,6 +4,7 @@ body{
     display: grid;
     grid-template-rows: auto 1fr auto;
     font-family: Segoe UI, Helvetica, Arial, sans-serif;
+   
 }
 img{
     width:100%;
@@ -12,16 +13,24 @@ img{
 ul{
     list-style:none;
 }
+
 a{
     text-decoration:none!important;
-    color:grey;
-} 
+    cursor: pointer;
+}
+
 i{
     font-size:15px;
 }
-a:hover, i:hover{
-    color:#555;
-    text-shadow: grey 1px 1px 2px;
+
+.fa-trash-alt:hover{
+    color:IndianRed!important;
+    cursor: pointer;
+}
+
+.fa-pencil-alt:hover{
+    color:SteelBlue!important;
+    cursor: pointer;
 }
 
 /* Custom Css FILE input to form */
@@ -30,13 +39,12 @@ a:hover, i:hover{
 }
 .custom-file-input{
     opacity:1!important;
-}
-
-.form-control-file{
 	overflow:hidden;
 	cursor: pointer;
     width: 100%;
-    line-height: 2;
+    top:-3px;
+    height: auto!important;
+    line-height: 1.9;
     color: #4f4f4f;
     background-color: #fff;
     background-clip: padding-box;

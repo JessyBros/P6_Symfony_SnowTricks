@@ -22,6 +22,9 @@ class VideoFormType extends AbstractType
                 'constraints' => [
                     new AppAssert\RegexVideo
                 ],
+                'attr' => [
+                    'placeholder' => "https://www.youtube.com/watch?v=SQyTWk7OxSI"
+                ]
             ]);
     }
 

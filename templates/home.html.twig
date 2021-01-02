@@ -4,8 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<section id="conteneurPresentation" class="position-relative" style="height:100vh; bottom:60px;">
-		<img src="/images/welcome.jpg" class="position-absolute w-100" style="z-index:-1;top:0;height:100vh;" />
+	<section id="conteneurPresentation" class="position-relative" style="height:100vh;">
+		<img src="/images/welcome.jpg" class="position-absolute w-100" style="z-index:-1;top:-60px;height:100vh; border-bottom:1px solid black;" />
 		<div class="position-relative text-center h-100" >
 			<div class=" d-flex flex-column justify-content-center h-50" style="text-shadow: black 1px 0 1px;">
 				<h1>SnowTricks !</h1>
@@ -20,25 +20,25 @@
 		<div>
 	</section>
 
-	<section id="conteneurTricks">
-		<div class="m-auto d-flex flex-wrap justify-content-around" style="max-width:95%;">
+	<section id="conteneurTricks" style="position:relative; padding-top:60px; top:-60px;">
+		<div class="m-auto d-flex flex-wrap justify-content-around" style="max-width:1250px;">
 			{% for figure in figures %}
-				<article class="figure card text-dark bg-secondary my-3 mx-auto" style="max-width: 350px; display:none;">
-					<a href="{{ path('show_figure',{'slug':figure.slug}) }}">
+				<article class="figure card bg-dark border-dark my-3 mx-2" style="max-width: 300px; display:none;">
+					<a class="text-light" href="{{ path('show_figure',{'slug':figure.slug}) }}">
 						{% if figure.illustrations is empty %}
 							<!-- image par défaut-->
 							<img src="/images/figures/default_figure.png" alt="default figure" style="height:135px"/>
 						{% else %}
-							<img src="/images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" style="height:135px"/>
+							<img src="/images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" style="height:135px;"/>
 						{% endif %}
 						<div class="card-footer d-flex justify-content-between">
 							<span class="h6">{{ figure.name }}</span>
 							{% if app.user %}
 							<div class="d-flex justify-content-around">
-								<a href="{{ path('update_figure',{'slug':figure.slug}) }}">
+								<a class="text-light" href="{{ path('update_figure',{'slug':figure.slug}) }}">
 									<i class="fas fa-pencil-alt mx-2"></i>
 								</a>
-								<a data-toggle="modal" data-target="#deleteFigure-{{figure.id}}">
+								<a class="text-muted" data-toggle="modal" data-target="#deleteFigure-{{figure.id}}">
                                     <i class="fas fa-trash-alt mx-2"></i>
                                 </a>
 								{% include '/modal/delete_figure.html.twig' %}
@@ -51,11 +51,11 @@
 		</div>
 
 		<div class="text-center m3">
-			<i id="loadMoreFigure" class="fas fa-plus-circle m-3"></i>
-			<i id="loadLessFigure" class="fas fa-minus-circle m-3" style="display:none;"></i>
+			<i id="loadMoreFigure" class="fas fa-plus-circle m-3" style="cursor:pointer; font-size:110%;"> Voir plus de figure</i>
+			<i id="loadLessFigure" class="fas fa-minus-circle m-3" style="display:none; cursor:pointer; font-size:120%"> Moins de figure</i>
 		</div>
 		
-		<a id="arrowUp" href="#conteneurPresentation" style="display:none;">
+		<a id="arrowUp" href="#conteneurTricks" style="display:none;">
 			<i class="fas fa-angle-up"></i>
 		</a>
 	</section>

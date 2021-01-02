@@ -19,7 +19,7 @@
 			<legend class="h5">Illustrations</legend>
 			<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype.file,{'attr':{'class':"form-control-file"}})|e('html_attr') }}">
 				{% for illustration in figure_form.illustrations %}
-					<li class="col-md-12">
+					<li class="col-md-6">
 						<div class="form-group">
 						{{ form_widget(illustration.file)}}
 						</div>

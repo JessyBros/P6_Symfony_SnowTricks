@@ -1,0 +1,39 @@
+<header class="container-fluid w-100 position-sticky" style="top:0; z-index:1030; height:60px;">
+
+	<!-- computer menu -->
+	<nav class="navbar navbar-expand navbar-dark bg-dark row  d-none d-sm-flex">
+		<a class="navbar-brand" href="{{ path('home') }}"><img style="height:30px; width:30px;" src='/images/logo.png'/> Snowtricks</a>
+		<div class="collapse navbar-collapse" id="navbarColor02">
+			<ul class="navbar-nav mr-auto">
+				{% if app.user %}
+					<li class="nav-item active">
+						<a class="nav-link" href="{{ path('add_figure') }}">Créer une figure</a>
+					</li>
+				{% endif %}
+			</ul>
+			<div class="my-2 my-lg-0">
+				{% if not app.user %}
+					<a href="{{ path('sign_in') }}"><button type="button" class="btn btn-secondary btn-sm m-1">se connecter</button></a>
+					<a href="{{ path('register') }}"><button type="button" class="btn btn-secondary m-1">s'inscrire</button></a>	
+				{% else %}
+					<a href="{{ path('log_out') }}"><button type="button" class="btn btn-secondary" href="{{path('log_out')}}"><i class="fas fa-sign-out-alt"> deconnexion</i></button></a>
+				{% endif %}
+			</div>
+		</div>
+	</nav>
+
+	<!-- mobil menu -->
+	<nav class="navbar navbar-expand navbar-dark bg-dark d-flex justify-content-around row d-block d-sm-none">
+		<a class="btn btn-secondary" href="{{ path('home') }}" title="Page d'accueil"><i class="fas fa-home"></i></a>			
+		{% if app.user %}
+			<a class=" btn btn-secondary" href="{{ path('add_figure') }}" title="Ajouter une figure"><img style="height:30px; width:30px;"src='/images/logo.png'/></a>
+		{% endif %}
+		{% if not app.user %}
+			<a href="{{ path('sign_in') }}" title="Connexion"><i class="fas fa-sign-in-alt btn btn-secondary m-1"></i></a>
+			<a href="{{ path('register') }}" title="Inscription"><i class="fas fa-user-plus btn btn-secondary m-1"></i></a>
+		{% else %}
+			<a href="{{ path('log_out') }}" title="Déconnexion"><i class="fas fa-sign-out-alt btn btn-secondary"></i></a>
+		{% endif %}
+	</nav>
+	
+</header>
