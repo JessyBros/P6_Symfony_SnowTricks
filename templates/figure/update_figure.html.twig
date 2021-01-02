@@ -16,11 +16,13 @@
 			{{form_row(figure_form.groupType)}}
 
 			<div id="containerIllustrations">
-				<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype.file,{'attr':{'class':"form-control-file"}})|e('html_attr') }}">
+				<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype.file,{'attr':{'class':"form-control-file",'style':"display: grid;margin: auto; /* comportement visuel de cellule */
+  vertical-align: middle;"}})|e('html_attr') }}">
+  
 					{% for illustration in figure_form.illustrations %}
-					<li class="col-md-6 ">
+					<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center">
 						<img src="../images/figures/illustrations/{{ illustration.vars.data.path }}" class="m-1 rounded border"style="height:100px; width:150px;"/>
-						{{ form_row(illustration.file) }}
+						{{ form_widget(illustration.file) }}
 					</li>
 					{% endfor %}
 				</ul>
@@ -28,14 +30,10 @@
 			</div>
 
 			<div id="containerVideos">
-				<ul id="ulVideos" class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
+				<ul id="ulVideos" class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype.path,{'attr':{'class':"w-100"}})|e('html_attr') }}">
 					{% for video in figure_form.videos %}
-					<li class="col-md-6">
-						{% if video.vars.data is empty %}
-							{{ form_row(video.path,{'attr':{'placeholder':"https://www.youtube.com/watch?v="}}) }}
-						{% else %}
+					<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center">
 							{{ form_row(video.path) }}
-						{% endif %}
 					</li>
 					{% endfor %}
 				</ul>

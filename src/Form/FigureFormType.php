@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class FigureFormType extends AbstractType
@@ -24,7 +25,7 @@ class FigureFormType extends AbstractType
                     new AppAssert\UniqueSlug
                 ]
             ])
-            ->add('description')
+            ->add('description', TextareaType::class)
             ->add('groupType', EntityType::class, [
                 'label' => 'Groupe de la figure',
                 'class' => Group::class,

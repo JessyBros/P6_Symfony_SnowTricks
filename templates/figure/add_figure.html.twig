@@ -19,7 +19,7 @@
 			<legend class="h5">Illustrations</legend>
 			<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype.file,{'attr':{'class':"form-control-file"}})|e('html_attr') }}">
 				{% for illustration in figure_form.illustrations %}
-					<li class="col-md-6">
+					<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center">
 						<div class="form-group">
 						{{ form_widget(illustration.file)}}
 						</div>
@@ -31,9 +31,9 @@
 
 		<fieldset id="containerVideos">
 			<legend class="h5">Vidéos</legend>
-			<ul id="ulVideos" class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype)|e('html_attr') }}">
+			<ul id="ulVideos" class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype.path,{'attr':{'class':"w-100"}})|e('html_attr') }}">
 				{% for video in figure_form.videos %}
-					<li class="col-md-6">{{ form_row(video.path) }}</li>
+					<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center">{{ form_widget(video.path) }}</li>
 				{% endfor %}
 			</ul>
 			<button type="button" class="add_item_link_video btn btn-secondary my-2" data-collection-holder-class="videos">Ajouter une vidéo</button>
