@@ -37,7 +37,10 @@ class UpdateFigureController extends AbstractController
              // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
             if ($illustrations = $form->get('illustrations')) {
                 foreach ($illustrations as $illustration) {
-                    $saveIllustration->save($illustration);
+                    if ($illustration->getData() != null){
+                        $uploadedFile = $illustration->get('file')->getData();
+                        $saveIllustration->save($illustration->getData(), $uploadedFile);
+                    }
                 }
             }
 
