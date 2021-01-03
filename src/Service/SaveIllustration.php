@@ -2,18 +2,25 @@
 
 namespace App\Service;
 
+use App\Entity\Illustration;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 class SaveIllustration{
 
-    public function save($illustration, $photoDir) {
-        if ($illustration->get('file')->getData() != null){
-            $fileData = $illustration->get('file')->getData();
-            $filename = bin2hex(random_bytes(6)) . '.' . $fileData->guessExtension();
+    private string $photoDir;
+
+    public function __construct(string $photoDir)
+    {
+        $this->photoDir = $photoDir;
+    }
+
+    public function save(Illustration $illustration, UploadedFile $uploadedFile) {
+            $filename = bin2hex(random_bytes(6)) . '.' . $uploadedFile->guessExtension();
             try {
-                   $fileData->move($photoDir, $filename);
+                $uploadedFile->move($this->photoDir, $filename);
                 } catch (FileException $e) {
                 }
-                $illustration->getData()->setPath($filename);
-        }
+                $illustration->setPath($filename);
     }
     
 }
