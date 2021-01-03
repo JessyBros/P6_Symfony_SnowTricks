@@ -24,7 +24,7 @@
 		<div class="m-auto d-flex flex-wrap justify-content-around" style="max-width:95%;">
 			{% for figure in figures %}
 				<article class="figure card text-dark bg-secondary my-3 mx-auto" style="max-width: 350px; display:none;">
-					<a href="{{ path('figure',{'slug':figure.slug}) }}">
+					<a href="{{ path('show_figure',{'slug':figure.slug}) }}">
 						{% if figure.illustrations is empty %}
 							<!-- image par défaut-->
 							<img src="/images/figures/default_figure.png" alt="default figure" style="height:135px"/>
