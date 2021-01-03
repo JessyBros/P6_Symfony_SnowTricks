@@ -7,6 +7,7 @@ use App\Entity\Illustration;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Form\FigureFormType;
+use App\Service\SaveIllustration;
 use App\Service\SaveRegexVideo;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -23,7 +24,7 @@ class AddFigureController extends AbstractController
      * @Route("/ajouter-une-figure", name="add_figure")
      * @IsGranted("ROLE_USER", statusCode=403)
      */
-    public function addFigure(EntityManagerInterface $entityManager, Request $request, string $photoDir, SaveRegexVideo $saveRegexVideo)
+    public function addFigure(EntityManagerInterface $entityManager, Request $request, SaveRegexVideo $saveRegexVideo, SaveIllustration $saveIllustration)
     {
         $figure = new Figure();
         $video = new Video();
@@ -36,16 +37,11 @@ class AddFigureController extends AbstractController
                     ->setUser($this->getUser());
 
             // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
-            if ($illustrationFiles = $form->get('illustrations')) {
-                foreach ($illustrationFiles as $illustrationFile) {
-                    if ($illustrationFile->get('file')->getData() != null){
-                        $fileData = $illustrationFile->get('file')->getData();
-                        $filename = bin2hex(random_bytes(6)) . '.' . $fileData->guessExtension();
-                        try {
-                               $fileData->move($photoDir, $filename);
-                            } catch (FileException $e) {
-                            }
-                            $illustrationFile->getData()->setPath($filename);
+            if ($illustrations = $form->get('illustrations')) {
+                foreach ($illustrations as $illustration) {
+                    if ($illustration->getData() != null){
+                        $uploadedFile = $illustration->get('file')->getData();
+                        $saveIllustration->save($illustration->getData(), $uploadedFile);
                     }
                 }
             }
