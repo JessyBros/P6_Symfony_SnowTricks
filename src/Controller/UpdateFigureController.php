@@ -24,7 +24,7 @@ class UpdateFigureController extends AbstractController
      * @Route("/modifier-la-figure/{slug}", name="update_figure")
      * @IsGranted("ROLE_USER", statusCode=403)
      */
-    public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir, SaveRegexVideo $saveRegexVideo, SaveIllustration $saveIllustration)
+    public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, SaveRegexVideo $saveRegexVideo, SaveIllustration $saveIllustration)
     {
         
         $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
@@ -37,7 +37,7 @@ class UpdateFigureController extends AbstractController
              // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
             if ($illustrations = $form->get('illustrations')) {
                 foreach ($illustrations as $illustration) {
-                    $saveIllustration->save($illustration, $photoDir);
+                    $saveIllustration->save($illustration);
                 }
             }
 

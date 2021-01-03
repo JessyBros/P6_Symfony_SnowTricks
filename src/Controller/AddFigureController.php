@@ -24,7 +24,7 @@ class AddFigureController extends AbstractController
      * @Route("/ajouter-une-figure", name="add_figure")
      * @IsGranted("ROLE_USER", statusCode=403)
      */
-    public function addFigure(EntityManagerInterface $entityManager, Request $request, string $photoDir, SaveRegexVideo $saveRegexVideo,SaveIllustration $saveIllustration)
+    public function addFigure(EntityManagerInterface $entityManager, Request $request, SaveRegexVideo $saveRegexVideo,SaveIllustration $saveIllustration)
     {
         $figure = new Figure();
         $video = new Video();
@@ -39,7 +39,7 @@ class AddFigureController extends AbstractController
             // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
             if ($illustrations = $form->get('illustrations')) {
                 foreach ($illustrations as $illustration) {
-                    $saveIllustration->save($illustration, $photoDir);
+                    $saveIllustration->save($illustration);
                 }
             }
 
