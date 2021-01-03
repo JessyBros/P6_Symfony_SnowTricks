@@ -41,8 +41,8 @@ class Figure
     /**
      * @ORM\Column(type="string", length=255))
      * @Assert\Length(
-     *      min = 15,
-     *      max = 110,
+     *      min = 10,
+     *      max = 255,
      *      minMessage = "La description doit avoir au moins {{ limit }} caractères",
      *      maxMessage = "La description ne doit pas dépasser {{ limit }} caractères"
      * )

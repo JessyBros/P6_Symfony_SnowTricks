@@ -23,7 +23,7 @@ function addFormToCollection($collectionHolderClass) {
     $collectionHolder.data('index', index + 1);
 
     // Fait apparaître le formulaire dans la page dans une balise <li>, avant le boutton qui permet d'ajouter ce formulaire
-    var $newFormLi = $('<li class="col-md-6 my-2"></li>').append(newForm);
+    var $newFormLi = $('<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center"></li>').append(newForm);
     // Ajoute le formulaire en fin de liste<.
     $collectionHolder.append($newFormLi);
 
@@ -32,7 +32,7 @@ function addFormToCollection($collectionHolderClass) {
 }
 
 function addTagFormDeleteLink($tagFormLi) {
-    var $removeFormButton = $('<button  type="button" class="btn btn-outline-danger"><i class="fas fa-times"></i></button>');
+    var $removeFormButton = $('<button  type="button" class="btn btn-outline-danger btn-sm mt-1"><i class="fas fa-times"></i></button>');
     $tagFormLi.append($removeFormButton);
     // $('div.custom-file')
 

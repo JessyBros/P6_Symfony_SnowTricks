@@ -17,6 +17,11 @@ class IllustrationFixtures extends Fixture implements DependentFixtureInterface
                            ->setFigure($this->getReference('figureMute'));
          $manager->persist($illustrationMute);
 
+         $illustrationMute = new Illustration();
+         $illustrationMute->setPath('../default_figure.png')
+                           ->setFigure($this->getReference('figureMute'));
+         $manager->persist($illustrationMute);
+
          $illustrationSad = new Illustration();
          $illustrationSad->setPath('sad.png')
                            ->setFigure($this->getReference('figureSad'));
