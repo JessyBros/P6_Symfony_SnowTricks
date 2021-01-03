@@ -51,30 +51,3 @@ i{
     border: 1px solid #bdbdbd;
 	border-radius: .25rem;
     }
-  
-.figure{
-    border: 2px solid white;
-    border-radius: 8px;
-    font-weight: 600;
-}
-
-.figure img{
-    max-width: 300px;
-    border-radius: 8px 8px 0 0;
-}
-.figure:hover img{
-    filter: brightness(110%);
-}
-
-.figure .h6{
-    border: 2px solid white;
-    border-radius: 8px;
-    font-weight: 700;
-    padding: 5px 8px 5px 8px;
-    margin-bottom: 0;
-}
-
-.figure .h6:hover{
-    background-color: white;
-    color:#373a3c;
-}
