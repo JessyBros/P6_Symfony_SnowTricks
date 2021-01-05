@@ -3,8 +3,7 @@ namespace App\Service;
 
 class MailService
 {
-   
-    public function ForgottenPasswordMail($to, $url, $mailer){
+    public function ForgottenPasswordMail($to, $url, $mailer) {
 
          // On envoie le message
          $message = (new \Swift_Message('mot de passe'))
@@ -18,5 +17,4 @@ class MailService
         // On envoie l'email
         $mailer->send($message);
     }
-
 }

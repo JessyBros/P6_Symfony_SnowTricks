@@ -41,7 +41,6 @@ class Video
     public function setPath(string $path): self
     {
         $this->path = $path;
-
         return $this;
     }
 
@@ -53,7 +52,6 @@ class Video
     public function setFigure(?Figure $figure): self
     {
         $this->figure = $figure;
-
         return $this;
     }
 }

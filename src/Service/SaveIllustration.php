@@ -15,12 +15,12 @@ class SaveIllustration{
     }
 
     public function save(Illustration $illustration, UploadedFile $uploadedFile) {
-            $filename = bin2hex(random_bytes(6)) . '.' . $uploadedFile->guessExtension();
-            try {
-                $uploadedFile->move($this->photoDir, $filename);
-                } catch (FileException $e) {
-                }
-                $illustration->setPath($filename);
+        $filename = bin2hex(random_bytes(6)) . '.' . $uploadedFile->guessExtension();
+        try {
+            $uploadedFile->move($this->photoDir, $filename);
+            } catch (FileException $e) {
+                // ... handle exception if something happens during file upload
+            }
+            $illustration->setPath($filename);
     }
-    
 }

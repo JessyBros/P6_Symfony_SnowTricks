@@ -17,7 +17,8 @@ class IllustrationFormType extends AbstractType
                 'label' => false,
                 'data_class' => null,
                 'required' => false,
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -1,17 +1,20 @@
-.figure{
+.figure {
     border: 3px solid white;
     border-radius: 8px;
     font-weight: 600;
     box-shadow: 0 2px 0 rgba(90, 97, 105, 0.11), 0 4px 8px rgba(90, 97, 105, 0.12), 0 10px 10px rgba(90, 97, 105, 0.06), 0 7px 70px rgba(90, 97, 105, 0.1);
 }
-.figure:hover{
+
+.figure:hover {
     border: 3px solid #505050;
 }
-.figure img{
+
+.figure img {
     max-width: 300px;
     border-radius: 4.5px 4.5px 0 0;
 }
-.figure .h6{
+
+.figure .h6 {
     border: 2px solid white;
     border-radius: 8px;
     font-weight: 700;
@@ -19,7 +22,7 @@
     margin-bottom: 0;
 }
 
-.figure .h6:hover{
+.figure .h6:hover {
     background-color: white;
     color:#373a3c;
 }

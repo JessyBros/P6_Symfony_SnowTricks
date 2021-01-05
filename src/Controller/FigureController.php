@@ -15,7 +15,6 @@ use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -135,7 +134,6 @@ class FigureController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'article a bien été modifié !');
-
             return $this->redirectToRoute('show_figure', ['slug' => $figure->getSlug()]);
         }
 
@@ -149,8 +147,8 @@ class FigureController extends AbstractController
      * @Route("/delete-figure/{slug}", name="delete_figure")
      * @IsGranted("ROLE_USER", statusCode=403)
      */
-    public function deleteFigure(Figure $figure, EntityManagerInterface $entityManager){
-                
+    public function deleteFigure(Figure $figure, EntityManagerInterface $entityManager)
+    {
         $entityManager->remove($figure);
         $entityManager->flush();
 

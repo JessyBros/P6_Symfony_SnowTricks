@@ -35,7 +35,6 @@ class Comment
      */
     private $date;
 
-
     /**
      * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="id")
      * @ORM\JoinColumn(name="figure_id", referencedColumnName="id")
@@ -47,7 +46,6 @@ class Comment
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
-
 
     public function getId(): ?int
     {
@@ -62,7 +60,6 @@ class Comment
     public function setMessage(string $message): self
     {
         $this->message = $message;
-
         return $this;
     }
 
@@ -74,7 +71,6 @@ class Comment
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
-
         return $this;
     }
 
@@ -86,7 +82,6 @@ class Comment
     public function setFigure(?Figure $figure): self
     {
         $this->figure = $figure;
-
         return $this;
     }
 
@@ -98,7 +93,6 @@ class Comment
     public function setUser(?User $user): self
     {
         $this->user = $user;
-
         return $this;
     }
 }

@@ -25,7 +25,6 @@ class RegexVideoValidator extends ConstraintValidator
             throw new UnexpectedTypeException($constraint, RegexVideo::class);
         }
 
-        // Ne peut être null
         if (null === $value || '' === $value) {
             return;
         }

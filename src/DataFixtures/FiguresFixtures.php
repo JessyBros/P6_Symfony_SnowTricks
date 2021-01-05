@@ -14,7 +14,6 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-                   
         $figureMute = new Figure();
         $figureMute-> setName("Mute")
                 -> setDescription("saisie de la carre frontside de la planche entre les deux pieds avec la main avant")
@@ -151,7 +150,6 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
                 -> setSlug("double-mc-twist-1260");
         $manager->persist($figureDoubleMcTwist1260);
 
-        
         $manager->flush();
 
         $this->addReference('figureMute', $figureMute);
@@ -169,7 +167,6 @@ class FiguresFixtures extends Fixture implements DependentFixtureInterface
         $this->addReference('figureTruckDriver', $figureTruckDriver);
         $this->addReference('figureSeatBelt', $figureSeatBelt);
         $this->addReference('figureDoubleMcTwist1260', $figureDoubleMcTwist1260);
-
     }
 
     public function getDependencies()

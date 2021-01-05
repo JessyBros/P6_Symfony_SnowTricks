@@ -38,7 +38,7 @@ class FigureFormType extends AbstractType
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => false, // permet de dire que je n'aurai pas forcément d'illustration, donc facultatif
+                'by_reference' => false,
                 'required' => false,
             ])
             ->add('videos', CollectionType::class, [
@@ -49,7 +49,8 @@ class FigureFormType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'required' => false,
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

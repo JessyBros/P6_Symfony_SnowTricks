@@ -25,7 +25,8 @@ class VideoFormType extends AbstractType
                 'attr' => [
                     'placeholder' => "https://www.youtube.com/watch?v=SQyTWk7OxSI"
                 ]
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

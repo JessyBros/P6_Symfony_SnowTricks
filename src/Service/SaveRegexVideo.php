@@ -15,9 +15,7 @@ class SaveRegexVideo{
                     . "|" . "^https:\/\/dailymotion\.com\/embed\/video\/"
                             ."/";
 
-
     public function save($video) {
-
         $url = $video->get('path')->getData();
         if ($url != null) {
             switch ($url) {
@@ -30,6 +28,5 @@ class SaveRegexVideo{
             }
             $video->getData()->setPath($urlValid);
         }
-
     }
 }

@@ -1,4 +1,4 @@
-body{
+body {
     margin: 0;
     min-height: 100vh;
     display: grid;
@@ -6,38 +6,38 @@ body{
     font-family: Segoe UI, Helvetica, Arial, sans-serif;
    
 }
-img{
+
+img {
     width:100%;
 }
 
-ul{
+ul {
     list-style:none;
 }
 
-a{
+a {
     text-decoration:none!important;
     cursor: pointer;
 }
 
-i{
+i {
     font-size:15px;
 }
 
-.fa-trash-alt:hover{
+.fa-trash-alt:hover {
     color:IndianRed!important;
     cursor: pointer;
 }
 
-.fa-pencil-alt:hover{
+.fa-pencil-alt:hover {
     color:SteelBlue!important;
     cursor: pointer;
 }
 
-/* Custom Css FILE input to form */
-.custom-file-label{
+.custom-file-label {
     display:none;
 }
-.custom-file-input{
+.custom-file-input {
     opacity:1!important;
 	overflow:hidden;
 	cursor: pointer;
@@ -49,5 +49,5 @@ i{
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #bdbdbd;
-	border-radius: .25rem;
-    }
+    border-radius: .25rem;
+}

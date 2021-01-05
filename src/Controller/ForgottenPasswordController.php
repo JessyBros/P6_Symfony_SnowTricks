@@ -19,18 +19,14 @@ class ForgottenPasswordController extends AbstractController
     /**
      * @Route("/mot-de-passe-oublie", name="forgotten_password")
      */
-    public function forgottenPassword(Request $request, UserRepository $userRepo, TokenGeneratorInterface $tokenGenerator,MailService $mailService,\Swift_Mailer $mailer)
+    public function forgottenPassword(Request $request, UserRepository $userRepo, TokenGeneratorInterface $tokenGenerator, MailService $mailService, \Swift_Mailer $mailer)
     {
-      
         $form = $this->createForm(ResetPassType::class);
         $form->handleRequest($request);
         
-        if($form->isSubmitted() && $form->isValid()){
-            // On cherche si un utilisateur a cet email
+        if ($form->isSubmitted() && $form->isValid()) {
             $user = $userRepo->findOneByEmail($form->getData()['email']);
-            // Si l'utilisateur existe
-            if($user){
-                // On génère un token
+            if ($user) {
                 $token = $tokenGenerator->generateToken();
                 try{
                     $user->setResetToken($token);
@@ -45,7 +41,6 @@ class ForgottenPasswordController extends AbstractController
                 // On génère l'URL de réinitialisation de mot de passe
                 $url = $this->generateUrl('reset_password',['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
 
-                // On envoie le mail
                 $mailService->ForgottenPasswordMail($user->getEmail(), $url, $mailer);
             }
             $this->addFlash('success', 'Si votre adresse email est bien enregistré, vous recevrez un email de réinitialisation de mot de passe');
@@ -59,21 +54,18 @@ class ForgottenPasswordController extends AbstractController
     /**
      * @Route("reset-password/{token}", name="reset_password")
      */
-    public function resetPassword($token, Request $request, UserPasswordEncoderInterface $passwordEncoder){
-        // On cherche l'utilisateur avec le token fourni
+    public function resetPassword($token, Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['resetToken' => $token]);
 
-        if(!$user){
+        if (!$user) {
             $this->addFlash('danger', 'Token inconnu');
             $this->redirectToRoute('sign_in');
         }
 
-        // Si le formulaire est envoyé en méthode POST
-        if($request->isMethod('POST')){
-            // On supprime le token
-            $user->setResetToken(null);
+        if ($request->isMethod('POST')) {
 
-            // On chiffre le mot de passe
+            $user->setResetToken(null);
             $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();

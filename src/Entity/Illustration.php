@@ -48,7 +48,6 @@ class Illustration
     public function setPath(?string $path): self
     {
         $this->path = $path;
-
         return $this;
     }
 
@@ -60,7 +59,6 @@ class Illustration
     public function setFile(?UploadedFile $file): self
     {
         $this->file = $file;
-
         return $this;
     }
 
@@ -72,7 +70,6 @@ class Illustration
     public function setFigure(?Figure $figure): self
     {
         $this->figure = $figure;
-
         return $this;
     }
 }
