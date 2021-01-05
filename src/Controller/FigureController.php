@@ -29,12 +29,10 @@ class FigureController extends AbstractController
      */
     public function showFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, PaginatorInterface $paginator)
     {
-        //Formulaire des commentaires
         $comment = new Comment();
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
 
-        //Affichage des commentaire et pagination
         $comments = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId(),['date' => 'desc']);
         $commentsPaginator = $paginator->paginate(
             $comments,
@@ -52,7 +50,6 @@ class FigureController extends AbstractController
             $entityManager->flush();
           
             $this->addFlash('success', 'Votre commentaire a bien été enregistré !');
-
             return $this->redirectToRoute('show_figure', ['slug' => $figure->getSlug()]);
         }
 
@@ -68,7 +65,7 @@ class FigureController extends AbstractController
      * @Route("/ajouter-une-figure", name="add_figure")
      * @IsGranted("ROLE_USER", statusCode=403)
      */
-    public function addFigure(EntityManagerInterface $entityManager, Request $request, string $photoDir, SaveRegexVideo $saveRegexVideo,SaveIllustration $saveIllustration)
+    public function addFigure(EntityManagerInterface $entityManager, Request $request, SaveRegexVideo $saveRegexVideo, SaveIllustration $saveIllustration)
     {
         $figure = new Figure();
         $video = new Video();
@@ -80,14 +77,15 @@ class FigureController extends AbstractController
             $figure->setName($form->get('name')->getData())
                     ->setUser($this->getUser());
 
-            // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
             if ($illustrations = $form->get('illustrations')) {
                 foreach ($illustrations as $illustration) {
-                    $saveIllustration->save($illustration, $photoDir);
+                    if ($illustration->get('file')->getData() != null) {
+                        $uploadedFile = $illustration->get('file')->getData();
+                        $saveIllustration->save($illustration->getData(), $uploadedFile);
+                    }
                 }
             }
 
-            // Enregistre les vidéos antant que l'utilisateur en crée et stocks les images associés
             if ($videos = $form->get('videos')) {
                 foreach ($videos as $video) {
                     $saveRegexVideo->save($video);
@@ -96,6 +94,7 @@ class FigureController extends AbstractController
 
             $entityManager->persist($figure);
             $entityManager->flush();
+
             $this->addFlash('success', 'Votre article a bien été crée !');
             return $this->redirectToRoute('show_figure', ['slug' => $figure->getSlug()]);
         }
@@ -110,20 +109,20 @@ class FigureController extends AbstractController
      * @Route("/modifier-la-figure/{slug}", name="update_figure")
      * @IsGranted("ROLE_USER", statusCode=403)
      */
-    public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, string $photoDir, SaveRegexVideo $saveRegexVideo, SaveIllustration $saveIllustration)
+    public function updateFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, SaveRegexVideo $saveRegexVideo, SaveIllustration $saveIllustration)
     {
-        
         $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-
             $figure->setUpdateDate(new \DateTime());
 
-             // Enregistre les illustrations antant que l'utilisateur en crée et stocks les images associés
             if ($illustrations = $form->get('illustrations')) {
                 foreach ($illustrations as $illustration) {
-                    $saveIllustration->save($illustration, $photoDir);
+                    if ($illustration->get('file')->getData() != null) {
+                        $uploadedFile = $illustration->get('file')->getData();
+                        $saveIllustration->save($illustration->getData(), $uploadedFile);
+                    }
                 }
             }
 
