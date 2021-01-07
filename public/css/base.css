@@ -15,7 +15,7 @@ ul {
 }
 
 a {
-  text-decoration: none!important;
+  text-decoration: none !important;
   cursor: pointer;
 }
 
@@ -24,12 +24,12 @@ i {
 }
 
 .fa-trash-alt:hover {
-  color: IndianRed!important;
+  color: IndianRed !important;
   cursor: pointer;
 }
 
 .fa-pencil-alt:hover {
-  color: SteelBlue!important;
+  color: SteelBlue !important;
   cursor: pointer;
 }
 
@@ -38,16 +38,16 @@ i {
 }
 
 .custom-file-input {
-  opacity: 1!important;
+  opacity: 1 !important;
   overflow: hidden;
   cursor: pointer;
   width: 100%;
   top: -3px;
-  height: auto!important;
+  height: auto !important;
   line-height: 1.9;
   color: #4f4f4f;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #bdbdbd;
-  border-radius: .25rem;
+  border-radius: 0.25rem;
 }
