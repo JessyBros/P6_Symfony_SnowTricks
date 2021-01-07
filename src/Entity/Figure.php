@@ -6,9 +6,8 @@ use App\Repository\FigureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=FigureRepository::class)
@@ -104,6 +103,7 @@ class Figure
     public function setName(?string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -115,6 +115,7 @@ class Figure
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -126,6 +127,7 @@ class Figure
     public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -137,6 +139,7 @@ class Figure
     public function setGroupType(?Group $groupType): self
     {
         $this->groupType = $groupType;
+
         return $this;
     }
 
@@ -148,6 +151,7 @@ class Figure
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 
@@ -221,9 +225,10 @@ class Figure
     public function setSlug($slug): self
     {
         $this->slug = $slug;
+
         return $this;
     }
-    
+
     public function computeSlug(SluggerInterface $slugger)
     {
         $this->slug = (string) $slugger->slug((string) $this)->lower();

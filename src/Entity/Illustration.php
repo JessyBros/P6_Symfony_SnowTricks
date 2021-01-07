@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\IllustrationRepository;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * @ORM\Entity(repositoryClass=IllustrationRepository::class)
@@ -26,7 +26,6 @@ class Illustration
     /**
      * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="illustrations")
      * @ORM\JoinColumn(nullable=false)
-     * 
      */
     private $figure;
 
@@ -48,6 +47,7 @@ class Illustration
     public function setPath(?string $path): self
     {
         $this->path = $path;
+
         return $this;
     }
 
@@ -59,6 +59,7 @@ class Illustration
     public function setFile(?UploadedFile $file): self
     {
         $this->file = $file;
+
         return $this;
     }
 
@@ -70,6 +71,7 @@ class Illustration
     public function setFigure(?Figure $figure): self
     {
         $this->figure = $figure;
+
         return $this;
     }
 }

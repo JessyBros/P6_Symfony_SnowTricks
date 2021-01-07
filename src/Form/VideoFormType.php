@@ -8,8 +8,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Component\Validator\Constraints\Regex;
 
 class VideoFormType extends AbstractType
 {
@@ -20,11 +18,11 @@ class VideoFormType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'constraints' => [
-                    new AppAssert\RegexVideo
+                    new AppAssert\RegexVideo(),
                 ],
                 'attr' => [
-                    'placeholder' => "https://www.youtube.com/watch?v=SQyTWk7OxSI"
-                ]
+                    'placeholder' => 'https://www.youtube.com/watch?v=SQyTWk7OxSI',
+                ],
             ])
         ;
     }

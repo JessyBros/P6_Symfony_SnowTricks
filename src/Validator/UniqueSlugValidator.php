@@ -13,7 +13,7 @@ class UniqueSlugValidator extends ConstraintValidator
 {
     private FigureRepository $figureRepository;
     private SluggerInterface $slugger;
-    
+
     public function __construct(FigureRepository $figureRepository, SluggerInterface $slugger)
     {
         $this->figureRepository = $figureRepository;
@@ -25,7 +25,7 @@ class UniqueSlugValidator extends ConstraintValidator
         if (!$constraint instanceof UniqueSlug) {
             throw new UnexpectedTypeException($constraint, UniqueSlug::class);
         }
-        
+
         if (null === $value || '' === $value) {
             return;
         }

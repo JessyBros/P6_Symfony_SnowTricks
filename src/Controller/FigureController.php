@@ -1,9 +1,9 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Figure;
-use App\Entity\Illustration;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Form\CommentFormType;
@@ -12,16 +12,14 @@ use App\Service\SaveIllustration;
 use App\Service\SaveRegexVideo;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FigureController extends AbstractController
 {
-    const MAX_ITEMS_PER_PAGE = 10;
+    public const MAX_ITEMS_PER_PAGE = 10;
 
     /**
      * @Route("/figure/{slug}", name="show_figure")
@@ -32,23 +30,23 @@ class FigureController extends AbstractController
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
 
-        $comments = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId(),['date' => 'desc']);
+        $comments = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId(), ['date' => 'desc']);
         $commentsPaginator = $paginator->paginate(
             $comments,
-            $request->query->getInt('page',1),
+            $request->query->getInt('page', 1),
             self::MAX_ITEMS_PER_PAGE
-
-        );    
+        );
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setDate(new \DateTime())
                 ->setFigure($figure)
                 ->setUser($this->getUser());
-                
+
             $entityManager->persist($comment);
             $entityManager->flush();
-          
+
             $this->addFlash('success', 'Votre commentaire a bien été enregistré !');
+
             return $this->redirectToRoute('show_figure', ['slug' => $figure->getSlug()]);
         }
 
@@ -59,7 +57,7 @@ class FigureController extends AbstractController
             'commentsPaginator' => $commentsPaginator,
         ]);
     }
-    
+
     /**
      * @Route("/ajouter-une-figure", name="add_figure")
      * @IsGranted("ROLE_USER", statusCode=403)
@@ -71,14 +69,14 @@ class FigureController extends AbstractController
 
         $form = $this->createForm(FigureFormType::class, $figure);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $figure->setName($form->get('name')->getData())
                     ->setUser($this->getUser());
 
             if ($illustrations = $form->get('illustrations')) {
                 foreach ($illustrations as $illustration) {
-                    if ($illustration->get('file')->getData() != null) {
+                    if (null != $illustration->get('file')->getData()) {
                         $uploadedFile = $illustration->get('file')->getData();
                         $saveIllustration->save($illustration->getData(), $uploadedFile);
                     }
@@ -95,6 +93,7 @@ class FigureController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Votre article a bien été crée !');
+
             return $this->redirectToRoute('show_figure', ['slug' => $figure->getSlug()]);
         }
 
@@ -112,28 +111,29 @@ class FigureController extends AbstractController
     {
         $form = $this->createForm(FigureFormType::class, $figure)->remove('name');
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $figure->setUpdateDate(new \DateTime());
 
             if ($illustrations = $form->get('illustrations')) {
                 foreach ($illustrations as $illustration) {
-                    if ($illustration->get('file')->getData() != null) {
+                    if (null != $illustration->get('file')->getData()) {
                         $uploadedFile = $illustration->get('file')->getData();
                         $saveIllustration->save($illustration->getData(), $uploadedFile);
                     }
                 }
             }
 
-           // Enregistre les vidéos antant que l'utilisateur en crée et stocks les images associés
-           if ($videos = $form->get('videos')) {
-            foreach ($videos as $video) {
-                $saveRegexVideo->save($video);
+            // Enregistre les vidéos antant que l'utilisateur en crée et stocks les images associés
+            if ($videos = $form->get('videos')) {
+                foreach ($videos as $video) {
+                    $saveRegexVideo->save($video);
+                }
             }
-        }
             $entityManager->flush();
 
             $this->addFlash('success', 'L\'article a bien été modifié !');
+
             return $this->redirectToRoute('show_figure', ['slug' => $figure->getSlug()]);
         }
 
@@ -152,7 +152,8 @@ class FigureController extends AbstractController
         $entityManager->remove($figure);
         $entityManager->flush();
 
-        $this->addFlash('success', "La figure à bien été supprimé.");
+        $this->addFlash('success', 'La figure à bien été supprimé.');
+
         return $this->redirectToRoute('home');
     }
 }

@@ -2,11 +2,10 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use App\Entity\Video;
-use App\DataFixtures\FiguresFixtures;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 
 class VideoFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -21,8 +20,8 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
 
     public function getDependencies()
     {
-        return array(
+        return [
             FiguresFixtures::class,
-        );
+        ];
     }
 }

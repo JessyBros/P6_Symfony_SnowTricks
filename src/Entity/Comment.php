@@ -60,6 +60,7 @@ class Comment
     public function setMessage(string $message): self
     {
         $this->message = $message;
+
         return $this;
     }
 
@@ -71,6 +72,7 @@ class Comment
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -82,6 +84,7 @@ class Comment
     public function setFigure(?Figure $figure): self
     {
         $this->figure = $figure;
+
         return $this;
     }
 
@@ -93,6 +96,7 @@ class Comment
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
         return $this;
     }
 }

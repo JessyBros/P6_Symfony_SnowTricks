@@ -8,7 +8,6 @@ use App\Repository\UserRepository;
 use App\Service\MailService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -23,30 +22,30 @@ class ForgottenPasswordController extends AbstractController
     {
         $form = $this->createForm(ResetPassType::class);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $userRepo->findOneByEmail($form->getData()['email']);
             if ($user) {
                 $token = $tokenGenerator->generateToken();
-                try{
+                try {
                     $user->setResetToken($token);
                     $entityManager = $this->getDoctrine()->getManager();
                     $entityManager->persist($user);
                     $entityManager->flush();
-                }catch(\Exception $e){
-                    $this->addFlash('warning', 'Une erreur est survenue : ' . $e->getMessage());
+                } catch (\Exception $e) {
+                    $this->addFlash('warning', 'Une erreur est survenue : '.$e->getMessage());
                     $this->redirectToRoute('sign_in');
                 }
 
                 // On génère l'URL de réinitialisation de mot de passe
-                $url = $this->generateUrl('reset_password',['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
+                $url = $this->generateUrl('reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
 
                 $mailService->ForgottenPasswordMail($user->getEmail(), $url, $mailer);
             }
             $this->addFlash('success', 'Si votre adresse email est bien enregistré, vous recevrez un email de réinitialisation de mot de passe');
         }
 
-        return $this->render('security/forgotten_password.html.twig',[
+        return $this->render('security/forgotten_password.html.twig', [
             'ForgottenPasswordForm' => $form->createView(),
         ]);
     }
@@ -64,17 +63,16 @@ class ForgottenPasswordController extends AbstractController
         }
 
         if ($request->isMethod('POST')) {
-
             $user->setResetToken(null);
             $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
             $this->addFlash('success', 'Mot de passe modifié avec succès');
+
             return $this->redirectToRoute('sign_in');
-            
-        } else{
-            return $this->render('security/reset_password.html.twig',['token' => $token]);
+        } else {
+            return $this->render('security/reset_password.html.twig', ['token' => $token]);
         }
     }
 }

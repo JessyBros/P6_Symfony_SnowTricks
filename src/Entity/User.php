@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -55,7 +54,6 @@ class User implements UserInterface
      */
     private $password;
 
-
     /**
      * @ORM\Column(type="string", length=150)
      * @Assert\NotBlank
@@ -85,6 +83,7 @@ class User implements UserInterface
     public function setUsername(string $username): self
     {
         $this->username = $username;
+
         return $this;
     }
 
@@ -96,6 +95,7 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -107,6 +107,7 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
         return $this;
     }
 
@@ -118,17 +119,16 @@ class User implements UserInterface
     public function setPicture(string $picture): self
     {
         $this->picture = $picture;
+
         return $this;
     }
 
     public function eraseCredentials()
     {
-        
     }
 
     public function getSalt()
     {
-        
     }
 
     public function getRoles()
@@ -144,6 +144,7 @@ class User implements UserInterface
     public function setResetToken(?string $resetToken): self
     {
         $this->resetToken = $resetToken;
+
         return $this;
     }
 }

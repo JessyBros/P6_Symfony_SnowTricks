@@ -16,7 +16,7 @@ class HomeController extends AbstractController
         $figure = $this->getDoctrine()->getRepository(Figure::class)->findAll();
 
         return $this->render('home.html.twig', [
-            'figures' => $figure
+            'figures' => $figure,
         ]);
     }
 }
