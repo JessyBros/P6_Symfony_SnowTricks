@@ -1,53 +1,53 @@
 body {
-    margin: 0;
-    min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    font-family: Segoe UI, Helvetica, Arial, sans-serif;
-   
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  font-family: Segoe UI, Helvetica, Arial, sans-serif;
 }
 
 img {
-    width:100%;
+  width: 100%;
 }
 
 ul {
-    list-style:none;
+  list-style: none;
 }
 
 a {
-    text-decoration:none!important;
-    cursor: pointer;
+  text-decoration: none!important;
+  cursor: pointer;
 }
 
 i {
-    font-size:15px;
+  font-size: 15px;
 }
 
 .fa-trash-alt:hover {
-    color:IndianRed!important;
-    cursor: pointer;
+  color: IndianRed!important;
+  cursor: pointer;
 }
 
 .fa-pencil-alt:hover {
-    color:SteelBlue!important;
-    cursor: pointer;
+  color: SteelBlue!important;
+  cursor: pointer;
 }
 
 .custom-file-label {
-    display:none;
+  display: none;
 }
+
 .custom-file-input {
-    opacity:1!important;
-	overflow:hidden;
-	cursor: pointer;
-    width: 100%;
-    top:-3px;
-    height: auto!important;
-    line-height: 1.9;
-    color: #4f4f4f;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #bdbdbd;
-    border-radius: .25rem;
+  opacity: 1!important;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+  top: -3px;
+  height: auto!important;
+  line-height: 1.9;
+  color: #4f4f4f;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #bdbdbd;
+  border-radius: .25rem;
 }
