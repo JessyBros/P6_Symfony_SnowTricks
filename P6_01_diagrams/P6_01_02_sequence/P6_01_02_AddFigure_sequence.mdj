@@ -937,7 +937,6 @@
 											"model": {
 												"$ref": "AAAAAAF0tm5jsXNZfk8="
 											},
-											"fontColor": "#005b00",
 											"font": "Arial;13;0",
 											"left": 299,
 											"top": 280,
@@ -1478,7 +1477,6 @@
 											"model": {
 												"$ref": "AAAAAAF0tnMe7HOgKtw="
 											},
-											"fontColor": "#005b00",
 											"font": "Arial;13;0",
 											"left": 302,
 											"top": 330,
