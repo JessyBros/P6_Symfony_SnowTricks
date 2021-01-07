@@ -54,7 +54,7 @@ PROJECT 6 SnowTricks - Application developer PHP/Symfony.
 -   create a file ".env.local" in the same directory as ".env" and complet it to acces at your database
     exemple : DATABASE_URL=postgres://postgres:password!@127.0.0.1:5432/name_database
 
-### Step 3 : Update composer to your project :
+### Step 3 : Update composer to your project
 -   use <code>composer install</code> in your terminal to install and update all dependencies and libraries 
 
 ### Step 4 : Create your database and add Fixtures
