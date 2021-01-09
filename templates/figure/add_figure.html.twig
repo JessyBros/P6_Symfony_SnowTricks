@@ -5,46 +5,47 @@
 {% endblock %}
 
 {% block body %}
-
 	<section class="container-fluid ">
-	<div class="row">
-	{{ form_start(figure_form,{'attr':{'class':'col-offset-md-3 col-md-6  col-offset-md-3  control-label m-auto'}}) }}
-		<legend class="h1 my-5">Ajouter une nouvelle figure</legend>
+		<div class="row">
+			{{ form_start(figure_form,{'attr':{'class':'col-offset-md-3 col-md-6  col-offset-md-3  control-label m-auto'}}) }}
 
-		{{ form_row(figure_form.name,{'attr':{'placeholder':"Nom de la figure"}}) }}
-		{{ form_row(figure_form.description,{'attr':{'placeholder': "Description de la figure"}}) }}
-		{{ form_row(figure_form.groupType) }}
-     
-		<fieldset id="containerIllustrations">
-			<legend class="h5">Illustrations</legend>
-			<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype.file,{'attr':{'class':"form-control-file"}})|e('html_attr') }}">
-				{% for illustration in figure_form.illustrations %}
-					<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center">
-						<div class="form-group">
-						{{ form_widget(illustration.file)}}
-						</div>
-					</li>
-				{% endfor %}
-			</ul>
-			<button type="button" class="add_item_link_illustration btn btn-secondary my-2" data-collection-holder-class="illustrations">Ajouter une illustration</button>
-		</fieldset>
+				<legend class="h1 my-5">Ajouter une nouvelle figure</legend>
 
-		<fieldset id="containerVideos">
-			<legend class="h5">Vidéos</legend>
-			<ul id="ulVideos" class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype.path,{'attr':{'class':"w-100"}})|e('html_attr') }}">
-				{% for video in figure_form.videos %}
-					<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center">{{ form_widget(video.path) }}</li>
-				{% endfor %}
-			</ul>
-			<button type="button" class="add_item_link_video btn btn-secondary my-2" data-collection-holder-class="videos">Ajouter une vidéo</button>
-		</fieldset>
+				{{ form_row(figure_form.name,{'attr':{'placeholder':"Nom de la figure"}}) }}
 
-		<button type="submit" class="btn btn-dark btn-lg my-3">Ajouter l'article</button>
+				{{ form_row(figure_form.description,{'attr':{'placeholder': "Description de la figure"}}) }}
 
-	{{ form_end(figure_form) }}
-	</div>
+				{{ form_row(figure_form.groupType) }}
+			
+				<fieldset id="containerIllustrations">
+					<legend class="h5">Illustrations</legend>
+					<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype.file,{'attr':{'class':"form-control-file"}})|e('html_attr') }}">
+						{% for illustration in figure_form.illustrations %}
+							<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center">
+								<div class="form-group">
+								{{ form_widget(illustration.file)}}
+								</div>
+							</li>
+						{% endfor %}
+					</ul>
+					<button type="button" class="add_item_link_illustration btn btn-secondary my-2" data-collection-holder-class="illustrations">Ajouter une illustration</button>
+				</fieldset>
+
+				<fieldset id="containerVideos">
+					<legend class="h5">Vidéos</legend>
+					<ul id="ulVideos" class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype.path,{'attr':{'class':"w-100"}})|e('html_attr') }}">
+						{% for video in figure_form.videos %}
+							<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center">{{ form_widget(video.path) }}</li>
+						{% endfor %}
+					</ul>
+					<button type="button" class="add_item_link_video btn btn-secondary my-2" data-collection-holder-class="videos">Ajouter une vidéo</button>
+				</fieldset>
+
+				<button type="submit" class="btn btn-dark btn-lg my-3">Ajouter l'article</button>
+				
+			{{ form_end(figure_form) }}
+		</div>
 	</section>
-
 {% endblock %}
 
 {% block javascripts %}

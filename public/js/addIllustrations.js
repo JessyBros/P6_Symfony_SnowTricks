@@ -1,19 +1,16 @@
 jQuery(document).ready(function() {
-    // Récupère la balise <ul> de ma liste d'illustration
-    var $illustrationsCollectionHolder = $('ul.illustrations');
+    var $illustrationsCollectionHolder = $("ul.illustrations");
 
-     // add a delete link to all of the existing tag form li elements
-     $illustrationsCollectionHolder.find('li').each(function() {
+    // add a delete link to all of the existing tag form li elements
+    $illustrationsCollectionHolder.find("li").each(function() {
         addTagFormDeleteLink($(this));
     });
     
-    // Compte le nombre de formulaire actuel pour insérer une nouvelle.
-    $illustrationsCollectionHolder.data('index', $illustrationsCollectionHolder.find('input').length);
+    // Count which form already exist to create the new
+    $illustrationsCollectionHolder.data("index", $illustrationsCollectionHolder.find("input").length);
 
-    
-    $('body').on('click', '.add_item_link_illustration', function(e) {
-        var $collectionHolderClass = $(e.currentTarget).data('collectionHolderClass');
-        // // Appel de la fonction pour ajouter un nouveau formulaire
+    $("body").on("click", ".add_item_link_illustration", function(e) {
+        var $collectionHolderClass = $(e.currentTarget).data("collectionHolderClass");
         addFormToCollection($collectionHolderClass);
     })
 });

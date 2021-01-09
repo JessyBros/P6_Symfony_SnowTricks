@@ -14,10 +14,10 @@ class ResetPassType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class)
-            ->add('envoyer', SubmitType::class,[
-                'attr' =>[
+            ->add('envoyer', SubmitType::class, [
+                'attr' => [
                     'class' => 'btn btn-dark',
-                ]
+                ],
             ])
         ;
     }
