@@ -76,12 +76,12 @@ PROJECT 6 SnowTricks - Application developer PHP/Symfony.
 ### Install IDE VISUAL STUDIO CODE
 -   <https://code.visualstudio.com/>
 
-### Recommended extensions :
+### Recommended extensions
 -   PHP Intelephense - Code php intelligent
 -   PHP Namespace Resolver - Gérer les namespaces automatiquement
 -   Twig Language 2 - Twig
      
-### Recommanded configurations :
+### Recommanded configurations
 -   Settings -> rechercher "Suggest basic" -> Décocher "PHP: Suggest:basic - Enlève des éléments pour l'auto complétion
 -   Settings -> rechercher "format" -> Décocher "EDITOR: format on save" - Lors d'une sauvegarde d'un fichier, l'indente automatiquement correctement
 -   Settings -> rechercher "emmet" -> Dans "Emmet Include Languages" - value = langage concerné | item = formater au langage souhaité -> item = "twig", value = "html"
