@@ -2,20 +2,20 @@
 
 PROJECT 6 SnowTricks - Application developer PHP/Symfony.
 
-### OBJECTIF 
+## OBJECTIF 
 <https://openclassrooms.com/fr/paths/59/projects/42/assignment>
 
-### CONTENT PROJECT
+## CONTENT PROJECT
 -   UML Diagrams
 -   Database
 -   Development project (use Issue & Pull request)
 
-### Prerequisite in your workplace <https://www.java.com/fr/download/help/path.html>
+## Prerequisite in your workplace <https://www.java.com/fr/download/help/path.html>
 -   Php 7.4  (x64 Non Thread Safe) or (x86 pour les versions 32 bits) <https://windows.php.net/download#php-7.4>
 -   Composer  <https://getcomposer.org/download/> (to manage dependencies and libraries)
 -   Symfony command <https://symfony.com/doc/current/the-fast-track/fr/1-tools.html#symfony-cli>
 
-#### Install in your workplace PHP, Composer and Symfony (variable environment)
+### Install in your workplace PHP, Composer and Symfony (variable environment)
 -   exemple : <https://www.twilio.com/blog/2017/01/how-to-set-environment-variables.html>
 -   Then check with next command in your terminal whatever where path :
 
