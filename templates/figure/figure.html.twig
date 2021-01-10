@@ -12,8 +12,7 @@
 	.block {
 		box-shadow: 0 2px 0 rgba(90, 97, 105, 0.11), 0 4px 8px rgba(90, 97, 105, 0.12), 0 10px 10px rgba(90, 97, 105, 0.06), 0 7px 70px rgba(90, 97, 105, 0.1);
 	}
-
-	</style>
+</style>
 {% endblock %}
 
 {% block body %}
@@ -21,13 +20,14 @@
 	<div class="row col-md-10 col-lg-8 m-auto">
 		<article class="col-sm-12 p-0 border block" style="border-radius:5px;">
  
- 			<!-- Image de présentation de l'article -->
+ 			<!-- Representation image of the figure -->
 			{% if figure.illustrations is empty %}
 				<img src="../images/figures/default_figure.png" alt="default figure" class="rounded-top" style="height:450px;"/>
 			{% else %}
 				<img src="../images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" class="rounded-top" style="height:500px;"/>
 			{% endif %}
 
+			<!-- link update and delete own figure -->
 			{% if app.user %}
 				<div class="position-absolute z-index-2" style="top:0;right:10px;">
 					<a href="{{ path('update_figure',{'slug':figure.slug}) }}" class="text-secondary">
@@ -40,7 +40,7 @@
 				</div>
 			{% endif %}
 
-			<!-- Informations de l'article -->
+			<!-- Presentation of the main figure -->
 			<div class="col-sm-12 card-body text-center">
 				<h1 class="card-title h3">{{figure.name|upper}}</h5>
 				<p class="card-text">{{figure.description}}</p>
@@ -48,7 +48,7 @@
 
 			<hr class="col-xs-10">
 
-			<!-- Informations secondaire de l'article -->
+			<!-- Secondary information of the figure -->
 			<div class="col-sm-12 card-body text-center">
 				<p class="card-text blockquote-footer">Par : {{figure.user.username|capitalize}} | Crée le <em>{{figure.date|date("d/m/Y à H:i")}}</em> 
 				{% if figure.updateDate is not null %}
@@ -75,16 +75,17 @@
 				{% endfor %}
 			{% endif %}
 			</div>
+
 		</article>
 	
-		<!-- Poster un commentaire -->
+		<!-- Post a comment -->
 		{% if app.user %}
 		<div class="col-sm-12 border my-4 block" style="border-radius:5px;">
 			<div id="PosterUnCommentaire" class="col-md-11 mx-auto mt-5 mb-4">
-			{{ form_start(comment_form)}}
-				{{form_row(comment_form.message)}}
-				<button type="submit" class="btn btn-outline-dark">Poster un commentaire !</button>
-			{{ form_end(comment_form)}}
+				{{ form_start(comment_form)}}
+					{{form_row(comment_form.message)}}
+					<button type="submit" class="btn btn-outline-dark">Poster un commentaire !</button>
+				{{ form_end(comment_form)}}
 			</div>
 		</div>
 		{% else %}
@@ -93,7 +94,7 @@
 		</div>
 		{% endif %}
 
-		<!-- Affichage des commentaires -->
+		<!-- Show comments -->
 		<div id="commentaires" class="col-sm-12 mx-auto my-4 py-2 justify-content-center border block" style="border-radius:5px;">
 			{% if comments %}
 				<p class="mb-5" style="text-decoration:#555 underline;">{{comments|length}} COMMENTAIRE{% if comments|length > 1 %}S{% endif %}</p>
@@ -114,6 +115,7 @@
 				</div>
 			{% endif %}
 		</div>
+
 	</div>
 </section>
 {% endblock %}

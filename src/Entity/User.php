@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -54,7 +53,6 @@ class User implements UserInterface
      * @Assert\Length(min = 5, minMessage = "Votre mot de passe doit faire minimum 8 caractères")
      */
     private $password;
-
 
     /**
      * @ORM\Column(type="string", length=150)
@@ -127,12 +125,10 @@ class User implements UserInterface
 
     public function eraseCredentials()
     {
-        
     }
 
     public function getSalt()
     {
-        
     }
 
     public function getRoles()

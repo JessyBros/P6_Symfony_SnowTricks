@@ -4,67 +4,73 @@
 {% endblock %}
 
 {% block stylesheets %}
-<link rel="stylesheet" href="/css/home.css">
+	<link rel="stylesheet" href="/css/home.css">
 {% endblock %}
 
 {% block body %}
-	<section id="conteneurPresentation" class="position-relative" style="height:100vh;">
-		<img src="/images/welcome.jpg" class="position-absolute w-100" style="z-index:-1;top:-60px;height:100vh; border-bottom:1px solid black;" />
-		<div class="position-relative text-center h-100" >
-			<div class=" d-flex flex-column justify-content-center h-50" style="text-shadow: black 1px 0 1px;">
-				<h1>SnowTricks !</h1>
-				<p class="h5">Découvrez le <strong>Snowboard</strong> et apprenez les différentes figures avec Jimmy Sweat et la communauté.</p>
-			</div>
-			<div class=" d-flex flex-column justify-content-end" style="height:40%;" >
-				<a href="#conteneurTricks" class="text-light" style="text-shadow: 2px 2px black;" >
-					<p><strong>SCROLL</strong></p>
-					<i class="fas fa-angle-down h1"></i>
-				</a>
-			</div>
-		<div>
-	</section>
+<section id="conteneurPresentation" class="position-relative" style="height:100vh;">
+	<!-- Background image of presentation of snowtrick -->
+	<img src="/images/welcome.jpg" class="position-absolute w-100" style="z-index:-1;top:-60px;height:100vh; border-bottom:1px solid black;" />
 
-	<section id="conteneurTricks" style="position:relative; padding-top:60px; top:-60px;">
-		<div class="m-auto d-flex flex-wrap justify-content-around" style="max-width:1250px;">
-			{% for figure in figures %}
-				<article class="figure card bg-dark my-3 mx-2" style="max-width: 300px; display:none;">
-					<a class="text-light" href="{{ path('show_figure',{'slug':figure.slug}) }}">
-						{% if figure.illustrations is empty %}
-							<!-- image par défaut-->
-							<img src="/images/figures/default_figure.png" alt="default figure" style="height:135px"/>
-						{% else %}
-							<img src="/images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" style="height:135px;"/>
-						{% endif %}
-						<div class="card-footer d-flex justify-content-between">
-							<span class="h6">{{ figure.name }}</span>
-							{% if app.user %}
-							<div class="d-flex justify-content-around">
-								<a class="text-light" href="{{ path('update_figure',{'slug':figure.slug}) }}">
-									<i class="fas fa-pencil-alt mx-2"></i>
-								</a>
-								<a class="text-light" data-toggle="modal" data-target="#deleteFigure-{{figure.id}}">
-                                    <i class="fas fa-trash-alt mx-2"></i>
-                                </a>
-								{% include '/modal/delete_figure.html.twig' %}
-							</div>
-							{% endif %}
+	<div class="position-relative text-center h-100" >
+		<!-- Presentation of snowtrick -->
+		<div class=" d-flex flex-column justify-content-center h-50" style="text-shadow: black 1px 0 1px;">
+			<h1>SnowTricks !</h1>
+			<p class="h5">Découvrez le <strong>Snowboard</strong> et apprenez les différentes figures avec Jimmy Sweat et la communauté.</p>
+		</div>
+
+		<!-- Scroll to all figure -->
+		<div class=" d-flex flex-column justify-content-end" style="height:40%;" >
+			<a href="#conteneurTricks" class="text-light" style="text-shadow: 2px 2px black;" >
+				<p><strong>SCROLL</strong></p>
+				<i class="fas fa-angle-down h1"></i>
+			</a>
+		</div>
+	<div>
+</section>
+
+<!-- Show all figure -->
+<section id="conteneurTricks" style="position:relative; padding-top:60px; top:-60px;">
+	<div class="m-auto d-flex flex-wrap justify-content-around" style="max-width:1250px;">
+		{% for figure in figures %}
+			<article class="figure card bg-dark my-3 mx-2" style="max-width: 300px; display:none;">
+				<a class="text-light" href="{{ path('show_figure',{'slug':figure.slug}) }}">
+					<!-- image of the figure -->
+					{% if figure.illustrations is empty %}
+						<img src="/images/figures/default_figure.png" alt="default figure" style="height:135px"/>
+					{% else %}
+						<img src="/images/figures/illustrations/{{figure.illustrations|first.path}}" alt="{{figure.illustrations|first.path}}" style="height:135px;"/>
+					{% endif %}
+					<div class="card-footer d-flex justify-content-between">
+						<!-- name of the figure -->
+						<span class="h6">{{ figure.name }}</span>
+						<!-- link update and delete own figure -->
+						{% if app.user %}
+						<div class="d-flex justify-content-around">
+							<a class="text-light" href="{{ path('update_figure',{'slug':figure.slug}) }}">
+								<i class="fas fa-pencil-alt mx-2"></i>
+							</a>
+							<a class="text-light" data-toggle="modal" data-target="#deleteFigure-{{figure.id}}">
+                                <i class="fas fa-trash-alt mx-2"></i>
+                            </a>
+							{% include '/modal/delete_figure.html.twig' %}
 						</div>
-					</a>
-				</article>
-			{% endfor %}
-		</div>
+						{% endif %}
+					</div>
+				</a>
+			</article>
+		{% endfor %}
+	</div>
 
-		<div class="text-center m3">
-			<i id="loadMoreFigure" class="fas fa-plus-circle m-3" style="cursor:pointer; font-size:110%;"> Voir plus de figure</i>
-			<i id="loadLessFigure" class="fas fa-minus-circle m-3" style="display:none; cursor:pointer; font-size:120%"> Moins de figure</i>
-		</div>
+	<div class="text-center m3">
+		<i id="loadMoreFigure" class="fas fa-plus-circle m-3" style="cursor:pointer; font-size:110%;"> Voir plus de figure</i>
+		<i id="loadLessFigure" class="fas fa-minus-circle m-3" style="display:none; cursor:pointer; font-size:120%"> Moins de figure</i>
+	</div>
 		
-		<a id="arrowUp" href="#conteneurTricks" style="display:none; position:absolute; right:5px;">
-			<i class="fas fa-angle-up h1 text-dark" style="text-shadow: 2px 2px grey;"></i>
-		</a>
-	</section>
-
-
+	<a id="arrowUp" href="#conteneurTricks" style="display:none; position:absolute; right:5px;">
+		<i class="fas fa-angle-up h1 text-dark" style="text-shadow: 2px 2px grey;"></i>
+	</a>
+</section>
 {% endblock %}
 
 {% block javascripts %}

@@ -2,16 +2,16 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Group;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Entity\Group;
 
 class GroupFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
         $groupGrap = new Group();
-        $groupGrap->setName("Grap");
+        $groupGrap->setName('Grap');
         $manager->persist($groupGrap);
 
         $groupFlip = new Group();
@@ -21,7 +21,7 @@ class GroupFixtures extends Fixture
         $groupOldSchool = new Group();
         $groupOldSchool->setName('Old school');
         $manager->persist($groupOldSchool);
-       
+
         $groupRotation = new Group();
         $groupRotation->setName('Rotation');
         $manager->persist($groupRotation);

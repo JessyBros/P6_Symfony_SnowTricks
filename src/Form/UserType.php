@@ -17,14 +17,14 @@ class UserType extends AbstractType
         $builder
             ->add('username')
             ->add('email')
-            ->add('password', RepeatedType::class,[
+            ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent être identique',
                 'required' => true,
-                'first_options' =>['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Répétez votre mot de passe']
+                'first_options' => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Répétez votre mot de passe'],
             ])
-            ->add('picture', FileType::class,[
+            ->add('picture', FileType::class, [
                 'label' => 'Votre avatar de profil',
             ])
         ;
