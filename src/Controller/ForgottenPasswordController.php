@@ -71,8 +71,7 @@ class ForgottenPasswordController extends AbstractController
             $this->addFlash('success', 'Mot de passe modifié avec succès');
 
             return $this->redirectToRoute('sign_in');
-        } else {
-            return $this->render('security/reset_password.html.twig', ['token' => $token]);
         }
+            return $this->render('security/reset_password.html.twig', ['token' => $token]);
     }
 }
