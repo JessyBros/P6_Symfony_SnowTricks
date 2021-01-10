@@ -4,47 +4,46 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Figure;
+use App\Entity\Illustration;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Form\CommentFormType;
 use App\Form\FigureFormType;
+use App\Repository\CommentRepository;
 use App\Service\SaveIllustration;
 use App\Service\SaveRegexVideo;
 use Doctrine\ORM\EntityManagerInterface;
-use Knp\Component\Pager\PaginatorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class FigureController extends AbstractController
 {
-    public const MAX_ITEMS_PER_PAGE = 10;
-
     /**
      * @Route("/figure/{slug}", name="show_figure")
      */
-    public function showFigure(Figure $figure, EntityManagerInterface $entityManager, Request $request, PaginatorInterface $paginator)
+    public function showFigure(Figure $figure, CommentRepository $commentRepository, EntityManagerInterface $entityManager, Request $request)
     {
         $comment = new Comment();
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
 
-        $comments = $this->getDoctrine()->getRepository(Comment::class)->findByFigure($figure->getId(), ['date' => 'desc']);
-        $commentsPaginator = $paginator->paginate(
-            $comments,
-            $request->query->getInt('page', 1),
-            self::MAX_ITEMS_PER_PAGE
-        );
+        // Paging
+        $offset = max(0, $request->query->getInt('offset', 0));
+        $paginator = $commentRepository->getCommentPaginator($figure, $offset);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setDate(new \DateTime())
                 ->setFigure($figure)
                 ->setUser($this->getUser());
-
+                
             $entityManager->persist($comment);
             $entityManager->flush();
-
+          
             $this->addFlash('success', 'Votre commentaire a bien été enregistré !');
 
             return $this->redirectToRoute('show_figure', ['slug' => $figure->getSlug()]);
@@ -53,8 +52,9 @@ class FigureController extends AbstractController
         return $this->render('figure/figure.html.twig', [
             'figure' => $figure,
             'comment_form' => $form->createView(),
-            'comments' => $comments,
-            'commentsPaginator' => $commentsPaginator,
+            'comments' => $paginator,
+            'previous' => $offset - CommentRepository::PAGINATOR_PER_PAGE,
+            'next' => min(count($paginator), $offset + CommentRepository::PAGINATOR_PER_PAGE),
         ]);
     }
 
@@ -124,7 +124,6 @@ class FigureController extends AbstractController
                 }
             }
 
-            // Enregistre les vidéos antant que l'utilisateur en crée et stocks les images associés
             if ($videos = $form->get('videos')) {
                 foreach ($videos as $video) {
                     $saveRegexVideo->save($video);

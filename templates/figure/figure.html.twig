@@ -61,7 +61,7 @@
 			
 			<hr class="col-xs-10">
 
-			<!-- Illustrations et videos -->
+			<!-- Illustrations and videos -->
 			<div id="figures" class="col-sm-12 my-2 d-flex justify-content-center flex-wrap">
 			{% if figure.illustrations|length == 0 and figure.videos|length == 0 %}
 				<div class="text-center card-text">
@@ -99,7 +99,7 @@
 		<div id="commentaires" class="col-sm-12 mx-auto my-4 py-2 justify-content-center border block" style="border-radius:5px;">
 			{% if comments %}
 				<p class="mb-5" style="text-decoration:#555 underline;">{{comments|length}} COMMENTAIRE{% if comments|length > 1 %}S{% endif %}</p>
-				{% for comment in commentsPaginator %}
+				{% for comment in comments %}
 				<div class="d-flex m-2">
 					<img src="../images/pictures/{{comment.user.picture}}" class="mx-4 mt-2 circle" style="height:50px; width:50px; border-radius:50px;"/>
 					<div class="m-1">
@@ -109,7 +109,14 @@
 				</div>
 				<hr>
 				{% endfor %}
-				<div class="d-flex justify-content-center">{{ knp_pagination_render(commentsPaginator) }}</div>
+				<div class="d-flex justify-content-around">
+				{% if previous >= 0 %}
+		            <a href="{{ path('show_figure', { slug: figure.slug, offset: previous }) }}">Précédent</a>
+		        {% endif %}
+		        {% if next < comments|length %}
+		            <a href="{{ path('show_figure', { slug: figure.slug, offset: next }) }}">Prochain</a>
+		        {% endif %}
+				</div>
 			{% else %}
 				<div class="text-center card-text text-primary">
 					<p class="m-0"><strong>Aucun utilisateur n'a posté de commentaire sur cette figure pour le moment.</strong></p>
