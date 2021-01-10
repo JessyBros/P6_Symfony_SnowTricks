@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Service\SavePictureUser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -24,7 +25,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/inscription", name="register")
      */
-    public function register(EntityManagerInterface $entityManager, Request $request, string $pictureDir, UserPasswordEncoderInterface $encoder)
+    public function register(EntityManagerInterface $entityManager, Request $request, UserPasswordEncoderInterface $encoder, SavePictureUser $savePictureUser)
     {
         $user = new User();
 
@@ -36,12 +37,7 @@ class SecurityController extends AbstractController
             $user->setPassword($hash);
 
             $picture = $form->get('picture')->getData();
-            $pictureName = bin2hex(random_bytes(6)).'.'.$picture->guessExtension();
-            try {
-                $picture->move($pictureDir, $pictureName);
-            } catch (FileException $e) {
-            }
-            $user->setPicture($pictureName);
+            $savePictureUser->save($user, $picture);
 
             $entityManager->persist($user);
             $entityManager->flush();

@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Illustration;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SaveIllustration
