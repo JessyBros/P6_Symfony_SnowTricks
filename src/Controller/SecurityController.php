@@ -5,17 +5,16 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Service\SavePictureUser;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
-
     /**
      * @Route("/connexion", name="sign_in")
      */
@@ -35,10 +34,9 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
-          
+
             $picture = $form->get('picture')->getData();
             $savePictureUser->save($user, $picture);
             
@@ -46,10 +44,11 @@ class SecurityController extends AbstractController
             $entityManager->flush();
 
             $this->addFlash('success', 'Votre inscription a été effectué avec succès !');
+
             return $this->redirectToRoute('sign_in');
         }
 
-        return $this->render('security/register.html.twig',[
+        return $this->render('security/register.html.twig', [
             'formSignUp' => $form->createView(),
         ]);
     }
@@ -57,6 +56,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/deconnexion", name="log_out")
      */
-    public function logOut(){}
-
+    public function logOut()
+    {
+    }
 }

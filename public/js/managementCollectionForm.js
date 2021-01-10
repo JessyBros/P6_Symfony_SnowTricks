@@ -1,43 +1,36 @@
 
 function addFormToCollection($collectionHolderClass) {
-    // Récupérer <ul> où le boutton avec la class "add_item_link" est situé
-    var $collectionHolder = $('.' + $collectionHolderClass);
+    // Get the ul that holds the collection of tags "add_item_link"
+    var $collectionHolder = $("." + $collectionHolderClass);
 
-    // Récupérer l'utilisation du data-prototype expliqué et utilisé ultérieuremet par symfony
-    var prototype = $collectionHolder.data('prototype');
+    // Get the data-prototype
+    var prototype = $collectionHolder.data("prototype");
 
-    // Obtenir la nouvelle indice.
-    var index = $collectionHolder.data('index');
+    // get the new index
+    var index = $collectionHolder.data("index");
 
     var newForm = prototype;
-    // You need this only if you didn't set 'label' => false in your tags field in TaskType
-    // Replace '__name__label__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    // newForm = newForm.replace(/__name__label__/g, index);
 
     // Replace '__name__' in the prototype's HTML to
     // instead be a number based on how many items we have
     newForm = newForm.replace(/__name__/g, index);
 
-    // Augmente de un l'indice pour le nouveau formulaire
-    $collectionHolder.data('index', index + 1);
+    // increase the index with one for the next item
+    $collectionHolder.data("index", index + 1);
 
-    // Fait apparaître le formulaire dans la page dans une balise <li>, avant le boutton qui permet d'ajouter ce formulaire
+    // Display the form in the page in an li, before the "Add a tag" link li
     var $newFormLi = $('<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center"></li>').append(newForm);
-    // Ajoute le formulaire en fin de liste<.
+    // Add the new form at the end of the list
     $collectionHolder.append($newFormLi);
 
-    //appel la function qui supprime son propre formulaire imbriqué d'illustration.
     addTagFormDeleteLink($newFormLi);
 }
 
 function addTagFormDeleteLink($tagFormLi) {
     var $removeFormButton = $('<button  type="button" class="btn btn-outline-danger btn-sm mt-1"><i class="fas fa-times"></i></button>');
     $tagFormLi.append($removeFormButton);
-    // $('div.custom-file')
 
-    $removeFormButton.on('click', function (e) {
-        // remove the li for the tag form
+    $removeFormButton.on("click", function (e) {
         $tagFormLi.remove();
     });
 }

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -5,29 +6,30 @@
 			{% block title %}{% endblock %}
 		</title>
         <link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css">
-	</head>
+        <style>
+            a {
+              text-decoration:none!important;
+              color:#ff851b;
+              border-bottom: 1px dashed #ff851b;
+              border-radius: 2px;
+            }
+            
+            a:hover {
+              color:#ff851b;
+            }
+        </style>
+	</head>   
 
-    <style>
-    a {
-        text-decoration:none!important;
-        color:#ff851b;
-        border-bottom: 1px dashed #ff851b;
-        border-radius: 2px;
-    }
-     a:hover {
-        color:#ff851b;
-    }
-    </style>
-
-<body class="text-center" style="font-family: 'Kanit', sans-serif font-weight-normal">
-    <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-            <div>
-                <h1 class="text-uppercase text-warning" style="font-size:175px;">{% block codeErreur %}{% endblock %}</h1>
-                <h2 class="mb-4 text-uppercase">{% block problemErreur %}{% endblock %}</h2>
-                <p class="m-1" style="font-size:16px;">{% block detailErreur %}{% endblock %}</p>
-                <span>{% block redirectionPage %}{% endblock %}</span>
+    <body class="text-center" style="font-family: 'Kanit', sans-serif font-weight-normal">
+        <div class="container h-100">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div>
+                    <h1 class="text-uppercase text-warning" style="font-size:175px;">{% block codeErreur %}{% endblock %}</h1>
+                    <h2 class="mb-4 text-uppercase">{% block problemErreur %}{% endblock %}</h2>
+                    <p class="m-1" style="font-size:16px;">{% block detailErreur %}{% endblock %}</p>
+                    <span>{% block redirectionPage %}{% endblock %}</span>
+                </div>
             </div>
         </div>
-    </div>
-</body>  
+    </body> 
+</html>

@@ -6,8 +6,8 @@ use App\Entity\Illustration;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class SaveIllustration{
-
+class SaveIllustration
+{
     private string $photoDir;
 
     public function __construct(string $photoDir)
@@ -15,13 +15,14 @@ class SaveIllustration{
         $this->photoDir = $photoDir;
     }
 
-    public function save(Illustration $illustration, UploadedFile $uploadedFile) {
-            $filename = bin2hex(random_bytes(6)) . '.' . $uploadedFile->guessExtension();
-            try {
-                $uploadedFile->move($this->photoDir, $filename);
-                } catch (FileException $e) {
-                }
-                $illustration->setPath($filename);
+    public function save(Illustration $illustration, UploadedFile $uploadedFile)
+    {
+        $filename = bin2hex(random_bytes(6)).'.'.$uploadedFile->guessExtension();
+        try {
+            $uploadedFile->move($this->photoDir, $filename);
+        } catch (FileException $e) {
+            // ... handle exception if something happens during file upload
+        }
+        $illustration->setPath($filename);
     }
-    
 }

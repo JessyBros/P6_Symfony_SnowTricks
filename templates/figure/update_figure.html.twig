@@ -5,24 +5,22 @@
 {% endblock %}
 
 {% block body %}
-
-	<section class="container-fluid ">
+<section class="container-fluid ">
 	<div class="row">
 		{{ form_start(figure_form,{'attr':{'class':'col-offset-md-3 col-md-6  col-offset-md-3  control-label m-auto'}}) }}
 
 			<legend class="h1 my-5">{{figure.name}}</legend>
 
 			{{form_row(figure_form.description)}}
+
 			{{form_row(figure_form.groupType)}}
 
 			<div id="containerIllustrations">
-				<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype.file,{'attr':{'class':"form-control-file",'style':"display: grid;margin: auto; /* comportement visuel de cellule */
-  vertical-align: middle;"}})|e('html_attr') }}">
-  
+				<ul id="ulIllustrations" class="illustrations d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.illustrations.vars.prototype.file,{'attr':{'class':"form-control-file"}})|e('html_attr') }}">
 					{% for illustration in figure_form.illustrations %}
-					<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center">
+					<li class="col-md-6 ">
 						<img src="../images/figures/illustrations/{{ illustration.vars.data.path }}" class="m-1 rounded border"style="height:100px; width:150px;"/>
-						{{ form_widget(illustration.file) }}
+						{{ form_row(illustration.file) }}
 					</li>
 					{% endfor %}
 				</ul>
@@ -33,7 +31,7 @@
 				<ul id="ulVideos" class="videos d-flex justify-content-around flex-wrap text-center" data-prototype="{{ form_widget(figure_form.videos.vars.prototype.path,{'attr':{'class':"w-100"}})|e('html_attr') }}">
 					{% for video in figure_form.videos %}
 					<li class="col-md-6 my-2 d-flex justify-content-center flex-column align-items-center">
-							{{ form_row(video.path) }}
+						{{ form_row(video.path) }}
 					</li>
 					{% endfor %}
 				</ul>
@@ -43,9 +41,8 @@
 			<button type="submit" class="btn btn-dark my-3">Enregistrer les modifications</button>
 
 		{{ form_end(figure_form) }}
-		</div>
-	</section>
-
+	</div>
+</section>
 {% endblock %}
 
 {% block javascripts %}

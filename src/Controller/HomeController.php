@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Figure;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Figure;
 
 class HomeController extends AbstractController
 {
@@ -13,10 +13,10 @@ class HomeController extends AbstractController
      */
     public function home()
     {
-        $repo = $this->getDoctrine()->getRepository(Figure::class);
-        $figure = $repo->findAll();
+        $figure = $this->getDoctrine()->getRepository(Figure::class)->findAll();
+
         return $this->render('home.html.twig', [
-            'figures' => $figure
+            'figures' => $figure,
         ]);
     }
 }

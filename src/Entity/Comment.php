@@ -35,7 +35,6 @@ class Comment
      */
     private $date;
 
-
     /**
      * @ORM\ManyToOne(targetEntity=Figure::class, inversedBy="id")
      * @ORM\JoinColumn(name="figure_id", referencedColumnName="id")
@@ -47,7 +46,6 @@ class Comment
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
-
 
     public function getId(): ?int
     {
