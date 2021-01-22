@@ -21,7 +21,7 @@ class FigureRepository extends ServiceEntityRepository
 
     public function findAll()
     {
-        return $this->findBy(array(), array('date' => 'ASC'));
+        return $this->findBy([],['date' => 'ASC']);
     }
     // /**
     //  * @return Figure[] Returns an array of Figure objects
