@@ -19,6 +19,10 @@ class FigureRepository extends ServiceEntityRepository
         parent::__construct($registry, Figure::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy([],['date' => 'ASC']);
+    }
     // /**
     //  * @return Figure[] Returns an array of Figure objects
     //  */
