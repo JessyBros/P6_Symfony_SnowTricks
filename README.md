@@ -1,4 +1,7 @@
 # P6_Symfony_SnowTricks
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0b850d8c3c0148a6942ff27f05adfd53)](https://app.codacy.com/gh/SiProdZz/P6_Symfony_SnowTricks?utm_source=github.com&utm_medium=referral&utm_content=SiProdZz/P6_Symfony_SnowTricks&utm_campaign=Badge_Grade)
+
 PROJECT 6 SnowTricks - Application developer PHP/Symfony.
 
 ## OBJECTIF 
