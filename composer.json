@@ -30,7 +30,7 @@
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "friendsofphp/php-cs-fixer": "^2.17",
         "symfony/debug-bundle": "^5.0",
-        "symfony/maker-bundle": "^1.21",
+        "symfony/maker-bundle": "^1.33",
         "symfony/stopwatch": "^5.0",
         "symfony/var-dumper": "^5.0",
         "symfony/web-profiler-bundle": "^5.0"
@@ -65,14 +65,8 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "database-setup": [
-            "php bin/console make:migration",
-            "php bin/console doctrine:migrations:migrate --no-interaction",
-            "php bin/console doctrine:fixtures:load --no-interaction"
-        ],
         "post-install-cmd": [
-            "@auto-scripts",
-            "@database-setup"
+            "@auto-scripts"
         ],
         "post-update-cmd": [
             "@auto-scripts"
