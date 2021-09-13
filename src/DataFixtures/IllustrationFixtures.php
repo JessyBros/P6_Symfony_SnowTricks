@@ -82,7 +82,7 @@ class IllustrationFixtures extends Fixture implements DependentFixtureInterface
         $manager->persist($illustrationTruckDriver);
 
         $illustrationSeatBelt = new Illustration();
-        $illustrationSeatBelt->setPath('SeatBelt.png')
+        $illustrationSeatBelt->setPath('seatBelt.png')
                            ->setFigure($this->getReference('figureSeatBelt'));
         $manager->persist($illustrationSeatBelt);
 
